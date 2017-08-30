@@ -1,4 +1,4 @@
-package com.skevary;
+package com.skevary.security;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

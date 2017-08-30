@@ -1,4 +1,4 @@
-package com.skevary;
+package com.skevary.security;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,11 +14,14 @@ import java.io.Serializable;
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
-    private static final String[] users = {"skev@mail.com:123456", "mary@mail.org:123456", "admin:admin"};
+
+    private static final String[] users = {"skev@mail.com:123456", "mary@mail.org:123456"};
+
     @NotNull(message = "Email may not be null.")
     @Size(min = 3, max = 254, message = "Email length must be between 3 and 254.")
     @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "Email format is invalid.")
     private String email;
+
     @NotNull(message = "Password may not be null.")
     @Size(min = 3, max = 254, message = "Password length must be between 3 and 254.")
     private String password;
@@ -28,18 +31,11 @@ public class LoginBean implements Serializable {
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
 
-    /**
-     * Login operation.
-     *
-     * @return
-     */
     public String doLogin() {
-        // Get every user from our sample database :)
         for (String user : users) {
             String dbEmail = user.split(":")[0];
             String dbPassword = user.split(":")[1];
 
-            // Successful login
             if (dbEmail.equalsIgnoreCase(email) && dbPassword.equals(password)) {
                 loggedIn = true;
                 return navigationBean.redirectToIndex1();
@@ -51,15 +47,10 @@ public class LoginBean implements Serializable {
         msg.setSeverity(FacesMessage.SEVERITY_ERROR);
         FacesContext.getCurrentInstance().addMessage(null, msg);
 
-        // To to login page
+        // To do login page
         return navigationBean.toLogin();
     }
 
-    /**
-     * Logout operation.
-     *
-     * @return
-     */
     public String doLogout() {
         // Set the paremeter indicating that user is logged in to false
         loggedIn = false;
@@ -71,9 +62,6 @@ public class LoginBean implements Serializable {
 
         return navigationBean.toLogin();
     }
-
-    // ------------------------------
-    // Getters & Setters
 
 
     public String getEmail() {

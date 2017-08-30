@@ -1,4 +1,4 @@
-package com.skevary;
+package com.skevary.security;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
