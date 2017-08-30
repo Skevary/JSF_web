@@ -1,0 +1,73 @@
+body {
+    background-image: url("/resources/img/bg.png");
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Login Form */
+
+.wrapper {
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+.form-signin {
+    max-width: 380px;
+    padding: 30px 38px 40px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 3px dotted rgba(0, 0, 0, 0.1);
+}
+
+.form-signin-heading {
+    font-size: 20px;
+    height: auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-control {
+    font-size: 14px;
+    height: auto;
+    padding: 7px;
+}
+
+input[type="text"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #aecc6a 12.5%, #aecc6a 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #aecc6a 12.5%, #aecc6a 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #aecc6a 12.5%, #aecc6a 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #aecc6a 12.5%, #aecc6a 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+/****** LOGIN MODAL ******/
+.loginmodal-container {
+    max-width: 700px;
+    width: 100% !important;
+    background-color: #eee;
+    margin-top: 100px;
+    padding: 30px 38px 60px;
+    border-radius: 3px;
+    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+/* Primefaces */
+.ui-growl {
+    position: absolute;
+    top: 80%;
+}

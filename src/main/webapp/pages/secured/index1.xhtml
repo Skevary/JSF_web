@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../WEB-INF/templates/default.xhtml">
+
+    <ui:define name="content">
+        <h:form id="form">
+            <div class="container">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="container">
+                            <p:growl id="msgs" showDetail="true"/>
+
+                            <p:outputLabel value="Select data:" styleClass="text-input"/><br/>
+                            <p:calendar id="event_first_calendar" placeholder="Choose first date"
+                                        value="#{calendarView.date1}">
+                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
+                            </p:calendar><p></p>
+                            <p:calendar id="event_second_calendar" placeholder="Choose second date"
+                                        value="#{calendarView.date2}">
+                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
+                            </p:calendar>
+                            </div><br/>
+                            <div class="container btn-group">
+                                <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
+                                                 update="msgs"/>
+                                <p:commandButton value="Generate" id="generate_button" styleClass="btn btn-primary"
+                                                 update="msgs"/>
+                                <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
+                                                 update="msgs"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <p:chart type="bar" model="#{chartView.animatedModel}" style="width:600px;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
