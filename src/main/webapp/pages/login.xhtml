@@ -28,11 +28,12 @@
             </div>
         </div>
     </ui:define>
+
     <ui:define name="content">
         <div class="container">
             <div class="wrapper">
                 <h:form name="Login_Form" class="form-signin">
-                    <p:growl id="msgs" showDetail="true"/>
+                    <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
 
                     <p class="form-signin-heading">Welcome Back! Please Sign In </p>
                     <hr class="colorgraph"/>
@@ -47,7 +48,7 @@
                     <hr class="colorgraph"/>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <p:commandButton value="Log in" styleClass="btn btn-success btn-lg btn-block" action="#{loginBean.doLogin}" update="msgs"/>
+                            <p:commandButton value="Log in" styleClass="btn btn-success btn-lg btn-block" action="#{loginBean.doLogin}"/>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#login-modal">Sign up
@@ -59,7 +60,7 @@
             <div id="login-modal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="loginmodal-container">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
                         <h1 class="text-center">Registration</h1>
                         <p class="form-signin-heading">Please enter your email and password.</p>
                         <h:form>

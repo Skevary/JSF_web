@@ -8,36 +8,59 @@
     <ui:define name="content">
         <h:form id="form">
             <div class="container">
-                <div class="jumbotron">
-                    <div class="row">
+                <div class="jumbotron row">
                         <div class="col-lg-4">
                             <div class="container">
-                            <p:growl id="msgs" showDetail="true"/>
+                                <p:growl id="msgs" showDetail="true"/>
 
-                            <p:outputLabel value="Select data:" styleClass="text-input"/><br/>
-                            <p:calendar id="event_first_calendar" placeholder="Choose first date"
-                                        value="#{calendarView.date1}">
-                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
-                            </p:calendar><p></p>
-                            <p:calendar id="event_second_calendar" placeholder="Choose second date"
-                                        value="#{calendarView.date2}">
-                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
-                            </p:calendar>
-                            </div><br/>
+                                <p:outputLabel value="Select data:" styleClass="text-input"/><br/>
+                                <p:calendar id="event_first_calendar" placeholder="Choose first date"
+                                            value="#{calendarView.date1}">
+                                    <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
+                                </p:calendar>
+                                <p></p>
+                                <p:calendar id="event_second_calendar" placeholder="Choose second date"
+                                            value="#{calendarView.date2}">
+                                    <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
+                                </p:calendar>
+                            </div>
+                            <br/>
                             <div class="container btn-group">
                                 <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
-                                                 update="msgs"/>
+                                                 update="chart"/>
                                 <p:commandButton value="Generate" id="generate_button" styleClass="btn btn-primary"
                                                  update="msgs"/>
                                 <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
+                                                 onclick="PF('dlg1').show();"
                                                  update="msgs"/>
+                                <p:dialog header="Add new data" widgetVar="dlg1" id="add_dialog" modal="true"
+                                          dismissable="true"
+                                          showEffect="explode" hideEffect="fade" closeOnEscape="true"
+                                          focus="form:add_dialog"
+                                          resizable="false" style="width:450px">
+                                    <h:panelGrid columns="2" cellpadding="5" styleClass="ui-grid">
+                                        <p:outputLabel value="Choose data: " styleClass="text-input"/>
+                                        <p:calendar id="input_data" placeholder="Choose date" value="">
+                                            <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}"
+                                                    update="msgs"/>
+                                        </p:calendar>
+
+                                        <h:outputLabel for="input_number" value="Choose number(0-200): "/>
+                                        <p:spinner id="input_number" value="" min="0" max="200"/>
+
+                                        <h:outputLabel for="input_text" value="Enter text: "/>
+                                        <p:inputText id="input_text" value=""/>
+
+                                        <p:commandButton value="Add" id="add_data" styleClass="ui-btn-right"
+                                                         update="msgs"/>
+                                    </h:panelGrid>
+                                </p:dialog>
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <p:chart type="bar" model="#{chartView.animatedModel}" style="width:600px;" />
+                            <p:chart id="chart" responsive="true" type="bar" model="#{chartView.animatedModel}" style="max-width:100%;"/>
                         </div>
                     </div>
-                </div>
             </div>
         </h:form>
     </ui:define>
