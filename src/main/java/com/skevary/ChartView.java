@@ -1,13 +1,15 @@
 package com.skevary;
 
-import org.primefaces.model.chart.*;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import java.io.Serializable;
 
 @ManagedBean
-public class ChartView implements Serializable {
+public class ChartView {
 
     private BarChartModel animatedModel;
 
@@ -17,6 +19,7 @@ public class ChartView implements Serializable {
     }
 
     public BarChartModel getAnimatedModel() {
+        System.out.println(animatedModel.getTitle());
         return animatedModel;
     }
 

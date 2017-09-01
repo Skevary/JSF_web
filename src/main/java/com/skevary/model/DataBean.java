@@ -1,28 +1,37 @@
 package com.skevary.model;
 
+import org.omnifaces.cdi.ViewScoped;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.UUID;
 
 @ManagedBean
-public class DataBean {
-    private Date date;
+@ViewScoped
+public class DataBean implements Serializable{
+    private static final long serialVersionUID = -6363197086621921565L;
     private String id;
     private int number;
+    private Date date;
     private String text;
 
-    public DataBean(Date date, String id, int number, String text) {
-        this.date = date;
+    @PostConstruct
+    public void init() {
+        this.id = UUID.randomUUID().toString().substring(0, 8);
+    }
+
+    public DataBean() {
+    }
+
+    public DataBean(String id, int number, Date date, String text) {
         this.id = id;
         this.number = number;
-        this.text = text;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
         this.date = date;
+        this.text = text;
     }
 
     public String getId() {
@@ -39,6 +48,14 @@ public class DataBean {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public Date getDate() {
+        return Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getText() {

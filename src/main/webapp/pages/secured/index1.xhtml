@@ -40,16 +40,16 @@
                                       resizable="false" style="width:450px">
                                 <h:panelGrid columns="2" cellpadding="5" styleClass="ui-grid">
                                     <p:outputLabel value="Choose data: " styleClass="text-input"/>
-                                    <p:calendar id="input_data" placeholder="Choose date" value="#{dataBean.date}">
+                                    <p:calendar id="input_data" placeholder="Choose date" value="#{dataService.date}">
                                         <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}"
                                                 update="msgs"/>
                                     </p:calendar>
 
                                     <h:outputLabel for="input_number" value="Choose number(0-200): "/>
-                                    <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200"/>
+                                    <p:spinner id="input_number" value="#{dataService.number}" min="0" max="200"/>
 
                                     <h:outputLabel for="input_text" value="Enter text: "/>
-                                    <p:inputText id="input_text" value="#{dataBean.text}"/>
+                                    <p:inputText id="input_text" value="#{dataService.text}"/>
 
                                     <p:commandButton value="Add" id="add_data" styleClass="ui-btn-right"
                                                      actionListener="#{dataService.addData}" update="dataTable"/>

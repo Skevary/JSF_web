@@ -12,11 +12,20 @@ import java.util.Date;
 public class CalendarView {
     private Date date1;
     private Date date2;
+    private ChartView chartView;
 
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+
+    public ChartView getChartView() {
+        return chartView;
+    }
+
+    public void setChartView(ChartView chartView) {
+        this.chartView = chartView;
     }
 
     public Date getDate1() {

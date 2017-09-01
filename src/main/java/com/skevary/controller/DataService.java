@@ -14,7 +14,9 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 public class DataService {
     private List<DataBean> dataBeans;
-    private DataBean newDataBean;
+    private int number;
+    private Date date;
+    private String text;
 
     private final static String[] MESSAGE;
 
@@ -57,7 +59,7 @@ public class DataService {
 
     //TODO: This method is not working
     public void addData(){
-        dataBeans.add(new DataBean(getRandomId()));
+        dataBeans.add(new DataBean(getRandomId(),number,date,text));
     }
 
     private String getRandomId() {
@@ -89,5 +91,29 @@ public class DataService {
 
     public void setDataBeans(List<DataBean> dataBeans) {
         this.dataBeans = dataBeans;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
