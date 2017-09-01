@@ -5,8 +5,6 @@ import org.omnifaces.cdi.ViewScoped;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
 
@@ -51,7 +49,7 @@ public class DataBean implements Serializable{
     }
 
     public Date getDate() {
-        return Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        return date;
     }
 
     public void setDate(Date date) {
