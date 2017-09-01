@@ -67,7 +67,7 @@
                             </p:column>
 
                             <p:column headerText="Date">
-                                <h:outputText value="#{data.date}"/>
+                                <h:outputText value="#{data.date}"><f:convertDateTime type="date" pattern="(dd-MM- yyyy)"/> </h:outputText>
                             </p:column>
 
                             <p:column headerText="Text">
