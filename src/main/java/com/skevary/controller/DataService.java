@@ -15,20 +15,20 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataService {
     private List<DataBean> dataBeans;
 
-    private final static String[] MESSAGE;
+    private final static String[] TEXT;
 
     static {
-        MESSAGE = new String[10];
-        MESSAGE[0] = "Black";
-        MESSAGE[1] = "White";
-        MESSAGE[2] = "Green";
-        MESSAGE[3] = "Red";
-        MESSAGE[4] = "Blue";
-        MESSAGE[5] = "Orange";
-        MESSAGE[6] = "Silver";
-        MESSAGE[7] = "Yellow";
-        MESSAGE[8] = "Brown";
-        MESSAGE[9] = "Maroon";
+        TEXT = new String[10];
+        TEXT[0] = "Black";
+        TEXT[1] = "White";
+        TEXT[2] = "Green";
+        TEXT[3] = "Red";
+        TEXT[4] = "Blue";
+        TEXT[5] = "Orange";
+        TEXT[6] = "Silver";
+        TEXT[7] = "Yellow";
+        TEXT[8] = "Brown";
+        TEXT[9] = "Maroon";
     }
 
 
@@ -45,7 +45,7 @@ public class DataService {
     public void generateData(int size) {
         dataBeans = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            dataBeans.add(new DataBean( getRandomId(), getRandomNumber(), getRandomDate(), getRandomMessage()));
+            dataBeans.add(new DataBean( getRandomId(), getRandomNumber(), getRandomDate(), getRandomText()));
         }
     }
 
@@ -54,7 +54,6 @@ public class DataService {
         generateData(50);
     }
 
-    //TODO: This method is not working
     public void addData(int number, Date date, String text){
         dataBeans.add(new DataBean(getRandomId(),number,date,text));
     }
@@ -71,7 +70,6 @@ public class DataService {
         return new Random().nextInt(200 + 1);
     }
 
-    //TODO: this method not work
     private Date getRandomDate() {
         long minDay = LocalDate.of(1970, 1, 1).toEpochDay();
         long maxDay = LocalDate.now().toEpochDay();
@@ -82,8 +80,8 @@ public class DataService {
     }
 
     //TODO: Rename to text
-    private String getRandomMessage() {
-        return MESSAGE[new Random().nextInt(9 + 1)];
+    private String getRandomText() {
+        return TEXT[new Random().nextInt(9 + 1)];
     }
 
     public List<DataBean> getDataBeans() {

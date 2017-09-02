@@ -61,11 +61,11 @@
                             </p:column>
                         </p:dataTable>
 
-                        <p:dialog id="add_dialog"  header="Add new data" widgetVar="dlg1" modal="true"
-                                  dismissable="true"
-                                  showEffect="explode" hideEffect="fade" closeOnEscape="true"
+                        <p:dialog id="add_dialog" header="Add new data" widgetVar="dlg1" modal="true"
+                                  dismissable="true" focus="add_dialog"
+                                  showEffect="fade" hideEffect="fade" closeOnEscape="true"
                                   resizable="false" style="width:450px">
-                            <h:panelGrid columns="2" cellpadding="5" styleClass="ui-grid">
+                            <h:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
                                 <p:outputLabel value="Choose data: " styleClass="text-input"/>
                                 <p:calendar id="input_data" var="date" placeholder="Choose date" value="#{dataBean.date}">
                                     <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}"
@@ -78,10 +78,9 @@
 
                                 <h:outputLabel for="input_text" value="Enter text: "/>
                                 <p:inputText  id="input_text" var="text" value="#{dataBean.text}"/>
-
+                                <!--TODO: reset input form-->
                                 <p:commandButton value="Add" id="add_data" resetValues="true"
-                                                 actionListener="#{dataService.addData(dataBean.number,dataBean.date,dataBean.text)}" update="dataTable">
-                                </p:commandButton>
+                                                 actionListener="#{dataService.addData(dataBean.number,dataBean.date,dataBean.text)}" update="dataTable" />
                             </h:panelGrid>
                         </p:dialog>
                     </div>
