@@ -54,12 +54,16 @@ public class DataService {
 
     //TODO: Remove this method;
     public void temporaryGenData(){
-        generateData(10);
+        generateData(50);
     }
 
     //TODO: This method is not working
     public void addData(){
         dataBeans.add(new DataBean(getRandomId(),number,date,text));
+    }
+
+    public void removeItem(DataBean item){
+        dataBeans.remove(item);
     }
 
     private String getRandomId() {
