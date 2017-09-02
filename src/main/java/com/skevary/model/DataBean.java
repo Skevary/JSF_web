@@ -2,11 +2,9 @@ package com.skevary.model;
 
 import org.omnifaces.cdi.ViewScoped;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 @ManagedBean
 @ViewScoped
@@ -16,11 +14,6 @@ public class DataBean implements Serializable{
     private int number;
     private Date date;
     private String text;
-
-    @PostConstruct
-    public void init() {
-        this.id = UUID.randomUUID().toString().substring(0, 8);
-    }
 
     public DataBean() {
     }

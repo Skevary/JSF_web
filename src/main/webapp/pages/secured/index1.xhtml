@@ -38,7 +38,7 @@
 
                         <p:dataTable id="dataTable" rows="5" var="item" value="#{dataService.dataBeans}"
                                      paginator="true" paginatorPosition="bottom" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     pageLinks="5" rowsPerPageTemplate="5,10,15">
+                                     pageLinks="5" rowsPerPageTemplate="5,10,15" styleClass="ui-table">
                             <p:column headerText="Id" styleClass="thead-inverse">
                                 <h:outputText value="#{item.id}"/>
                             </p:column>
@@ -55,33 +55,33 @@
                                     <h:outputText value="#{item.text}" />
                             </p:column>
 
-                            <p:column>
+                            <p:column style="width:58px">
                                 <p:commandButton icon="ui-icon-close" title="remove from dataTable"
                                                  actionListener="#{dataService.removeItem(item)}" update="dataTable" />
                             </p:column>
-
                         </p:dataTable>
 
-                        <p:dialog header="Add new data" widgetVar="dlg1" id="add_dialog" modal="true"
+                        <p:dialog id="add_dialog"  header="Add new data" widgetVar="dlg1" modal="true"
                                   dismissable="true"
                                   showEffect="explode" hideEffect="fade" closeOnEscape="true"
-                                  focus="form:add_dialog"
                                   resizable="false" style="width:450px">
                             <h:panelGrid columns="2" cellpadding="5" styleClass="ui-grid">
                                 <p:outputLabel value="Choose data: " styleClass="text-input"/>
-                                <p:calendar id="input_data" placeholder="Choose date" value="#{dataService.date}">
+                                <p:calendar id="input_data" var="date" placeholder="Choose date" value="#{dataBean.date}">
                                     <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}"
                                             update="msgs"/>
                                 </p:calendar>
 
                                 <h:outputLabel for="input_number" value="Choose number(0-200): "/>
-                                <p:spinner id="input_number" value="#{dataService.number}" min="0" max="200"/>
+                                <p:spinner id="input_number" var="number" value="#{dataBean.number}" min="0" max="200">
+                                </p:spinner>
 
                                 <h:outputLabel for="input_text" value="Enter text: "/>
-                                <p:inputText id="input_text" value="#{dataService.text}"/>
+                                <p:inputText  id="input_text" var="text" value="#{dataBean.text}"/>
 
-                                <p:commandButton value="Add" id="add_data" styleClass="ui-btn-right"
-                                                 actionListener="#{dataService.addData}" update="dataTable"/>
+                                <p:commandButton value="Add" id="add_data" resetValues="true"
+                                                 actionListener="#{dataService.addData(dataBean.number,dataBean.date,dataBean.text)}" update="dataTable">
+                                </p:commandButton>
                             </h:panelGrid>
                         </p:dialog>
                     </div>

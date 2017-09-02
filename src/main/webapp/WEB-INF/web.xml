@@ -31,11 +31,9 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/javax.faces.resource/*</url-pattern>
         <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>/javax.faces.resource/*</url-pattern>
     </servlet-mapping>
 
     <filter>
