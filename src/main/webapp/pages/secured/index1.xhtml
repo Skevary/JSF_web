@@ -27,17 +27,18 @@
                         <br/>
                         <div class="container btn-group">
                             <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
-                                             actionListener="#{dataService.clearData}" update="dataTable"/>
+                                             actionListener="#{dataService.clearData}" update="dataTable chart_line chart_bar"/>
                             <p:commandButton value="Generate" id="generate_button" styleClass="btn btn-primary"
-                                             actionListener="#{dataService.temporaryGenData}" update="dataTable"/>
+                                             actionListener="#{dataService.temporaryGenData}" update="dataTable chart_line chart_bar"/>
                             <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
                                              onclick="PF('dlg1').show();"
-                                             update="dataTable"/>
+                                             update="dataTable chart_line chart_bar"/>
                         </div>
                         <br/><br/>
 
                         <p:dataTable id="dataTable" rows="5" var="item" value="#{dataService.dataBeans}"
-                                     paginator="true" paginatorPosition="bottom" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     paginator="true" paginatorPosition="bottom"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      pageLinks="5" rowsPerPageTemplate="5,10,15" styleClass="ui-table">
                             <p:column headerText="Id" styleClass="thead-inverse">
                                 <h:outputText value="#{item.id}"/>
@@ -48,16 +49,17 @@
                             </p:column>
 
                             <p:column headerText="Date">
-                                <h:outputText value="#{item.date}"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/> </h:outputText>
+                                <h:outputText value="#{item.date}"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
                             </p:column>
 
                             <p:column headerText="Text">
-                                    <h:outputText value="#{item.text}" />
+                                <h:outputText value="#{item.text}"/>
                             </p:column>
 
                             <p:column style="width:58px">
                                 <p:commandButton icon="ui-icon-close" title="remove from dataTable"
-                                                 actionListener="#{dataService.removeItem(item)}" update="dataTable" />
+                                                 actionListener="#{dataService.removeItem(item)}" update="dataTable form:chart_line form:chart_bar"/>
                             </p:column>
                         </p:dataTable>
 
@@ -67,7 +69,8 @@
                                   resizable="false" style="width:450px">
                             <h:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
                                 <p:outputLabel value="Choose data: " styleClass="text-input"/>
-                                <p:calendar id="input_data" var="date" placeholder="Choose date" value="#{dataBean.date}">
+                                <p:calendar id="input_data" var="date" placeholder="Choose date"
+                                            value="#{dataBean.date}">
                                     <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}"
                                             update="msgs"/>
                                 </p:calendar>
@@ -77,16 +80,21 @@
                                 </p:spinner>
 
                                 <h:outputLabel for="input_text" value="Enter text: "/>
-                                <p:inputText  id="input_text" var="text" value="#{dataBean.text}"/>
+                                <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
                                 <!--TODO: reset input form-->
                                 <p:commandButton value="Add" id="add_data" resetValues="true"
-                                                 actionListener="#{dataService.addData(dataBean.number,dataBean.date,dataBean.text)}" update="dataTable" />
+                                                 actionListener="#{dataService.addData(dataBean.number,dataBean.date,dataBean.text)}"
+                                                 update="dataTable chart_line chart_bar"/>
                             </h:panelGrid>
                         </p:dialog>
                     </div>
                     <div class="col-lg-6">
-                        <p:chart id="chart" responsive="true" type="bar" model="#{chartView.animatedModel}"
-                                 style="max-width:100%;width: 600px;"/>
+                        <p:chart id="chart_line" type="line" responsive="true" model="#{chartController.animatedModel1}"
+                                 style="max-width:100%"/>
+                        <br/>
+                        <br/>
+                        <p:chart id="chart_bar" type="bar" responsive="true"  model="#{chartController.animatedModel2}"
+                                 style="max-width:100%"/>
                     </div>
                 </div>
             </div>
