@@ -14,25 +14,12 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 public class DataService {
     private List<DataBean> dataBeans;
-    private final static String[] TEXT;
     private final static String[] GROUP;
 
     static {
-        TEXT = new String[10];
-        TEXT[0] = "Black";
-        TEXT[1] = "White";
-        TEXT[2] = "Green";
-        TEXT[3] = "Red";
-        TEXT[4] = "Blue";
-        TEXT[5] = "Orange";
-        TEXT[6] = "Silver";
-        TEXT[7] = "Yellow";
-        TEXT[8] = "Brown";
-        TEXT[9] = "Maroon";
-
         GROUP = new String[2];
-        GROUP[0] = "Group A";
-        GROUP[1] = "Group B";
+        GROUP[0] = "A";
+        GROUP[1] = "B";
     }
 
 
@@ -45,11 +32,12 @@ public class DataService {
         dataBeans.clear();
     }
 
-    //TODO: Update modifi public to private
     private void generateData(int size) {
         dataBeans = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            dataBeans.add(new DataBean(getRandomId(), getRandomGroup(), getRandomNumber(), getRandomDate(), getRandomText()));
+            String random_ID = getRandomId();
+            String random_text = "item_" + (random_ID.substring(0,4));
+            dataBeans.add(new DataBean(random_ID, getRandomGroup(), getRandomNumber(), getRandomDate(), random_text));
         }
     }
 
@@ -81,10 +69,6 @@ public class DataService {
         LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
 
         return Date.from(randomDate.atStartOfDay(ZoneId.systemDefault()).toInstant()); // between {01.01.1970} and {current time}
-    }
-
-    private String getRandomText() {
-        return TEXT[new Random().nextInt(9 + 1)]; // between 0 and 10
     }
 
     private String getRandomGroup() {

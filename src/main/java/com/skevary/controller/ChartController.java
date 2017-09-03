@@ -56,14 +56,14 @@ public class ChartController {
         LineChartModel model = new LineChartModel();
 
         LineChartSeries groupA = new LineChartSeries();
-        groupA.setLabel(DataService.getGROUP()[0]);
+        groupA.setLabel("Group A");
         LineChartSeries groupB = new LineChartSeries();
-        groupB.setLabel(DataService.getGROUP()[1]);
+        groupB.setLabel("Group B");
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy");
         if (!service.getDataBeans().isEmpty())
             for (DataBean dataBean : service.getDataBeans()) {
-                if (dataBean.getGroup().equals("Group A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
+                if (dataBean.getGroup().equals("A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
                 else groupB.set(format.format(dataBean.getDate()), dataBean.getNumber());
             }
 
@@ -77,14 +77,14 @@ public class ChartController {
         BarChartModel model = new BarChartModel();
 
         ChartSeries groupA = new ChartSeries();
-        groupA.setLabel(DataService.getGROUP()[0]);
+        groupA.setLabel("Group A");
         ChartSeries groupB = new ChartSeries();
-        groupB.setLabel(DataService.getGROUP()[1]);
+        groupB.setLabel("Group B");
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy");
         if (!service.getDataBeans().isEmpty())
             for (DataBean dataBean : service.getDataBeans()) {
-                if (dataBean.getGroup().equals("Group A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
+                if (dataBean.getGroup().equals("A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
                 else groupB.set(format.format(dataBean.getDate()), dataBean.getNumber());
             }
         model.addSeries(groupA);
