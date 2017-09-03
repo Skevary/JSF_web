@@ -1,5 +1,6 @@
 package com.skevary;
 
+import com.skevary.controller.ChartController;
 import org.primefaces.event.SelectEvent;
 
 import javax.faces.application.FacesMessage;
@@ -12,7 +13,7 @@ import java.util.Date;
 public class CalendarView {
     private Date date1;
     private Date date2;
-    private ChartView chartView;
+    private ChartController chartController;
 
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -20,12 +21,12 @@ public class CalendarView {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
-    public ChartView getChartView() {
-        return chartView;
+    public ChartController getChartController() {
+        return chartController;
     }
 
-    public void setChartView(ChartView chartView) {
-        this.chartView = chartView;
+    public void setChartController(ChartController chartController) {
+        this.chartController = chartController;
     }
 
     public Date getDate1() {

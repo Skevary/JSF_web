@@ -34,7 +34,7 @@ public class ChartController {
         animatedModel1 = initLinearModel();
         animatedModel1.setTitle("Line Data Chart");
         animatedModel1.setAnimate(true);
-        animatedModel1.setLegendPosition("ne");
+        animatedModel1.setLegendPosition("se");
         animatedModel1.getAxes().put(AxisType.X, new CategoryAxis("Years"));
         Axis yAxis = animatedModel1.getAxis(AxisType.Y);
         yAxis.setLabel("Number");
@@ -55,33 +55,20 @@ public class ChartController {
     private LineChartModel initLinearModel() {
         LineChartModel model = new LineChartModel();
 
-        LineChartSeries black = new LineChartSeries();
-        black.setLabel(DataService.getText()[0]);
-        LineChartSeries white = new LineChartSeries();
-        white.setLabel(DataService.getText()[1]);
-        LineChartSeries green = new LineChartSeries();
-        green.setLabel(DataService.getText()[2]);
-        LineChartSeries red = new LineChartSeries();
-        red.setLabel(DataService.getText()[3]);
-        LineChartSeries blue = new LineChartSeries();
-        blue.setLabel(DataService.getText()[4]);
+        LineChartSeries groupA = new LineChartSeries();
+        groupA.setLabel(DataService.getGROUP()[0]);
+        LineChartSeries groupB = new LineChartSeries();
+        groupB.setLabel(DataService.getGROUP()[1]);
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy");
-        if(!service.getDataBeans().isEmpty())
-            for(DataBean dataBean : service.getDataBeans()){
-                switch (dataBean.getText()) {
-                    case "Black": black.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    case "White": white.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    case "Green": green.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    case "Red": red.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    default: blue.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                }
+        if (!service.getDataBeans().isEmpty())
+            for (DataBean dataBean : service.getDataBeans()) {
+                if (dataBean.getGroup().equals("Group A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
+                else groupB.set(format.format(dataBean.getDate()), dataBean.getNumber());
             }
 
-        model.addSeries(black);
-        model.addSeries(white);
-        model.addSeries(green);
-        model.addSeries(red);
-        model.addSeries(blue);
+        model.addSeries(groupA);
+        model.addSeries(groupB);
 
         return model;
     }
@@ -89,33 +76,19 @@ public class ChartController {
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
 
-        ChartSeries black = new ChartSeries();
-        black.setLabel(DataService.getText()[0]);
-        ChartSeries white = new ChartSeries();
-        white.setLabel(DataService.getText()[1]);
-        ChartSeries green = new ChartSeries();
-        green.setLabel(DataService.getText()[2]);
-        ChartSeries red = new ChartSeries();
-        red.setLabel(DataService.getText()[3]);
-        ChartSeries blue = new ChartSeries();
-        blue.setLabel(DataService.getText()[4]);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy");
-        if(!service.getDataBeans().isEmpty())
-            for(DataBean dataBean : service.getDataBeans()){
-                switch (dataBean.getText()) {
-                    case "Black": black.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    case "White": white.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    case "Green": green.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    case "Red": red.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                    default: blue.set(format.format(dataBean.getDate()), dataBean.getNumber()); break;
-                }
-            }
+        ChartSeries groupA = new ChartSeries();
+        groupA.setLabel(DataService.getGROUP()[0]);
+        ChartSeries groupB = new ChartSeries();
+        groupB.setLabel(DataService.getGROUP()[1]);
 
-        model.addSeries(black);
-        model.addSeries(white);
-        model.addSeries(green);
-        model.addSeries(red);
-        model.addSeries(blue);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+        if (!service.getDataBeans().isEmpty())
+            for (DataBean dataBean : service.getDataBeans()) {
+                if (dataBean.getGroup().equals("Group A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
+                else groupB.set(format.format(dataBean.getDate()), dataBean.getNumber());
+            }
+        model.addSeries(groupA);
+        model.addSeries(groupB);
 
         return model;
     }

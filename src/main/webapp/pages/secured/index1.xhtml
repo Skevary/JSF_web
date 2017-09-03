@@ -36,7 +36,7 @@
                         </div>
                         <br/><br/>
 
-                        <p:dataTable id="dataTable" rows="5" var="item" value="#{dataService.dataBeans}"
+                        <p:dataTable id="dataTable" rows="10" var="item" value="#{dataService.dataBeans}"
                                      paginator="true" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      pageLinks="5" rowsPerPageTemplate="5,10,15" styleClass="ui-table">
@@ -44,7 +44,7 @@
                                 <h:outputText value="#{item.id}"/>
                             </p:column>
 
-                            <p:column headerText="Number">
+                            <p:column headerText="Num" style="width:58px">
                                 <h:outputText value="#{item.number}"/>
                             </p:column>
 
@@ -55,6 +55,10 @@
 
                             <p:column headerText="Text">
                                 <h:outputText value="#{item.text}"/>
+                            </p:column>
+
+                            <p:column headerText="Group">
+                                <h:outputText value="#{item.group}"/>
                             </p:column>
 
                             <p:column style="width:58px">
@@ -75,15 +79,21 @@
                                             update="msgs"/>
                                 </p:calendar>
 
+                                <p:outputLabel for="input_group" value="Choose group:" />
+                                <p:selectOneMenu id="input_group" value="#{dataBean.group}">
+                                    <f:selectItem itemLabel="Group A" itemValue="Group A" />
+                                    <f:selectItem itemLabel="Group B" itemValue="Group B" />
+                                </p:selectOneMenu>
+
                                 <h:outputLabel for="input_number" value="Choose number(0-200): "/>
-                                <p:spinner id="input_number" var="number" value="#{dataBean.number}" min="0" max="200">
+                                <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200">
                                 </p:spinner>
 
                                 <h:outputLabel for="input_text" value="Enter text: "/>
                                 <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
                                 <!--TODO: reset input form-->
                                 <p:commandButton value="Add" id="add_data" resetValues="true"
-                                                 actionListener="#{dataService.addData(dataBean.number,dataBean.date,dataBean.text)}"
+                                                 actionListener="#{dataService.addData(dataBean.group, dataBean.number, dataBean.date,dataBean.text)}"
                                                  update="dataTable chart_line chart_bar"/>
                             </h:panelGrid>
                         </p:dialog>
