@@ -36,10 +36,18 @@ public class ChartController {
         animatedModel1.setAnimate(true);
         animatedModel1.setLegendPosition("se");
         animatedModel1.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+
         Axis yAxis = animatedModel1.getAxis(AxisType.Y);
         yAxis.setLabel("Number");
         yAxis.setMin(0);
         yAxis.setMax(205);
+
+//        DateAxis xAxis = new DateAxis("Dates");
+//        if(service.getDataBeans().size()>10) xAxis.setTickAngle(-90);
+//        xAxis.setMin(1970);
+//        xAxis.setMax(new Date().getTime());
+//        animatedModel1.getAxes().put(AxisType.X, xAxis);
+
 
         animatedModel2 = initBarModel();
         animatedModel2.setTitle("Bar Data Charts");
@@ -50,6 +58,7 @@ public class ChartController {
         yAxis.setLabel("Number");
         yAxis.setMin(0);
         yAxis.setMax(205);
+
     }
 
     private LineChartModel initLinearModel() {
@@ -60,12 +69,28 @@ public class ChartController {
         LineChartSeries groupB = new LineChartSeries();
         groupB.setLabel("Group B");
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         if (!service.getDataBeans().isEmpty())
             for (DataBean dataBean : service.getDataBeans()) {
                 if (dataBean.getGroup().equals("A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
                 else groupB.set(format.format(dataBean.getDate()), dataBean.getNumber());
             }
+
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//        groupA.set(format.format(service.getDataBeans().get(0).getDate()), service.getDataBeans().get(0).getNumber());
+//        groupA.set("2014-01-06", 22);
+//        groupA.set("2014-01-12", 65);
+//        groupA.set("2014-01-18", 74);
+//        groupA.set("2014-01-24", 24);
+//        groupA.set("2014-01-30", 51);
+//
+//
+//        groupB.set(format.format(service.getDataBeans().get(1).getDate()), service.getDataBeans().get(1).getNumber());
+//        groupB.set("2014-01-06", 73);
+//        groupB.set("2014-01-12", 24);
+//        groupB.set("2014-01-18", 12);
+//        groupB.set("2014-01-24", 74);
+//        groupB.set("2014-01-30", 62);
 
         model.addSeries(groupA);
         model.addSeries(groupB);
@@ -81,7 +106,7 @@ public class ChartController {
         ChartSeries groupB = new ChartSeries();
         groupB.setLabel("Group B");
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         if (!service.getDataBeans().isEmpty())
             for (DataBean dataBean : service.getDataBeans()) {
                 if (dataBean.getGroup().equals("A")) groupA.set(format.format(dataBean.getDate()), dataBean.getNumber());
