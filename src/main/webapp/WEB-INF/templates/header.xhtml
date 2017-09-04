@@ -15,11 +15,13 @@
                     <a class="navbar-brand" href="#">#{msg['message.name']}</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><h:link target="/pages/secured/index1.jsf" value="Index1"/></li>
-                        <li><h:link target="#" value="Index2"/></li>
-                        <li><h:commandLink action="#{loginBean.doLogout}" value="Log out"/></li>
-                    </ul>
+                    <ui:insert name="menu_items">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><h:link target="#{navigationBean.toIndex1()}" value="#{msg['pages.name.index1']}"/></li>
+                            <li><h:link target="#" value="#{msg['pages.name.index2']}"/></li>
+                            <li><h:commandLink action="#{loginBean.doLogout}" value="#{msg['pages.name.logout']}"/></li>
+                        </ul>
+                    </ui:insert>
                 </div>
             </div>
         </div>
