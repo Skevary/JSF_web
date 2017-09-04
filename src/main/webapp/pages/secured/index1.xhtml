@@ -8,106 +8,111 @@
     <ui:define name="content">
         <h:form id="form">
             <div class="container">
-                <div class="jumbotron row">
-                    <div class="col-lg-6">
-                        <div class="container">
-                            <p:growl id="msgs" showDetail="true"/>
+                <div class="jumbotron">
 
-                            <p:outputLabel value="Select data:" styleClass="text-input"/><br/>
-                            <p:calendar id="event_first_calendar" placeholder="Choose first date"
-                                        value="#{calendarView.date1}">
-                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
-                            </p:calendar>
-                            <p></p>
-                            <p:calendar id="event_second_calendar" placeholder="Choose second date"
-                                        value="#{calendarView.date2}">
-                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
-                            </p:calendar>
-                        </div>
-                        <br/>
-                        <div class="container btn-group">
-                            <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
-                                             actionListener="#{dataService.clearData}" update="dataTable form:chart_line form:chart_bar"/>
-                            <p:commandButton value="Generate" id="generate_button" styleClass="btn btn-primary"
-                                             actionListener="#{dataService.temporaryGenData}" update="dataTable chart_line chart_bar"/>
-                            <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
-                                             onclick="PF('dlg1').show();"
-                                             update="dataTable"/>
-                        </div>
-                        <br/><br/>
+                    <!-- Control & Chart -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <!--Control -->
+                                <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
 
-                        <p:dataTable id="dataTable" rows="10" var="item" value="#{dataService.dataBeans}"
-                                     paginator="true" paginatorPosition="bottom"
-                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     pageLinks="5" rowsPerPageTemplate="5,10,15" styleClass="ui-table">
-                            <p:column headerText="Id" styleClass="thead-inverse">
-                                <h:outputText value="#{item.id}"/>
-                            </p:column>
-
-                            <p:column headerText="Num" style="width:58px">
-                                <h:outputText value="#{item.number}"/>
-                            </p:column>
-
-                            <p:column headerText="Date">
-                                <h:outputText value="#{item.date}"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                                </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Text">
-                                <h:outputText value="#{item.text}"/>
-                            </p:column>
-
-                            <p:column headerText="Group" style="width:63px">
-                                <h:outputText value="#{item.group}"/>
-                            </p:column>
-
-                            <p:column style="width:58px">
-                                <p:commandButton icon="ui-icon-close" title="remove from dataTable"
-                                                 actionListener="#{dataService.removeItem(item)}" update="dataTable form:chart_line form:chart_bar"/>
-                            </p:column>
-                        </p:dataTable>
-
-                        <p:dialog id="add_dialog" header="Add new data" widgetVar="dlg1" modal="true"
-                                  dismissable="true" focus="add_dialog"
-                                  showEffect="fade" hideEffect="fade" closeOnEscape="true"
-                                  resizable="false" style="width:450px">
-                            <h:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
-                                <p:outputLabel value="Choose data: " styleClass="text-input"/>
-                                <p:calendar id="input_data" var="date" placeholder="Choose date"
-                                            value="#{dataBean.date}">
-                                    <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}"
-                                            update="msgs"/>
+                                <p:outputLabel value="Select data:" styleClass="text-input"/> <br/>
+                                <p:calendar id="event_first_calendar" placeholder="Choose first date"
+                                            value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
+                                    <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
+                                            update="dataTable chart_line"/>
                                 </p:calendar>
-
-                                <p:outputLabel for="input_group" value="Choose group:" />
-                                <p:selectOneMenu id="input_group" value="#{dataBean.group}">
-                                    <f:selectItem itemLabel="Group A" itemValue="A" />
-                                    <f:selectItem itemLabel="Group B" itemValue="B" />
-                                </p:selectOneMenu>
-
-                                <h:outputLabel for="input_number" value="Choose number(0-200): "/>
-                                <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200">
-                                </p:spinner>
-
-                                <h:outputLabel for="input_text" value="Enter text: "/>
-                                <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
-                                <!--TODO: reset input form-->
-                                <p:commandButton value="Add" id="add_data" resetValues="true"
-                                                 actionListener="#{dataService.addData(dataBean.group, dataBean.number, dataBean.date,dataBean.text)}"
-                                                 update="dataTable chart_line chart_bar"/>
-                            </h:panelGrid>
-                        </p:dialog>
+                                <p></p>
+                                <p:calendar id="event_second_calendar" placeholder="Choose second date"
+                                            value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
+                                    <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
+                                            update="dataTable chart_line"/>
+                                </p:calendar>
+                                <br/><br/>
+                                <div class="btn-group">
+                                    <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
+                                                     actionListener="#{dataService.clearData}"
+                                                     update="generate_button dataTable chart_line"/>
+                                    <p:commandButton value="Generate" id="generate_button"
+                                                     styleClass="btn btn-primary"
+                                                     actionListener="#{dataService.temporaryGenData}"
+                                                     update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>
+                                    <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
+                                                     onclick="PF('dlg1').show();"
+                                                     update="dataTable"/>
+                                </div>
+                            </div>
+                            <!-- Chart -->
+                            <div class="col-lg-9">
+                                <p:chart id="chart_line" type="line" responsive="true"
+                                         model="#{chartController.animatedModel}"
+                                         style="max-width:100%"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <p:chart id="chart_line" type="line" responsive="true" model="#{chartController.firstAnimatedModel}"
-                                 style="max-width:100%"/>
-                        <br/>
-                        <br/>
-                        <p:chart id="chart_bar" type="bar" responsive="true"  model="#{chartController.secondAnimatedModel}"
-                                 style="max-width:100%"/>
+
+                    <!-- Table -->
+                    <div class="container">
+                        <div class="row">
+                            <p:dataTable id="dataTable" rows="5" var="item" value="#{dataService.filteredData}"
+                                         paginator="true" paginatorPosition="bottom"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         pageLinks="5" rowsPerPageTemplate="5,10,15" styleClass="ui-table ">
+                                <p:column headerText="Id" styleClass="thead-inverse">
+                                    <h:outputText value="#{item.id}"/>
+                                </p:column>
+
+                                <p:column headerText="Num" style="width:58px">
+                                    <h:outputText value="#{item.number}"/>
+                                </p:column>
+
+                                <p:column headerText="Date">
+                                    <h:outputText value="#{item.date}"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Text">
+                                    <h:outputText value="#{item.text}"/>
+                                </p:column>
+
+                                <p:column style="width:58px">
+                                    <p:commandButton icon="ui-icon-close" title="remove_from_dataTable"
+                                                     actionListener="#{dataService.removeItem(item)}"
+                                                     update="form:generate_button dataTable form:chart_line"/>
+                                </p:column>
+                            </p:dataTable>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
+
+            <p:dialog id="add_dialog" header="Add new data" widgetVar="dlg1" modal="true"
+                      dismissable="true" focus="add_dialog"
+                      showEffect="fade" hideEffect="fade" closeOnEscape="true"
+                      resizable="false" style="width:450px">
+                <h:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
+                    <p:outputLabel value="Choose data: " styleClass="text-input"/>
+                    <p:calendar id="input_data" var="date" placeholder="Choose date"
+                                value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
+                        <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
+                                update="msgs"/>
+                    </p:calendar>
+
+                    <h:outputLabel for="input_number" value="Choose number(0-200): "/>
+                    <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200">
+                    </p:spinner>
+
+                    <h:outputLabel for="input_text" value="Enter text: "/>
+                    <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
+                    <!--TODO: reset input form-->
+                    <p:commandButton value="Add" id="add_data" resetValues="true"
+                                     actionListener="#{dataService.addData( dataBean.number, dataBean.date,dataBean.text)}"
+                                     update="dataTable chart_line"/>
+                </h:panelGrid>
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>
