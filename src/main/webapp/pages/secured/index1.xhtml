@@ -27,12 +27,12 @@
                         <br/>
                         <div class="container btn-group">
                             <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
-                                             actionListener="#{dataService.clearData}" update="dataTable chart_line chart_bar"/>
+                                             actionListener="#{dataService.clearData}" update="dataTable form:chart_line form:chart_bar"/>
                             <p:commandButton value="Generate" id="generate_button" styleClass="btn btn-primary"
                                              actionListener="#{dataService.temporaryGenData}" update="dataTable chart_line chart_bar"/>
                             <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
                                              onclick="PF('dlg1').show();"
-                                             update="dataTable chart_line chart_bar"/>
+                                             update="dataTable"/>
                         </div>
                         <br/><br/>
 
@@ -99,11 +99,11 @@
                         </p:dialog>
                     </div>
                     <div class="col-lg-6">
-                        <p:chart id="chart_line" type="line" responsive="true" model="#{chartController.animatedModel1}"
+                        <p:chart id="chart_line" type="line" responsive="true" model="#{chartController.firstAnimatedModel}"
                                  style="max-width:100%"/>
                         <br/>
                         <br/>
-                        <p:chart id="chart_bar" type="bar" responsive="true"  model="#{chartController.animatedModel2}"
+                        <p:chart id="chart_bar" type="bar" responsive="true"  model="#{chartController.secondAnimatedModel}"
                                  style="max-width:100%"/>
                     </div>
                 </div>

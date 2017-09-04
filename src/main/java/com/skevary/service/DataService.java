@@ -30,6 +30,7 @@ public class DataService {
 
     public void clearData() {
         dataBeans.clear();
+        dataBeans.add(new DataBean("Empty ID", "Empty Group", 0, new Date(1) , "Empty Text"));
     }
 
     private void generateData(int size) {

@@ -8,36 +8,42 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @ManagedBean
 public class ChartController {
     @ManagedProperty("#{dataService}")
     private DataService service;
-    private LineChartModel animatedModel1;
-    private BarChartModel animatedModel2;
+    private LineChartModel firstAnimatedModel;
+    private BarChartModel secondAnimatedModel;
 
     @PostConstruct
     public void init() {
         createAnimatedModels();
     }
 
-    public LineChartModel getAnimatedModel1() {
-        return animatedModel1;
+    public LineChartModel getFirstAnimatedModel() {
+        return firstAnimatedModel;
     }
 
-    public BarChartModel getAnimatedModel2() {
-        return animatedModel2;
+    public BarChartModel getSecondAnimatedModel() {
+        return secondAnimatedModel;
     }
 
 
     private void createAnimatedModels() {
-        animatedModel1 = initLinearModel();
-        animatedModel1.setTitle("Line Data Chart");
-        animatedModel1.setAnimate(true);
-        animatedModel1.setLegendPosition("se");
-        animatedModel1.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        firstAnimatedModel = initLinearModel();
+        firstAnimatedModel.setTitle("Line Data Chart");
+        firstAnimatedModel.setAnimate(true);
+        firstAnimatedModel.setLegendPosition("se");
 
-        Axis yAxis = animatedModel1.getAxis(AxisType.Y);
+        firstAnimatedModel.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        DateAxis xAis = new DateAxis("Date");
+        xAis.setMin(0);
+        xAis.setMax(new Date().getTime());
+        if(service.getDataBeans().size()<10) xAis.setTickAngle(-90);
+
+        Axis yAxis = firstAnimatedModel.getAxis(AxisType.Y);
         yAxis.setLabel("Number");
         yAxis.setMin(0);
         yAxis.setMax(205);
@@ -46,15 +52,15 @@ public class ChartController {
 //        if(service.getDataBeans().size()>10) xAxis.setTickAngle(-90);
 //        xAxis.setMin(1970);
 //        xAxis.setMax(new Date().getTime());
-//        animatedModel1.getAxes().put(AxisType.X, xAxis);
+//        firstAnimatedModel.getAxes().put(AxisType.X, xAxis);
 
 
-        animatedModel2 = initBarModel();
-        animatedModel2.setTitle("Bar Data Charts");
-        animatedModel2.setAnimate(true);
-        animatedModel2.setLegendPosition("ne");
-        animatedModel2.getAxes().put(AxisType.X, new CategoryAxis("Years"));
-        yAxis = animatedModel2.getAxis(AxisType.Y);
+        secondAnimatedModel = initBarModel();
+        secondAnimatedModel.setTitle("Bar Data Charts");
+        secondAnimatedModel.setAnimate(true);
+        secondAnimatedModel.setLegendPosition("ne");
+        secondAnimatedModel.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        yAxis = secondAnimatedModel.getAxis(AxisType.Y);
         yAxis.setLabel("Number");
         yAxis.setMin(0);
         yAxis.setMax(205);
