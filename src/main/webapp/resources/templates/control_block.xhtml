@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
+
+    <p:outputLabel value="Select data:" styleClass="text-input"/> <br/>
+    <p:calendar id="event_first_calendar" placeholder="Choose first date"
+                value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
+                update="dataTable chart_line"/>
+    </p:calendar>
+    <p></p>
+    <p:calendar id="event_second_calendar" placeholder="Choose second date"
+                value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
+                update="dataTable chart_line"/>
+    </p:calendar>
+    <br/><br/>
+    <div class="btn-group">
+        <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
+                         actionListener="#{dataService.clearData}"
+                         update="generate_button dataTable chart_line"/>
+        <p:commandButton value="Generate" id="generate_button"
+                         styleClass="btn btn-primary"
+                         actionListener="#{dataService.temporaryGenData}"
+                         update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>
+        <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
+                         onclick="PF('dlg1').show();"
+                         update="dataTable"/>
+    </div>
+</ui:composition>
