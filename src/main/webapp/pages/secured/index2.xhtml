@@ -9,7 +9,8 @@
             <div class="container">
                 <div class="jumbotron">
                     <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
-                    <h:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
+
+                    <p:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
                         <p:outputLabel value="Choose data: " styleClass="text-input"/>
                         <p:calendar id="input_data" var="date" placeholder="Choose date"
                                     value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
@@ -25,7 +26,7 @@
                         <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
                         <p:commandButton value="Add" id="add_data" resetValues="true"
                                          actionListener="#{dataService.addData( dataBean.number, dataBean.date,dataBean.text)}"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                 </div>
             </div>
         </h:form>

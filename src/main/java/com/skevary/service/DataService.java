@@ -33,10 +33,11 @@ public class DataService{
         Date dateB = dateBefore;
 
         if (dateAfter == null && dateBefore == null) return dataBeans;
-
+        //Get the min of the available dates or create new Date(0) - 1970/01/01;
         if (dateA == null)
             dateA = dataBeans.isEmpty() ? new Date(0) : dataBeans.stream().map(DataBean::getDate).min(Date::compareTo).get();
 
+        //Get the max of the available dates or create new Date() - current date;
         if (dateB == null)
             dateB = dataBeans.isEmpty() ? new Date() : dataBeans.stream().map(DataBean::getDate).max(Date::compareTo).get();
 
@@ -63,6 +64,11 @@ public class DataService{
 
     public void addData(int number, Date date, String text) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
+        if(date==null){
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Date can't may be NULL!", "Please fill in the respective field."));
+            return;
+        }
 
         for (DataBean bean : dataBeans)
             if (bean.getDate().equals(date)) {
@@ -84,7 +90,7 @@ public class DataService{
     }
 
     private int getRandomNumber() {
-        return new Random().nextInt(200 + 1);  // between 0 and 200
+        return new Random().nextInt(200 + 1);
     }
 
     private Date getRandomDate() {
@@ -97,7 +103,7 @@ public class DataService{
     }
 
     /**
-     * Ajax date messages
+     * Date Message
      */
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();

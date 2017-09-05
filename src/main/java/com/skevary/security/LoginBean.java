@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
 
-    private static final String[] users = {"skev@mail.com:123456", "mary@mail.org:123456"};
+    private static final String[] users = {"foo@mail.com:12345", "bar@mail.com:123456"};
 
     @NotNull(message = "Email may not be null.")
     @Size(min = 3, max = 254, message = "Email length must be between 3 and 254.")

@@ -37,7 +37,7 @@ public class ChartController {
         yAxis.setMax(210);
 
         DateAxis xAis = new DateAxis("Dates");
-        xAis.setMax(new Date().getTime()+10000000000L);
+        xAis.setMax(new Date().getTime()+10000000000L); // increases the threshold xAis
         xAis.setTickFormat("%d-%m-%Y");
         animatedModel.getAxes().put(AxisType.X, xAis);
     }
