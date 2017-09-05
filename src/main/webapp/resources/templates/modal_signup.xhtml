@@ -13,11 +13,11 @@
                 <h:form>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <p:inputText class="form-control" type="text" name="user" a:placeholder="Email"/>
+                        <p:inputText class="form-control" value="#{loginBean.email}" type="text" name="user" a:placeholder="Email"/>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <p:inputText class="form-control" type="password" name="pass" a:placeholder="Password"/>
+                        <p:inputText class="form-control" value="#{loginBean.password}" type="password" name="pass" a:placeholder="Password"/>
                     </div>
                     <hr class="colorgraph"/>
                     <button type="button" class="btn btn-success btn-block" data-toggle="modal">Sign up</button>

@@ -16,10 +16,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @ManagedBean(name = "dataService")
 @ApplicationScoped
-public class DataService {
+public class DataService{
     private List<DataBean> dataBeans;
     private Date dateAfter;
     private Date dateBefore;
+    private int numberGen = 50;
 
     @PostConstruct
     public void init() {
@@ -50,7 +51,7 @@ public class DataService {
         dataBeans.clear();
     }
 
-    private void generateData(int size) {
+    public void generateData(int size) {
         dataBeans = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String random_ID = getRandomId();
@@ -60,22 +61,17 @@ public class DataService {
 
     }
 
-    //TODO: Remove this method;
-    public void temporaryGenData() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        generateData(50);
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Generate Date - Success!", "Data is successfully generated."));
-    }
-
     public void addData(int number, Date date, String text) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
 
         for (DataBean bean : dataBeans)
-            if (bean.getDate().equals(date))
-                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Add Data - Warning!", "Given date already exists, try to choose other."));
+            if (bean.getDate().equals(date)) {
+                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Add Data - Warning!", "Given date already exists, try to choose other."));
+                return;
+            }
 
         dataBeans.add(new DataBean(getRandomId(), number, date, text));
-
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Add Date - Success!", "The data was successfully added."));
     }
 
@@ -131,6 +127,14 @@ public class DataService {
 
     public void setDateBefore(Date dateBefore) {
         this.dateBefore = dateBefore;
+    }
+
+    public int getNumberGen() {
+        return numberGen;
+    }
+
+    public void setNumberGen(int numberGen) {
+        this.numberGen = numberGen;
     }
 }
 

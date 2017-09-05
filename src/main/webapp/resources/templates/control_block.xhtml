@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
     <p:outputLabel value="Select data:" styleClass="text-input"/> <br/>
     <p:calendar id="event_first_calendar" placeholder="Choose first date"
@@ -15,16 +15,22 @@
                 update="dataTable chart_line"/>
     </p:calendar>
     <br/><br/>
-    <div class="btn-group">
         <p:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
                          actionListener="#{dataService.clearData}"
                          update="generate_button dataTable chart_line"/>
-        <p:commandButton value="Generate" id="generate_button"
-                         styleClass="btn btn-primary"
-                         actionListener="#{dataService.temporaryGenData}"
-                         update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>
         <p:commandButton value="Add" id="add_button" styleClass="btn btn-primary"
                          onclick="PF('dlg1').show();"
                          update="dataTable"/>
+    <br/><br/>
+    <div class="ui-inputgroup">
+        <p:inputText id="nummber_generations" for="generate_button" value="#{dataService.numberGen}" style="width: 30px; height: 25px;">
+            <o:validator validatorId="javax.faces.Required" message="Number may not be null."/>
+            <o:validator validatorId="javax.faces.LongRange" minimum="1" maximum="250"
+                         message="Please enter a number between 1 and 250"/>
+        </p:inputText>
+        <p:commandButton id="generate_button" value="Generate"
+                         styleClass="btn btn-primary"
+                         actionListener="#{dataService.generateData(dataService.numberGen)}"
+                         update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>
     </div>
 </ui:composition>
