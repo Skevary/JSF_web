@@ -14,23 +14,23 @@
             <div class="wrapper">
                 <h:form name="Login_Form" class="form-signin">
                     <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
-                    <p class="form-signin-heading">Welcome Back! Please Sign In </p>
+                    <p class="form-signin-heading">#{msg['login.welcomeMessage']}</p>
                     <hr class="colorgraph"/>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <p:inputText id="email" type="text" value="#{loginBean.email}" styleClass="form-control" a:placeholder="Email"/>
+                        <p:inputText id="email" type="text" value="#{loginBean.email}" styleClass="form-control" a:placeholder="#{msg['placeholder.email']}"/>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <p:inputText id="password" type="password" value="#{loginBean.password}" styleClass="form-control" name="password" a:placeholder="Password"/>
+                        <p:inputText id="password" type="password" value="#{loginBean.password}" styleClass="form-control" name="password" a:placeholder="#{msg['placeholder.password']}"/>
                     </div>
                     <hr class="colorgraph"/>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <h:commandButton value="Log in" styleClass="btn btn-success btn-block" action="#{loginBean.doLogin}"/>
+                            <h:commandButton value="#{msg['pages.name.login']}" styleClass="btn btn-success btn-block" action="#{loginBean.doLogin}"/>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#login-modal">Sign up
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#login-modal">#{msg['pages.name.signup']}
                             </button>
                         </div>
                     </div>

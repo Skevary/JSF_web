@@ -4,28 +4,28 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <div class="padding_block">
-        <p:outputLabel value="Select data:" styleClass="text-input"/>
+        <p:outputLabel value="#{msg['control.selectDateMessage']}" styleClass="text-input"/>
     </div>
     <div class="padding_block">
-        <p:calendar id="event_first_calendar" placeholder="Choose first date"
+        <p:calendar id="event_first_calendar" placeholder="#{msg['placeholder.chooseFirstDate']}"
                     value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                     update="dataTable chart_line"/>
         </p:calendar>
     </div>
     <div class="padding_block">
-        <p:calendar id="event_second_calendar" placeholder="Choose second date"
+        <p:calendar id="event_second_calendar" placeholder="#{msg['placeholder.chooseSecondDate']}"
                     value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                     update="dataTable chart_line"/>
         </p:calendar>
     </div>
     <div class="btn-group btn-group-sm" role="group">
-        <h:commandButton value="Clear" id="clear_button" styleClass="btn btn-primary"
+        <h:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary"
                          actionListener="#{dataService.clearData}"
                          update="generate_button dataTable chart_line"/>
 
-        <h:commandButton value="Add" id="add_button" styleClass="btn btn-info"
+        <h:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info"
                          onclick="PF('dlg1').show();return false;"
                          update="dataTable"/>
 
@@ -36,7 +36,7 @@
                          message="Please enter a number between 1 and 250"/>
         </h:inputText>
 
-        <h:commandButton id="generate_button" value="Generate"
+        <h:commandButton id="generate_button" value="#{msg['control.generate']}"
                          styleClass="btn btn-primary"
                          actionListener="#{dataService.generateData(dataService.numberGen)}"
                          update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>

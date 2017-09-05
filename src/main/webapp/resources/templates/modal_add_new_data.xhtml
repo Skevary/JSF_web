@@ -3,26 +3,27 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="add_dialog" header="Add new data" widgetVar="dlg1" modal="true"
+    <p:dialog id="add_dialog" header="#{msg['dialog.add.header']}" widgetVar="dlg1" modal="true"
               focus="add_dialog" showEffect="fade" hideEffect="fade" closeOnEscape="true"
               resizable="false">
         <p:panelGrid id="modal_add_dialog" columns="2" >
-            <p:outputLabel value="Choose data: " styleClass="text-input"/>
-            <p:calendar id="input_data" var="date" placeholder="Choose date"
+            <p:outputLabel value="#{msg['dialog.add.message.date']}" styleClass="text-input"/>
+            <p:calendar id="input_data" var="date" placeholder="#{msg['placeholder.dialog.add.chooseDate']}"
                         value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
                 <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                         update="msgs"/>
             </p:calendar>
 
-            <h:outputLabel for="input_number" value="Choose number(0-200): "/>
+            <h:outputLabel for="input_number" value="#{msg['dialog.add.message.number']}"/>
             <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200" />
 
-            <h:outputLabel for="input_text" value="Enter text: "/>
+            <h:outputLabel for="input_text" value="#{msg['dialog.add.message.text']}"/>
             <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
 
-            <p:commandButton value="Add" id="add_data"
+            <p:commandButton value="#{msg['control.add']}" id="add_data"
                              actionListener="#{dataService.addData(dataBean.number, dataBean.date,dataBean.text)}"
                              update="dataTable chart_line" />
+            <div/>
         </p:panelGrid>
     </p:dialog>
 </ui:composition>

@@ -11,20 +11,20 @@
                     <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
 
                     <p:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
-                        <p:outputLabel value="Choose data: " styleClass="text-input"/>
-                        <p:calendar id="input_data" var="date" placeholder="Choose date"
+                        <p:outputLabel value="#{msg['dialog.add.message.date']} " styleClass="text-input"/>
+                        <p:calendar id="input_data" var="date" placeholder="#{msg['placeholder.dialog.add.chooseDate']}"
                                     value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
                             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                                     update="msgs"/>
                         </p:calendar>
 
-                        <h:outputLabel for="input_number" value="Choose number(0-200): "/>
+                        <h:outputLabel for="input_number" value="#{msg['dialog.add.message.number']}"/>
                         <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200">
                         </p:spinner>
 
-                        <h:outputLabel for="input_text" value="Enter text: "/>
+                        <h:outputLabel for="input_text" value="#{msg['dialog.add.message.text']}"/>
                         <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
-                        <p:commandButton value="Add" id="add_data" resetValues="true"
+                        <p:commandButton value="#{msg['control.add']}" id="add_data" resetValues="true"
                                          actionListener="#{dataService.addData( dataBean.number, dataBean.date,dataBean.text)}"/>
                     </p:panelGrid>
                 </div>

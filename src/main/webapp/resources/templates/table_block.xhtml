@@ -8,21 +8,21 @@
                  paginator="true" paginatorPosition="bottom"
                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  pageLinks="5" rowsPerPageTemplate="5,10,15">
-        <p:column headerText="Id" styleClass="thead-inverse">
+        <p:column headerText="#{msg['table.header.id']}" styleClass="thead-inverse">
             <h:outputText value="#{item.id}"/>
         </p:column>
 
-        <p:column headerText="Num" style="width: 60px;">
+        <p:column headerText="#{msg['table.header.num']}" style="width: 60px;">
             <h:outputText value="#{item.number}"/>
         </p:column>
 
-        <p:column headerText="Date">
+        <p:column headerText="#{msg['table.header.date']}">
             <h:outputText value="#{item.date}">
                 <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
             </h:outputText>
         </p:column>
 
-        <p:column headerText="Text">
+        <p:column headerText="#{msg['table.header.text']}">
             <h:outputText value="#{item.text}"/>
         </p:column>
 
