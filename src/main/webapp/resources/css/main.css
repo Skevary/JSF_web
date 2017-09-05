@@ -5,6 +5,12 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+.jumbotron {
+    -moz-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
 /* Login Form */
 
 .wrapper {
@@ -18,6 +24,7 @@ body {
     margin: 0 auto;
     background-color: #eee;
     border: 3px dotted rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.7);
 }
 
 .form-signin-heading {
@@ -54,7 +61,7 @@ input[type="password"] {
     background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #aecc6a 12.5%, #aecc6a 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
 
-/****** LOGIN MODAL ******/
+/* Modal_Signup */
 .loginmodal-container {
     max-width: 700px;
     width: 100% !important;
@@ -70,4 +77,13 @@ input[type="password"] {
 .ui-growl {
     position: absolute;
     top: 80%;
+}
+
+.ui-panelgrid>*>tr,
+.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.padding_block {
+    padding-bottom: 10px;
 }

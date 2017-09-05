@@ -63,6 +63,11 @@ public class LoginBean implements Serializable {
         return navigationBean.redirectToLogin();
     }
 
+    public void signUp() {
+        FacesMessage msg = new FacesMessage("Sign up - Error!", "This functionality is not yet supported.");
+        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
     public String getEmail() {
         return email;

@@ -20,7 +20,7 @@
                         <p:inputText class="form-control" value="#{loginBean.password}" type="password" name="pass" a:placeholder="Password"/>
                     </div>
                     <hr class="colorgraph"/>
-                    <button type="button" class="btn btn-success btn-block" data-toggle="modal">Sign up</button>
+                    <h:commandButton value="Sign up" styleClass="btn btn-success btn-block" action="#{loginBean.signUp}"/>
                 </h:form>
             </div>
         </div>

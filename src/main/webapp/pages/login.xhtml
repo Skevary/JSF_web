@@ -18,16 +18,16 @@
                     <hr class="colorgraph"/>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <p:inputText type="text" value="#{loginBean.email}" styleClass="form-control" id="email" a:placeholder="Email"/>
+                        <p:inputText id="email" type="text" value="#{loginBean.email}" styleClass="form-control" a:placeholder="Email"/>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <p:inputText type="password" value="#{loginBean.password}" styleClass="form-control" name="password" a:placeholder="Password"/>
+                        <p:inputText id="password" type="password" value="#{loginBean.password}" styleClass="form-control" name="password" a:placeholder="Password"/>
                     </div>
                     <hr class="colorgraph"/>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <p:commandButton value="Log in" styleClass="btn btn-success btn-lg btn-block" action="#{loginBean.doLogin}"/>
+                            <h:commandButton value="Log in" styleClass="btn btn-success btn-block" action="#{loginBean.doLogin}"/>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#login-modal">Sign up

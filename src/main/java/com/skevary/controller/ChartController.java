@@ -34,11 +34,10 @@ public class ChartController {
         Axis yAxis = animatedModel.getAxis(AxisType.Y);
         yAxis.setLabel("Number");
         yAxis.setMin(-5);
-        yAxis.setMax(210    );
+        yAxis.setMax(210);
 
-        animatedModel.getAxes().put(AxisType.X, new CategoryAxis("Years"));
         DateAxis xAis = new DateAxis("Dates");
-        xAis.setMax(new Date().getTime());
+        xAis.setMax(new Date().getTime()+10000000000L);
         xAis.setTickFormat("%d-%m-%Y");
         animatedModel.getAxes().put(AxisType.X, xAis);
     }

@@ -7,12 +7,12 @@
     <p:dataTable id="dataTable" rows="5" var="item" value="#{dataService.filteredData}"
                  paginator="true" paginatorPosition="bottom"
                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 pageLinks="5" rowsPerPageTemplate="5,10,15" styleClass="ui-table ">
+                 pageLinks="5" rowsPerPageTemplate="5,10,15">
         <p:column headerText="Id" styleClass="thead-inverse">
             <h:outputText value="#{item.id}"/>
         </p:column>
 
-        <p:column headerText="Num" style="width:58px">
+        <p:column headerText="Num" style="width: 60px;">
             <h:outputText value="#{item.number}"/>
         </p:column>
 
@@ -27,7 +27,7 @@
         </p:column>
 
         <p:column style="width:58px">
-            <p:commandButton icon="ui-icon-close" title="remove_from_dataTable"
+            <p:commandButton icon="ui-icon-trash" title="remove_from_dataTable"
                              actionListener="#{dataService.removeItem(item)}"
                              update="form:generate_button dataTable form:chart_line"/>
         </p:column>
