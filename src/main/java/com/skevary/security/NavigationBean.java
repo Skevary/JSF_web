@@ -25,4 +25,12 @@ public class NavigationBean implements Serializable {
     public String toIndex1() {
         return "/pages/secured/index1.xhtml";
     }
+
+    public String redirectToIndex2() {
+        return "/pages/secured/index2.xhtml?faces-redirect=true";
+    }
+
+    public String toIndex2() {
+        return "/pages/secured/index2.xhtml";
+    }
 }
