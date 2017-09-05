@@ -2,8 +2,6 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
-
     <p:outputLabel value="Select data:" styleClass="text-input"/> <br/>
     <p:calendar id="event_first_calendar" placeholder="Choose first date"
                 value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">

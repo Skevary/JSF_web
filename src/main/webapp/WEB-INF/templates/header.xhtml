@@ -17,8 +17,8 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ui:insert name="menu_items">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><h:link target="#{navigationBean.toIndex1()}" value="#{msg['pages.name.index1']}"/></li>
-                            <li><h:link target="#" value="#{msg['pages.name.index2']}"/></li>
+                            <li><h:link outcome="index1" value="#{msg['pages.name.index1']}"/></li>
+                            <li><h:link outcome="index2" value="#{msg['pages.name.index2']}"/></li>
                             <li><h:commandLink action="#{loginBean.doLogout}" value="#{msg['pages.name.logout']}"/></li>
                         </ul>
                     </ui:insert>
