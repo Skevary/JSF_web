@@ -28,11 +28,19 @@ public class DataService {
 
     public List<DataBean> getFilteredData() {
         List<DataBean> filteredDataBeans = new ArrayList<>();
-        if(dateAfter==null) dateAfter = new Date(0);
-        if(dateBefore==null) dateBefore = new Date();
+        Date dateA = dateAfter;
+        Date dateB = dateBefore;
+
+        if (dateAfter == null && dateBefore == null) return dataBeans;
+
+        if (dateA == null)
+            dateA = dataBeans.isEmpty() ? new Date(0) : dataBeans.stream().map(DataBean::getDate).min(Date::compareTo).get();
+
+        if (dateB == null)
+            dateB = dataBeans.isEmpty() ? new Date() : dataBeans.stream().map(DataBean::getDate).max(Date::compareTo).get();
 
         for (DataBean bean : dataBeans)
-            if(bean.getDate().after(dateAfter) && bean.getDate().before(dateBefore))
+            if ((bean.getDate().after(dateA) || bean.getDate().equals(dateA)) && (bean.getDate().before(dateB) || bean.getDate().equals(dateB)))
                 filteredDataBeans.add(bean);
 
         return filteredDataBeans;
@@ -49,15 +57,26 @@ public class DataService {
             String random_text = "item_" + random_ID;
             dataBeans.add(new DataBean(random_ID, getRandomNumber(), getRandomDate(), random_text));
         }
+
     }
 
     //TODO: Remove this method;
     public void temporaryGenData() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         generateData(50);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Generate Date - Success!", "Data is successfully generated."));
     }
 
     public void addData(int number, Date date, String text) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+
+        for (DataBean bean : dataBeans)
+            if (bean.getDate().equals(date))
+                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Add Data - Warning!", "Given date already exists, try to choose other."));
+
         dataBeans.add(new DataBean(getRandomId(), number, date, text));
+
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Add Date - Success!", "The data was successfully added."));
     }
 
     public void removeItem(DataBean item) {
@@ -73,12 +92,12 @@ public class DataService {
     }
 
     private Date getRandomDate() {
-        long minDay = LocalDate.of(1970, 1, 1).toEpochDay();
+        long minDay = LocalDate.of(2000, 1, 1).toEpochDay();
         long maxDay = LocalDate.now().toEpochDay();
         long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
         LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
 
-        return Date.from(randomDate.atStartOfDay(ZoneId.systemDefault()).toInstant()); // between {01.01.1970} and {current time}
+        return Date.from(randomDate.atStartOfDay(ZoneId.systemDefault()).toInstant()); // between {01.01.2000} and {current time}
     }
 
     /**

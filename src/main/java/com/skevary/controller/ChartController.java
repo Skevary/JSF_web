@@ -49,7 +49,7 @@ public class ChartController {
         LineChartSeries series = new LineChartSeries();
         series.setLabel("Data");
 
-        if (!service.getDataBeans().isEmpty())
+        if (!service.getFilteredData().isEmpty())
             for (DataBean dataBean : service.getFilteredData())
                 series.set(dataBean.getDate().getTime(), dataBean.getNumber());
 
