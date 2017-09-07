@@ -20,24 +20,31 @@
                     update="dataTable chart_line"/>
         </p:calendar>
     </div>
-    <div class="btn-group btn-group-xs" role="group">
-        <p:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary btn-sm"
-                         actionListener="#{dataService.clearData}"
-                         update="generate_button dataTable chart_line"/>
+    <div class="padding_block">
+        <div class="btn-group btn-group-xs" role="group">
+            <p:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary btn-sm"
+                             actionListener="#{dataService.clearData}"
+                             update="generate_button dataTable chart_line num_of_all_records"/>
 
-        <p:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info btn-sm"
-                         onclick="PF('dlg1').show();return false;"
-                         update="dataTable"/>
+            <p:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info btn-sm"
+                             onclick="PF('dlg1').show();" />
 
-        <h:inputText id="nummber_generations" for="generate_button" value="#{dataService.numberGen}"
-                     style="width: 25px; height: 25px;">
-            <o:validator validatorId="javax.faces.Required" message="Number may not be null."/>
-        </h:inputText>
-        <p:commandButton id="generate_button" value="#{msg['control.generate']}"
-                         styleClass="btn btn-primary btn-sm"
-                         actionListener="#{dataService.generateData(dataService.numberGen)}"
-                         update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>
+            <h:inputText id="nummber_generations" for="generate_button" value="#{dataService.numberGen}"
+                         style="width: 25px; height: 25px;">
+                <o:validator validatorId="javax.faces.Required" message="Number may not be null."/>
+            </h:inputText>
+            <p:commandButton id="generate_button" value="#{msg['control.generate']}"
+                             styleClass="btn btn-primary btn-sm"
+                             actionListener="#{dataService.generateData(dataService.numberGen)}"
+                             update="generate_button dataTable chart_line num_of_all_records" disabled="#{!empty dataService.dataBeans}"/>
 
 
+        </div>
+    </div>
+    <div class="padding_block">
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <h:outputText value="Number of all records: "/>
+            <h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
+        </h:panelGrid>
     </div>
 </ui:composition>

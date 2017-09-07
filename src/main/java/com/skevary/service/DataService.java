@@ -55,6 +55,10 @@ public class DataService{
         return filteredDataBeans;
     }
 
+    public int getNumberAllRecords(){
+        return dataBeans.size();
+    }
+
     public void clearData() {
         dataBeans.clear();
     }
