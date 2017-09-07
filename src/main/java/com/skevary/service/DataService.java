@@ -18,9 +18,16 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 public class DataService{
     private List<DataBean> dataBeans;
+    private final static String[] GROUP;
     private Date dateAfter;
     private Date dateBefore;
     private int numberGen = 50;
+
+    static {
+        GROUP = new String[2];
+        GROUP[0] = "A";
+        GROUP[1] = "B";
+    }
 
     @PostConstruct
     public void init() {
@@ -57,12 +64,12 @@ public class DataService{
         for (int i = 0; i < size; i++) {
             String random_ID = getRandomId();
             String random_text = "item_" + random_ID;
-            dataBeans.add(new DataBean(random_ID, getRandomNumber(), getRandomDate(), random_text));
+            dataBeans.add(new DataBean(random_ID, getRandomGroup(), getRandomNumber(), getRandomDate(), random_text));
         }
 
     }
 
-    public void addData(int number, Date date, String text) {
+    public void addData(int number, String group, Date date, String text) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if(date==null){
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
@@ -77,7 +84,7 @@ public class DataService{
                 return;
             }
 
-        dataBeans.add(new DataBean(getRandomId(), number, date, text));
+        dataBeans.add(new DataBean(getRandomId(), group, number, date, text));
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Add Date - Success!", "The data was successfully added."));
     }
 
@@ -87,6 +94,10 @@ public class DataService{
 
     private String getRandomId() {
         return UUID.randomUUID().toString().substring(0, 8);  // standard UUID long 8 characters
+    }
+
+    private String getRandomGroup() {
+        return GROUP[new Random().nextInt(2)]; // only 0 or 1
     }
 
     private int getRandomNumber() {
@@ -121,6 +132,10 @@ public class DataService{
 
     public Date getDateAfter() {
         return dateAfter;
+    }
+
+    public static String[] getGROUP() {
+        return GROUP;
     }
 
     public void setDateAfter(Date dateAfter) {

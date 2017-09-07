@@ -11,6 +11,7 @@ import java.util.Date;
 public class DataBean implements Serializable{
     private static final long serialVersionUID = -6363197086621921565L;
     private String id;
+    private String group;
     private int number;
     private Date date;
     private String text;
@@ -18,8 +19,9 @@ public class DataBean implements Serializable{
     public DataBean() {
     }
 
-    public DataBean(String id, int number, Date date, String text) {
+    public DataBean(String id, String group, int number, Date date, String text) {
         this.id = id;
+        this.group = group;
         this.number = number;
         this.date = date;
         this.text = text;
@@ -31,6 +33,14 @@ public class DataBean implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 
     public int getNumber() {

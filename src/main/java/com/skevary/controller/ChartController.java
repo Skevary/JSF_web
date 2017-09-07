@@ -45,17 +45,24 @@ public class ChartController {
     private LineChartModel initLinearModel() {
         LineChartModel model = new LineChartModel();
 
-        LineChartSeries series = new LineChartSeries();
-        series.setLabel("Data");
+        LineChartSeries groupA = new LineChartSeries();
+        groupA.setLabel("Group A");
+        LineChartSeries groupB = new LineChartSeries();
+        groupB.setLabel("Group B");
 
-        if (!service.getFilteredData().isEmpty())
+        if (!service.getFilteredData().isEmpty()) {
             for (DataBean dataBean : service.getFilteredData())
-                series.set(dataBean.getDate().getTime(), dataBean.getNumber());
+                if (dataBean.getGroup().equals("A")) groupA.set(dataBean.getDate().getTime(), dataBean.getNumber());
+                else groupB.set(dataBean.getDate().getTime(), dataBean.getNumber());
 
-        else
-            series.set(null, null);
+        } else {
+            groupA.set(null, null);
+            groupB.set(null, null);
+        }
 
-        model.addSeries(series);
+        model.addSeries(groupA);
+        model.addSeries(groupB);
+
         return model;
     }
 
