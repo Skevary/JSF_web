@@ -5,17 +5,31 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import static javax.faces.context.FacesContext.getCurrentInstance;
 
 @ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
 
-    private static final String[] users = {"foo@mail.com:12345", "bar@mail.com:123456"};
+    @ManagedProperty(value = "#{navigationBean}")
+    private NavigationBean navigationBean;
+
+    private static final Map<String,String> users;
+    static
+    {
+        users = new HashMap<String, String>();
+        users.put("foo@mail.com", "12345");
+        users.put("bar@mail.com", "12345");
+    }
 
     @NotNull(message = "Email may not be null.")
     @Size(min = 3, max = 254, message = "Email length must be between 3 and 254.")
@@ -28,24 +42,18 @@ public class LoginBean implements Serializable {
 
     private boolean loggedIn;
 
-    @ManagedProperty(value = "#{navigationBean}")
-    private NavigationBean navigationBean;
-
     public String doLogin() {
-        for (String user : users) {
-            String dbEmail = user.split(":")[0];
-            String dbPassword = user.split(":")[1];
-
-            if (dbEmail.equalsIgnoreCase(email) && dbPassword.equals(password)) {
+        if(users.get(email)!=null)
+            if(users.get(email).equals(password)){
                 loggedIn = true;
                 return navigationBean.redirectToIndex1();
             }
-        }
+
 
         // Set login ERROR
         FacesMessage msg = new FacesMessage("Login error!", "There is a problem with your email address or password. Please try again.");
         msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        getCurrentInstance().addMessage(null, msg);
 
         // To do login page
         return navigationBean.toLogin();
@@ -56,17 +64,32 @@ public class LoginBean implements Serializable {
         loggedIn = false;
 
         // Set logout message
-        FacesMessage msg = new FacesMessage("Logout success!", "You have successfully logged out from your account.");
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesContext facesContext = getCurrentInstance();
+        Flash flash = getCurrentInstance().getExternalContext().getFlash();
+        flash.setKeepMessages(true);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                "Logout success!", "You have successfully logged out from your account."));
 
         return navigationBean.redirectToLogin();
     }
 
-    public void signUp() {
-        FacesMessage msg = new FacesMessage("Sign up - Error!", "This functionality is not yet supported.");
-        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    public String signUp() {
+        FacesContext facesContext = getCurrentInstance();
+        Flash flash = getCurrentInstance().getExternalContext().getFlash();
+
+        flash.setKeepMessages(true);
+        if(users.get(email)!=null) {
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Entered email - is busy!", "Please enter valid email."));
+
+            return navigationBean.toLogin();
+        } else {
+            users.put(email, password);
+            loggedIn = true;
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign up success!", "Welcome, you have successfully registered."));
+            return navigationBean.redirectToIndex1();
+        }
     }
 
     public String getEmail() {
