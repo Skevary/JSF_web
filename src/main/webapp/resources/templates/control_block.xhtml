@@ -20,25 +20,24 @@
                     update="dataTable chart_line"/>
         </p:calendar>
     </div>
-    <div class="btn-group btn-group-sm" role="group">
-        <h:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary"
+    <div class="btn-group btn-group-xs" role="group">
+        <p:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary btn-sm"
                          actionListener="#{dataService.clearData}"
                          update="generate_button dataTable chart_line"/>
 
-        <h:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info"
+        <p:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info btn-sm"
                          onclick="PF('dlg1').show();return false;"
                          update="dataTable"/>
 
         <h:inputText id="nummber_generations" for="generate_button" value="#{dataService.numberGen}"
-                     style="width: 35px; height: 30px;">
+                     style="width: 25px; height: 25px;">
             <o:validator validatorId="javax.faces.Required" message="Number may not be null."/>
-            <o:validator validatorId="javax.faces.LongRange" minimum="1" maximum="250"
-                         message="Please enter a number between 1 and 250"/>
         </h:inputText>
-
-        <h:commandButton id="generate_button" value="#{msg['control.generate']}"
-                         styleClass="btn btn-primary"
+        <p:commandButton id="generate_button" value="#{msg['control.generate']}"
+                         styleClass="btn btn-primary btn-sm"
                          actionListener="#{dataService.generateData(dataService.numberGen)}"
                          update="generate_button dataTable chart_line" disabled="#{!empty dataService.dataBeans}"/>
+
+
     </div>
 </ui:composition>
