@@ -26,6 +26,10 @@
             <h:outputText value="#{item.text}"/>
         </p:column>
 
+        <p:column headerText="#{msg['table.header.group']}" style="width:63px">
+            <h:outputText value="#{item.group}"/>
+        </p:column>
+
         <p:column style="width:58px">
             <p:commandButton icon="ui-icon-trash" title="remove_from_dataTable"
                              actionListener="#{dataService.removeItem(item)}"
