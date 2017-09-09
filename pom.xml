@@ -8,6 +8,10 @@
 
     <name>WebApp</name>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <repositories>
         <repository>
@@ -83,7 +87,14 @@
 
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -99,6 +110,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.2</version>
                 <configuration>
+                    <encoding>utf8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
@@ -109,9 +121,18 @@
                 <artifactId>maven-embedded-glassfish-plugin</artifactId>
                 <version>3.1.1</version>
                 <configuration>
-                    <app>${project.build.directory}/${build.finalName}.war</app>
+                    <app>${project.build.directory}/${project.build.finalName}.war</app>
                     <port>7070</port>
                     <containerType>web</containerType>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
 

@@ -11,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -20,7 +21,7 @@ import static javax.faces.context.FacesContext.getCurrentInstance;
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
-    private static final ResourceBundle message = ResourceBundle.getBundle("messages");
+    private static final ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
 
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
