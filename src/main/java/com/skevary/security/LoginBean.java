@@ -1,27 +1,21 @@
 package com.skevary.security;
 
-import javax.faces.application.FacesMessage;
+import com.skevary.util.Message;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
-
-import static javax.faces.context.FacesContext.getCurrentInstance;
 
 @ManagedBean
 @SessionScoped
-public class LoginBean implements Serializable {
+public class LoginBean implements Serializable,Message {
     private static final long serialVersionUID = 9007171658473182460L;
-    private static final ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
 
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
@@ -52,37 +46,29 @@ public class LoginBean implements Serializable {
             return navigationBean.redirectToIndex1();
         }
 
-        showMessage("message.login.error.summary", "message.login.error.detail");
+        Message.showMessage("message.login.error.summary", "message.login.error.detail");
         return navigationBean.toLogin();
     }
 
     public String doLogout() {
         loggedIn = false;
-        showMessage("message.logout.success.summary", "message.logout.success.detail");
+        Message.showMessage("message.logout.success.summary", "message.logout.success.detail");
 
         return navigationBean.redirectToLogin();
     }
 
     public String signUp() {
         if (users.get(email) != null) {
-            showMessage("message.sign_up.error.summary", "message.sign_up.error.detail");
+            Message.showMessage("message.sign_up.error.summary", "message.sign_up.error.detail");
 
             return navigationBean.toLogin();
         } else {
             users.put(email, password);
             loggedIn = true;
-            showMessage("message.sign_up.success.summary", "message.sign_up.success.detail");
+            Message.showMessage("message.sign_up.success.summary", "message.sign_up.success.detail");
 
             return navigationBean.redirectToIndex1();
         }
-    }
-
-    private void showMessage(String summary, String detail) {
-        FacesContext facesContext = getCurrentInstance();
-        Flash flash = getCurrentInstance().getExternalContext().getFlash();
-        flash.setKeepMessages(true);
-
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, message.getString(summary), message.getString(detail)));
     }
 
     public String getEmail() {
