@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
@@ -19,14 +20,15 @@ import static javax.faces.context.FacesContext.getCurrentInstance;
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
+    private static final ResourceBundle message = ResourceBundle.getBundle("messages");
 
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
 
-    private static final Map<String,String> users;
-    static
-    {
-        users = new HashMap<String, String>();
+    private static final Map<String, String> users;
+
+    static {
+        users = new HashMap<>();
         users.put("foo@mail.com", "12345");
         users.put("bar@mail.com", "12345");
     }
@@ -43,53 +45,43 @@ public class LoginBean implements Serializable {
     private boolean loggedIn;
 
     public String doLogin() {
-        if(users.get(email)!=null)
-            if(users.get(email).equals(password)){
-                loggedIn = true;
-                return navigationBean.redirectToIndex1();
-            }
+        if ((users.get(email) != null) && (users.get(email).equals(password))) {
+            loggedIn = true;
 
+            return navigationBean.redirectToIndex1();
+        }
 
-        // Set login ERROR
-        FacesMessage msg = new FacesMessage("Login error!", "There is a problem with your email address or password. Please try again.");
-        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-        getCurrentInstance().addMessage(null, msg);
-
-        // To do login page
+        showMessage("message.login.error.summary", "message.login.error.detail");
         return navigationBean.toLogin();
     }
 
     public String doLogout() {
-        // Set the paremeter indicating that user is logged in to false
         loggedIn = false;
-
-        // Set logout message
-        FacesContext facesContext = getCurrentInstance();
-        Flash flash = getCurrentInstance().getExternalContext().getFlash();
-        flash.setKeepMessages(true);
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                "Logout success!", "You have successfully logged out from your account."));
+        showMessage("message.logout.success.summary", "message.logout.success.detail");
 
         return navigationBean.redirectToLogin();
     }
 
     public String signUp() {
-        FacesContext facesContext = getCurrentInstance();
-        Flash flash = getCurrentInstance().getExternalContext().getFlash();
-
-        flash.setKeepMessages(true);
-        if(users.get(email)!=null) {
-            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    "Entered email - is busy!", "Please enter valid email."));
+        if (users.get(email) != null) {
+            showMessage("message.sign_up.error.summary", "message.sign_up.error.detail");
 
             return navigationBean.toLogin();
         } else {
             users.put(email, password);
             loggedIn = true;
-            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Sign up success!", "Welcome, you have successfully registered."));
+            showMessage("message.sign_up.success.summary", "message.sign_up.success.detail");
+
             return navigationBean.redirectToIndex1();
         }
+    }
+
+    private void showMessage(String summary, String detail) {
+        FacesContext facesContext = getCurrentInstance();
+        Flash flash = getCurrentInstance().getExternalContext().getFlash();
+        flash.setKeepMessages(true);
+
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, message.getString(summary), message.getString(detail)));
     }
 
     public String getEmail() {
