@@ -37,8 +37,14 @@ public class ChartController implements Message{
         yAxis.setMin(-5);
         yAxis.setMax(210);
 
+
         DateAxis xAxis = new DateAxis(Message.getString("chart.x_axis.label"));
-        xAxis.setMax(new Date().getTime()+10000000000L); // increases the threshold xAxis
+
+        if (!service.getFilteredData().isEmpty()) {
+            Long max_xAxis = service.getFilteredData().stream().map(DataBean::getDate).max(Date::compareTo).get().getTime();
+            xAxis.setMax(max_xAxis+10000000000L); // increases the threshold xAxis
+        }
+
         xAxis.setTickFormat("%d-%m-%Y");
         animatedModel.getAxes().put(AxisType.X, xAxis);
     }
