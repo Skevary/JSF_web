@@ -1,6 +1,7 @@
 package com.skevary.service;
 
 import com.skevary.model.DataBean;
+import com.skevary.util.Message;
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @ManagedBean(name = "dataService")
 @ApplicationScoped
-public class DataService{
+public class DataService implements Message{
     private List<DataBean> dataBeans;
     private final static String[] GROUP;
     private Date dateAfter;
@@ -76,20 +77,23 @@ public class DataService{
     public void addData(int number, String group, Date date, String text) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if(date==null){
-            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    "Date can't may be NULL!", "Please fill in the respective field."));
+            Message.showMessage("message.add_data.not_null.summary",
+                    "message.add_data.not_null.detail");
+
             return;
         }
 
         for (DataBean bean : dataBeans)
             if (bean.getDate().equals(date)) {
-                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Add Data - Warning!", "Given date already exists, try to choose other."));
+                Message.showMessage("message.add_data.already_exists.summary",
+                        "message.add_data.already_exists.detail");
+
                 return;
             }
 
         dataBeans.add(new DataBean(getRandomId(), group, number, date, text));
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Add Date - Success!", "The data was successfully added."));
+        Message.showMessage("message.add_data.success.summary",
+                "message.add_data.success.detail");
     }
 
     public void removeItem(DataBean item) {
@@ -123,7 +127,8 @@ public class DataService{
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                Message.getString("message.on_date_selected.summary"), format.format(event.getObject())));
     }
 
     public List<DataBean> getDataBeans() {

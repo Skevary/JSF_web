@@ -17,30 +17,29 @@ import java.util.Map;
 @SessionScoped
 public class LoginBean implements Serializable, Message {
     private static final long serialVersionUID = 9007171658473182460L;
-    private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
-
+    //TODO: fix authorization;
     private static final Map<String, String> users;
+    //TODO: fix validation;
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    /* USERS - initialization */
     static {
         users = new HashMap<>();
         users.put("foo@mail.com", "12345");
         users.put("bar@mail.com", "12345");
     }
 
-    @NotNull(message = "{message.validate.mail.not_null}")
-    @Size(min = 3, max = 254, message = "{message.validate.mail.size}")
-    @Pattern(regexp = EMAIL_PATTERN, message = "{message.validate.mail.pattern}")
+    /* EMAIL - validation */
     private String email;
 
-    @NotNull(message = "{message.validate.password.not_null}")
-    @Size(min = 3, max = 254, message = "{message.validate.password.size}")
+    /* PASSWORD - validation */
     private String password;
 
+    /* LOGGED IN - the authorization flag */
     private boolean loggedIn;
 
     public String doLogin() {
@@ -75,6 +74,9 @@ public class LoginBean implements Serializable, Message {
         }
     }
 
+    @NotNull(message = "{message.validate.mail.not_null}")
+    @Size(min = 3, max = 254, message = "{message.validate.mail.    size}")
+    @Pattern(regexp = EMAIL_PATTERN, message = "{message.validate.mail.pattern}")
     public String getEmail() {
         return email;
     }
@@ -83,6 +85,8 @@ public class LoginBean implements Serializable, Message {
         this.email = email;
     }
 
+    @NotNull(message = "{message.validate.password.not_null}")
+    @Size(min = 3, max = 254, message = "{message.validate.password.size}")
     public String getPassword() {
         return password;
     }

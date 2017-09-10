@@ -7,8 +7,6 @@ import java.io.Serializable;
 @ManagedBean
 @SessionScoped
 public class NavigationBean implements Serializable {
-    String sameText = "Email may not be null!";
-
     private static final long serialVersionUID = -3472799378008130650L;
 
     public String redirectToLogin() {
@@ -33,9 +31,5 @@ public class NavigationBean implements Serializable {
 
     public String toIndex2() {
         return "/pages/secured/index2.xhtml";
-    }
-
-    public String getSameText() {
-        return sameText;
     }
 }

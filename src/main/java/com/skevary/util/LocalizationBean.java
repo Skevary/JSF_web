@@ -13,6 +13,7 @@ import java.util.Map;
 @SessionScoped
 public class LocalizationBean implements Serializable {
     private static final long serialVersionUID = -3811608161111348357L;
+
     private static Map<String, Locale> languages;
     private String locale;
 
@@ -33,7 +34,7 @@ public class LocalizationBean implements Serializable {
     public void setLocale(String locale) {
         this.locale = locale;
     }
-
+    //TODO: Fix localization;
     //value change event listener
     public void localeChanged(ValueChangeEvent e) {
         String newLocaleValue = e.getNewValue().toString();
