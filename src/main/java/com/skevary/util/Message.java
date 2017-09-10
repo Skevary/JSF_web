@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
 public interface Message {
+
     static void showMessage(String summary, String detail) {
         ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
         FacesContext facesContext = getCurrentInstance();

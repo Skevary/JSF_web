@@ -12,10 +12,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @ManagedBean
 @SessionScoped
-public class LoginBean implements Serializable,Message {
+public class LoginBean implements Serializable, Message {
     private static final long serialVersionUID = 9007171658473182460L;
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
@@ -28,13 +32,13 @@ public class LoginBean implements Serializable,Message {
         users.put("bar@mail.com", "12345");
     }
 
-    @NotNull(message = "Email may not be null.")
-    @Size(min = 3, max = 254, message = "Email length must be between 3 and 254.")
-    @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "Email format is invalid.")
+    @NotNull(message = "{message.validate.mail.not_null}")
+    @Size(min = 3, max = 254, message = "{message.validate.mail.size}")
+    @Pattern(regexp = EMAIL_PATTERN, message = "{message.validate.mail.pattern}")
     private String email;
 
-    @NotNull(message = "Password may not be null.")
-    @Size(min = 3, max = 254, message = "Password length must be between 3 and 254.")
+    @NotNull(message = "{message.validate.password.not_null}")
+    @Size(min = 3, max = 254, message = "{message.validate.password.size}")
     private String password;
 
     private boolean loggedIn;
