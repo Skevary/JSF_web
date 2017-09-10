@@ -1,50 +1,41 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <div class="padding_block">
-        <p:outputLabel value="#{msg['control.selectDateMessage']}" styleClass="text-input"/>
-    </div>
+    <h4>#{msg['control.selectDateMessage']}</h4>
     <div class="padding_block">
         <p:calendar id="event_first_calendar" placeholder="#{msg['placeholder.chooseFirstDate']}"
                     value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                    update="dataTable chart_line"/>
+                    update="content_form"/>
         </p:calendar>
     </div>
     <div class="padding_block">
         <p:calendar id="event_second_calendar" placeholder="#{msg['placeholder.chooseSecondDate']}"
                     value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                    update="dataTable chart_line"/>
+                    update="content_form"/>
         </p:calendar>
     </div>
     <div class="padding_block">
         <div class="btn-group btn-group-xs" role="group">
             <p:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary btn-sm"
                              actionListener="#{dataService.clearData}"
-                             update="generate_button dataTable chart_line num_of_all_records"/>
+                             update="content_form"/>
 
             <p:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info btn-sm"
                              onclick="PF('dlg1').show();" />
 
-            <h:inputText id="nummber_generations" for="generate_button" value="#{dataService.numberGen}"
-                         style="width: 25px; height: 25px;">
-                <o:validator validatorId="javax.faces.Required" message="Number may not be null."/>
-            </h:inputText>
+            <p:inputNumber id="nummber_generations"  decimalPlaces="0" maxValue="999" value="#{dataService.numberGen}"
+                         inputStyle="width: 35px; height: 25px;">
+            </p:inputNumber>
             <p:commandButton id="generate_button" value="#{msg['control.generate']}"
                              styleClass="btn btn-primary btn-sm"
                              actionListener="#{dataService.generateData(dataService.numberGen)}"
-                             update="generate_button dataTable chart_line num_of_all_records" disabled="#{!empty dataService.dataBeans}"/>
+                             update="content_form" disabled="#{!empty dataService.dataBeans}"/>
 
 
         </div>
-    </div>
-    <div class="padding_block">
-        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-            <h:outputText value="#{msg['control.message.num_records']}"/>
-            <h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
-        </h:panelGrid>
     </div>
 </ui:composition>

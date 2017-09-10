@@ -11,24 +11,24 @@
                     <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
 
                     <p:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
-                        <p:outputLabel value="#{msg['dialog.add.message.date']} " styleClass="text-input"/>
+                        <strong> #{msg['dialog.add.message.date']} </strong>
                         <p:calendar id="input_data" var="date" placeholder="#{msg['placeholder.dialog.add.chooseDate']}"
                                     value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
                             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                                     update="msgs"/>
                         </p:calendar>
 
-                        <p:outputLabel for="input_group" value="Choose group:" />
+                        <strong> #{msg['dialog.add.message.choose_group']} </strong>
                         <p:selectOneMenu id="input_group" value="#{dataBean.group}">
                             <f:selectItem itemLabel="#{msg['dialog.add.message.group_A']}" itemValue="A" />
                             <f:selectItem itemLabel="#{msg['dialog.add.message.group_B']}" itemValue="B" />
                         </p:selectOneMenu>
 
-                        <h:outputLabel for="input_number" value="#{msg['dialog.add.message.number']}"/>
+                        <strong> #{msg['dialog.add.message.number']} </strong>
                         <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200">
                         </p:spinner>
 
-                        <h:outputLabel for="input_text" value="#{msg['dialog.add.message.text']}"/>
+                        <strong> #{msg['dialog.add.message.text']} </strong>
                         <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
                         <p:commandButton value="#{msg['control.add']}" id="add_data" resetValues="true"
                                          actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date,dataBean.text)}"/>

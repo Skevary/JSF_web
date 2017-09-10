@@ -5,7 +5,7 @@
                 template="../../WEB-INF/templates/default.xhtml">
 
     <ui:define name="content">
-        <h:form id="form">
+        <h:form id="content_form">
             <div class="container">
                 <div class="jumbotron">
                     <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
@@ -15,6 +15,7 @@
                             <!--Control -->
                             <div class="col-lg-4">
                                 <ui:include src="../../resources/templates/control_block.xhtml"/>
+                                <ui:include src="../../resources/templates/number_of_all_records.xhtml"/>
                             </div>
                             <!-- Chart -->
                             <div class="col-lg-8">

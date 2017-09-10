@@ -37,10 +37,10 @@ public class ChartController implements Message{
         yAxis.setMin(-5);
         yAxis.setMax(210);
 
-        DateAxis xAis = new DateAxis(Message.getString("chart.x_axis.label"));
-        xAis.setMax(new Date().getTime()+10000000000L); // increases the threshold xAis
-        xAis.setTickFormat("%d-%m-%Y");
-        animatedModel.getAxes().put(AxisType.X, xAis);
+        DateAxis xAxis = new DateAxis(Message.getString("chart.x_axis.label"));
+        xAxis.setMax(new Date().getTime()+10000000000L); // increases the threshold xAxis
+        xAxis.setTickFormat("%d-%m-%Y");
+        animatedModel.getAxes().put(AxisType.X, xAxis);
     }
 
     private LineChartModel initLinearModel() {
