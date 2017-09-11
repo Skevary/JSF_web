@@ -34,8 +34,7 @@ public class LocalizationBean implements Serializable {
     public void setLocale(String locale) {
         this.locale = locale;
     }
-    //TODO: Fix localization;
-    //value change event listener
+
     public void localeChanged(ValueChangeEvent e) {
         String newLocaleValue = e.getNewValue().toString();
         for (Map.Entry<String, Locale> entry : languages.entrySet()) {

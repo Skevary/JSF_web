@@ -18,29 +18,23 @@ import java.util.Map;
 public class LoginBean implements Serializable, Message {
     private static final long serialVersionUID = 9007171658473182460L;
 
+    private String email;
+    private String password;
+    private boolean loggedIn;
+
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
-    //TODO: fix authorization;
-    private static final Map<String, String> users;
-    //TODO: fix validation;
+
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    /* USERS - initialization */
+    private static final Map<String, String> users;
     static {
         users = new HashMap<>();
         users.put("foo@mail.com", "12345");
         users.put("bar@mail.com", "12345");
     }
 
-    /* EMAIL - validation */
-    private String email;
-
-    /* PASSWORD - validation */
-    private String password;
-
-    /* LOGGED IN - the authorization flag */
-    private boolean loggedIn;
 
     public String doLogin() {
         if ((users.get(email) != null) && (users.get(email).equals(password))) {
@@ -53,12 +47,14 @@ public class LoginBean implements Serializable, Message {
         return navigationBean.toLogin();
     }
 
+
     public String doLogout() {
         loggedIn = false;
         Message.showMessage("message.logout.success.summary", "message.logout.success.detail");
 
         return navigationBean.redirectToLogin();
     }
+
 
     public String signUp() {
         if (users.get(email) != null) {
@@ -73,22 +69,23 @@ public class LoginBean implements Serializable, Message {
             return navigationBean.redirectToIndex1();
         }
     }
-
+    /* EMAIL - validation */
     @NotNull(message = "{message.validate.mail.not_null}")
-    @Size(min = 3, max = 254, message = "{message.validate.mail.    size}")
+    @Size(min = 3, max = 254, message = "{message.validate.mail.size}")
     @Pattern(regexp = EMAIL_PATTERN, message = "{message.validate.mail.pattern}")
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    /* PASSWORD - validation */
     @NotNull(message = "{message.validate.password.not_null}")
     @Size(min = 3, max = 254, message = "{message.validate.password.size}")
     public String getPassword() {
         return password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {

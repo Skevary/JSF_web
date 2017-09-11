@@ -79,12 +79,6 @@ input[type="password"] {
     top: 80%;
 }
 
-.ui-panelgrid>*>tr,
-.ui-panelgrid .ui-panelgrid-cell {
-    background-color: #eee;
-    border: none;
-}
-
 .padding_block {
     padding-bottom: 10px;
 }

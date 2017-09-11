@@ -42,7 +42,7 @@ public class ChartController implements Message{
 
         if (!service.getFilteredData().isEmpty()) {
             Long max_xAxis = service.getFilteredData().stream().map(DataBean::getDate).max(Date::compareTo).get().getTime();
-            xAxis.setMax(max_xAxis+10000000000L); // increases the threshold xAxis
+            xAxis.setMax(max_xAxis+30000000000L); // increases the threshold xAxis
         }
 
         xAxis.setTickFormat("%d-%m-%Y");

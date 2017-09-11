@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
-//TODO: see about func interface & static inner method;
 public interface Message {
     /**
      * Display notifications.
