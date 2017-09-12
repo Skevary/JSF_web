@@ -21,7 +21,7 @@
         var optional = {
             series: {lines: {show: true }, grow: { active: true, duration: 1500, step: 150 }},
             points: {show: true},
-            grid: {backgroundColor: '#fff', hoverable: true, clickable: true},
+            grid: {backgroundColor: '#fff', hoverable: true, clickable: true,  labelMargin: 10},
             xaxis: {
                     axisLabel: "#{msg['chart.x_axis.label']}",
                     axisLabelUseCanvas: true,
@@ -34,11 +34,16 @@
                     axisLabel: "#{msg['chart.y_axis.label']}",
                     axisLabelUseCanvas: true,
                     axisLabelFontSizePixels: 15,
-                    axisLabelPadding: 18,
+                    axisLabelPadding: 10,
                     min: -5,
                     max: 210
             },
-            colors: ["#4bb2c5", "#eaa228"] };
+            legend: {
+                    noColumns: 1,
+                    labelBoxBorderColor: "#5c5c5c",
+                    backgroundColor: "#f2f2f2"
+            },
+        colors: ["#4bb2c5", "#eaa228"] };
 
         $.plot("#placeholder", data, optional);
         var c=document.getElementsByTagName("canvas")[0];
