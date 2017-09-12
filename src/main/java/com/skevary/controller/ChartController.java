@@ -54,18 +54,17 @@ public class ChartController implements Message{
 
         LineChartSeries groupA = new LineChartSeries();
         groupA.setLabel(Message.getString("chart.linear_model.groupA.label"));
+
         LineChartSeries groupB = new LineChartSeries();
         groupB.setLabel(Message.getString("chart.linear_model.groupB.label"));
 
-        if (!service.getFilteredData().isEmpty()) {
+        // Can't be uninitialized
+        groupA.set(null, null);
+        groupB.set(null, null);
+
             for (DataBean dataBean : service.getFilteredData())
                 if (dataBean.getGroup().equals("A")) groupA.set(dataBean.getDate().getTime(), dataBean.getNumber());
                 else groupB.set(dataBean.getDate().getTime(), dataBean.getNumber());
-
-        } else {
-            groupA.set(null, null);
-            groupB.set(null, null);
-        }
 
         model.addSeries(groupA);
         model.addSeries(groupB);
