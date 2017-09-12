@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:view locale="#{localizationBean.locale}">
 <h:head>
@@ -10,9 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>#{msg['message.title']}</title>
-
-    <h:outputStylesheet name="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
-    <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </h:head>
 <h:body>
     <ui:insert name="header">
@@ -24,7 +22,14 @@
     </ui:insert>
 
     <h:outputStylesheet name="css/main.css"/>
-    <h:outputScript name="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" target="head"/>
+    <h:outputStylesheet name="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" target="head" />
+    <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome.min.css" target="head" />
+    <h:outputScript name="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" target="head" />
+    <h:outputScript name="webjars/flot/0.8.3/jquery.flot.js" target="head" />
+    <h:outputScript name="webjars/flot/0.8.3/jquery.flot.time.js" target="head" />
+    <h:outputScript name="webjars/flot/0.8.3/jquery.flot.resize.js" target="head" />
+    <h:outputScript library="js" name="jquery.flot.growraf.js" target="head" />
+    <h:outputScript library="js" name="jquery.flot.axislabels.js" target="head" />
 </h:body>
 </f:view>
 </html>

@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:outputScript>
+        $(function () {
+        var groupA = [],
+            groupB = [];
+
+        <ui:repeat value="#{dataService.filteredData}" var="item">
+            if(#{item.group.equals("A")}) groupA.push([ #{item.date.time},#{item.number}]);
+            else groupB.push([ #{item.date.time},#{item.number}]);
+        </ui:repeat>
+
+        var data = [
+        {data: groupA, label: "#{msg['chart.linear_model.groupA.label']}", grow:{growings:[{ stepMode:"maximum" , stepDirection: "down"}] }},
+        {data: groupB, label: "#{msg['chart.linear_model.groupB.label']}", grow:{growings:[{ stepMode:"maximum" , stepDirection: "up" }] }}
+        ];
+
+
+        var optional = {
+            series: {lines: {show: true }, grow: { active: true, duration: 1500, step: 150 }},
+            points: {show: true},
+            grid: {backgroundColor: '#fff', hoverable: true, clickable: true},
+            xaxis: {
+                    axisLabel: "#{msg['chart.x_axis.label']}",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 15,
+                    axisLabelPadding: 18,
+                    mode: "time",
+                    timeformat: "%d-%m-%Y"
+            },
+            yaxis: {
+                    axisLabel: "#{msg['chart.y_axis.label']}",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 15,
+                    axisLabelPadding: 18,
+                    min: -5,
+                    max: 210
+            },
+            colors: ["#4bb2c5", "#eaa228"] };
+
+        $.plot("#placeholder", data, optional);
+        var c=document.getElementsByTagName("canvas")[0];
+        var canvas=c.getContext("2d");
+        var cx = c.width / 2;
+        var text="Flot chart title";
+        canvas.font="bold 20px sans-serif";
+        canvas.textAlign = 'center';
+        canvas.fillText(text,cx,35);
+
+
+        // Tooltip style
+        $('<div id="tooltip"></div>')
+            .css({
+                fontSize: "11px",
+                position: "absolute",
+                display: "none",
+                border: "1px solid #A8B1C3",
+                padding: "1px", "background-color": "#dac9c9",
+                opacity: 0.65 })
+            .appendTo("body");
+
+        // Plot hover func
+        $("#placeholder").bind("plothover", function (event, pos, item) {
+            if (item) {
+            var x = new Date(item.datapoint[0]).format("dd-mm-yyyy"),
+                y = item.datapoint[1];
+                $("#tooltip").html(x + ", " + y)
+                    .css({top: item.pageY -30, left: item.pageX -62}).fadeIn(200);
+             } else {
+                 $("#tooltip").hide();
+                }});
+
+        });
+
+    </h:outputScript>
+    <h:outputScript library="js" name="date.format.js" target="head"/>
+</ui:composition>
