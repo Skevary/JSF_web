@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import java.util.Date;
 
 @ManagedBean
-public class ChartController implements Message{
+public class ChartController implements Message {
     @ManagedProperty("#{dataService}")
     private DataService service;
 
@@ -42,7 +42,7 @@ public class ChartController implements Message{
 
         if (!service.getFilteredData().isEmpty()) {
             Long max_xAxis = service.getFilteredData().stream().map(DataBean::getDate).max(Date::compareTo).get().getTime();
-            xAxis.setMax(max_xAxis+30000000000L); // increases the threshold xAxis
+            xAxis.setMax(max_xAxis + 30000000000L); // increases the threshold xAxis
         }
 
         xAxis.setTickFormat("%d-%m-%Y");
@@ -58,17 +58,17 @@ public class ChartController implements Message{
         LineChartSeries groupB = new LineChartSeries();
         groupB.setLabel(Message.getString("chart.linear_model.groupB.label"));
 
-        // Can't be uninitialized
-        groupA.set(null, null);
-        groupB.set(null, null);
-
+        if (!service.getFilteredData().isEmpty())
             for (DataBean dataBean : service.getFilteredData())
                 if (dataBean.getGroup().equals("A")) groupA.set(dataBean.getDate().getTime(), dataBean.getNumber());
                 else groupB.set(dataBean.getDate().getTime(), dataBean.getNumber());
 
+
+        if (groupA.getData().isEmpty()) groupA.set(null, null);
+        if (groupB.getData().isEmpty()) groupB.set(null, null);
+
         model.addSeries(groupA);
         model.addSeries(groupB);
-
         return model;
     }
 
