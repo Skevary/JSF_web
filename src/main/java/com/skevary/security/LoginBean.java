@@ -70,16 +70,16 @@ public class LoginBean implements Serializable, Message {
         }
     }
     /* EMAIL - validation */
-    @NotNull(message = "{message.validate.mail.not_null}")
-    @Size(min = 3, max = 254, message = "{message.validate.mail.size}")
-    @Pattern(regexp = EMAIL_PATTERN, message = "{message.validate.mail.pattern}")
+    @NotNull(message = "{message.mail.not_null}")
+    @Size(min = 3, max = 254, message = "{message.mail.size}")
+    @Pattern(regexp = EMAIL_PATTERN, message = "{message.mail.pattern}")
     public String getEmail() {
         return email;
     }
 
     /* PASSWORD - validation */
-    @NotNull(message = "{message.validate.password.not_null}")
-    @Size(min = 3, max = 254, message = "{message.validate.password.size}")
+    @NotNull(message = "{message.password.not_null}")
+    @Size(min = 3, max = 254, message = "{message.password.size}")
     public String getPassword() {
         return password;
     }

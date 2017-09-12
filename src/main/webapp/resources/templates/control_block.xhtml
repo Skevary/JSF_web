@@ -2,16 +2,16 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" >
 
-    <h4>#{msg['control.selectDateMessage']}</h4>
+    <h4>#{msg['control.text.selectDateMessage']}</h4>
     <div class="padding_block">
-        <p:calendar id="event_first_calendar" placeholder="#{msg['placeholder.chooseFirstDate']}"
+        <p:calendar id="event_first_calendar" placeholder="#{msg['control.placeholder.chooseFirstDate']}"
                     value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                     update="content_form"/>
         </p:calendar>
     </div>
     <div class="padding_block">
-        <p:calendar id="event_second_calendar" placeholder="#{msg['placeholder.chooseSecondDate']}"
+        <p:calendar id="event_second_calendar" placeholder="#{msg['control.placeholder.chooseSecondDate']}"
                     value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                     update="content_form"/>
@@ -19,17 +19,17 @@
     </div>
     <div class="padding_block">
         <div class="btn-group btn-group-xs" role="group">
-            <p:commandButton value="#{msg['control.clear']}" id="clear_button" styleClass="btn btn-primary btn-sm"
+            <p:commandButton value="#{msg['control.button.clear']}" id="clear_button" styleClass="btn btn-primary btn-sm"
                              actionListener="#{dataService.clearData}"
                              update="content_form"/>
 
-            <p:commandButton value="#{msg['control.add']}" id="add_button" styleClass="btn btn-info btn-sm"
+            <p:commandButton value="#{msg['control.button.add']}" id="add_button" styleClass="btn btn-info btn-sm"
                              onclick="PF('dlg1').show();" />
 
             <p:inputNumber id="nummber_generations"  decimalPlaces="0" maxValue="999" value="#{dataService.numberGen}"
                          inputStyle="width: 35px; height: 25px;">
             </p:inputNumber>
-            <p:commandButton id="generate_button" value="#{msg['control.generate']}"
+            <p:commandButton id="generate_button" value="#{msg['control.button.generate']}"
                              styleClass="btn btn-primary btn-sm"
                              actionListener="#{dataService.generateData(dataService.numberGen)}"
                              update="content_form" disabled="#{!empty dataService.dataBeans}"/>

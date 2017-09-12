@@ -12,7 +12,7 @@
 
                     <p:panelGrid id="modal_add_dialog" columns="2" cellpadding="5" styleClass="ui-grid">
                         <strong> #{msg['dialog.add.message.date']} </strong>
-                        <p:calendar id="input_data" var="date" placeholder="#{msg['placeholder.dialog.add.chooseDate']}"
+                        <p:calendar id="input_data" var="date" placeholder="#{msg['dialog.placeholder.add.chooseDate']}"
                                     value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
                             <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                                     update="msgs"/>
@@ -30,7 +30,7 @@
 
                         <strong> #{msg['dialog.add.message.text']} </strong>
                         <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
-                        <p:commandButton value="#{msg['control.add']}" id="add_data" resetValues="true"
+                        <p:commandButton value="#{msg['dialog.add.button']}" id="add_data" resetValues="true"
                                          actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date,dataBean.text)}"/>
                     </p:panelGrid>
                 </div>

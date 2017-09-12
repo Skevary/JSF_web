@@ -128,7 +128,7 @@ public class DataService implements Message{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                Message.getString("message.on_date_selected.summary"), format.format(event.getObject())));
+                Message.getString("chart.on_date_selected.summary"), format.format(event.getObject())));
     }
 
     public List<DataBean> getDataBeans() {

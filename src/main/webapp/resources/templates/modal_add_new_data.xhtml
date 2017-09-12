@@ -1,5 +1,4 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -9,7 +8,7 @@
               resizable="false">
         <p:panelGrid id="modal_add_dialog" columns="2" >
             <strong>#{msg['dialog.add.message.date']}</strong>
-            <p:calendar id="input_data" var="date" placeholder="#{msg['placeholder.dialog.add.chooseDate']}"
+            <p:calendar id="input_data" var="date" placeholder="#{msg['dialog.placeholder.add.chooseDate']}"
                         value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
                 <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
                         update="msgs"/>
@@ -27,7 +26,7 @@
             <strong>#{msg['dialog.add.message.text']}</strong>
             <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
 
-            <p:commandButton value="#{msg['control.add']}" id="add_data"
+            <p:commandButton value="#{msg['dialog.add.button']}" id="add_data"
                              actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date, dataBean.text)}"
                              update="dataTable chart_line num_of_all_records" />
             <div/>

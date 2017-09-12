@@ -20,7 +20,7 @@ public interface Message {
      * @see FacesMessage
      */
     static void showMessage(String summary, String detail) {
-        ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
+        ResourceBundle message = ResourceBundle.getBundle("ValidationMessages", Locale.getDefault());
         FacesContext facesContext = getCurrentInstance();
         Flash flash = getCurrentInstance().getExternalContext().getFlash();
         flash.setKeepMessages(true);
