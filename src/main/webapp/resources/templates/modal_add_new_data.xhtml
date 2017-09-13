@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form id="dialog_block">
     <p:dialog id="add_dialog" header="#{msg['dialog.add.header']}" widgetVar="dlg1" modal="true"
               focus="add_dialog" showEffect="fade" hideEffect="fade" closeOnEscape="true"
               resizable="false">
@@ -10,8 +10,7 @@
             <strong>#{msg['dialog.add.message.date']}</strong>
             <p:calendar id="input_data" var="date" placeholder="#{msg['dialog.placeholder.add.chooseDate']}"
                         value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
-                <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                        update="msgs"/>
+                <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"/>
             </p:calendar>
 
             <strong>#{msg['dialog.add.message.choose_group']}</strong>
@@ -28,8 +27,9 @@
 
             <p:commandButton value="#{msg['dialog.add.button']}" id="add_data"
                              actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date, dataBean.text)}"
-                             update="dataTable chart_line num_of_all_records" />
+                             update="charts_block table_block all_records_block control_block:generate_button" />
             <div/>
         </p:panelGrid>
     </p:dialog>
+    </h:form>
 </ui:composition>

@@ -28,7 +28,6 @@ public class ChartController implements Message {
 
     private void createAnimatedModels() {
         animatedModel = initLinearModel();
-        animatedModel.setTitle(Message.getString("chart.title"));
         animatedModel.setAnimate(true);
         animatedModel.setLegendPosition("ne");
 

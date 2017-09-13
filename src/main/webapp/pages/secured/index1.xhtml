@@ -5,11 +5,12 @@
                 template="../../WEB-INF/templates/default.xhtml">
 
     <ui:define name="content">
-        <h:form id="content_form">
             <div class="container">
                 <div class="jumbotron">
-                    <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
-                    <!-- Control & Chart -->
+                    <!-- Message block -->
+                    <ui:include src="../../resources/templates/message_block.xhtml"/>
+
+                    <!-- Control & Chart block-->
                     <div class="container padding_block">
                         <div class="row">
                             <!--Control -->
@@ -23,7 +24,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Table -->
+                    <!-- Table block-->
                     <div class="container">
                         <div class="row">
                             <ui:include src="../../resources/templates/table_block.xhtml"/>
@@ -31,8 +32,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Dialog -->
+            <!-- Dialog block-->
             <ui:include src="../../resources/templates/modal_add_new_data.xhtml"/>
-        </h:form>
     </ui:define>
 </ui:composition>

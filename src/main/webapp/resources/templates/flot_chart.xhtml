@@ -46,14 +46,6 @@
         colors: ["#4bb2c5", "#eaa228"] };
 
         $.plot("#placeholder", data, optional);
-        var c=document.getElementsByTagName("canvas")[0];
-        var canvas=c.getContext("2d");
-        var cx = c.width / 2;
-        var text="Flot chart title";
-        canvas.font="bold 20px sans-serif";
-        canvas.textAlign = 'center';
-        canvas.fillText(text,cx,35);
-
 
         // Tooltip style
         $('<div id="tooltip"></div>')
