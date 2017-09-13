@@ -57,6 +57,11 @@ public class DataService implements Message{
         return filteredDataBeans;
     }
 
+    public void resetCalendars(){
+        dateAfter = null;
+        dateBefore = null;
+    }
+
     public int getNumberAllRecords(){
         return dataBeans.size();
     }

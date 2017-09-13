@@ -3,6 +3,7 @@ package com.skevary.controller;
 import com.skevary.model.DataBean;
 import com.skevary.service.DataService;
 import com.skevary.util.Message;
+import com.sun.istack.internal.NotNull;
 import org.primefaces.model.chart.*;
 
 import javax.annotation.PostConstruct;
@@ -38,12 +39,8 @@ public class ChartController implements Message {
 
 
         DateAxis xAxis = new DateAxis(Message.getString("chart.x_axis.label"));
-
-        if (!service.getFilteredData().isEmpty()) {
-            Long max_xAxis = service.getFilteredData().stream().map(DataBean::getDate).max(Date::compareTo).get().getTime();
-            xAxis.setMax(max_xAxis + 30000000000L); // increases the threshold xAxis
-        }
-
+        // increases the threshold xAxis
+        if (!service.getFilteredData().isEmpty()) xAxis.setMax(getMaxDateFromFilter() + 30000000000L);
         xAxis.setTickFormat("%d-%m-%Y");
         animatedModel.getAxes().put(AxisType.X, xAxis);
     }
@@ -69,6 +66,11 @@ public class ChartController implements Message {
         model.addSeries(groupA);
         model.addSeries(groupB);
         return model;
+    }
+
+    @NotNull
+    public long getMaxDateFromFilter(){
+        return service.getFilteredData().stream().map(DataBean::getDate).max(Date::compareTo).get().getTime();
     }
 
     public void setService(DataService service) {

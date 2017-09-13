@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
+    <h:form id="all_records_block">
+        <!-- Number of all records -->
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+           #{msg['message.num_records']}
+            <h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
+        </h:panelGrid>
+
+        <!-- Show All records -->
+        <p:commandLink id="reset_calendars" value="#{msg['message.show_all_records']}"
+                       actionListener="#{dataService.resetCalendars}"
+                       rendered="#{!empty dataService.dateAfter || !empty dataService.dateBefore}"
+                       update="charts_block table_block control_block all_records_block"/>
+    </h:form>
+</ui:composition>

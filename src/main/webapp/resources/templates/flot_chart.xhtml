@@ -3,6 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:outputScript>
+
         $(function () {
         var groupA = [],
             groupB = [];
@@ -40,9 +41,9 @@
                     axisLabelUseCanvas: true,
                     axisLabelFontSizePixels: 15,
                     axisLabelPadding: 18,
+                    lineWidth:25,
                     mode: "time",
-                    timeformat: "%d-%m-%Y",
-                    lineWidth:25
+                    timeformat: "%d-%m-%Y"
             },
             yaxis: {
                     axisLabel: "#{msg['chart.y_axis.label']}",
@@ -92,5 +93,11 @@
         });
 
     </h:outputScript>
+
+    <h:outputScript name="webjars/flot/0.8.3/jquery.flot.js" target="head" />
+    <h:outputScript name="webjars/flot/0.8.3/jquery.flot.time.js" target="head" />
+    <h:outputScript name="webjars/flot/0.8.3/jquery.flot.resize.js" target="head" />
+    <h:outputScript library="js" name="jquery.flot.growraf.js" target="head" />
+    <h:outputScript library="js" name="jquery.flot.axislabels.js" target="head" />
     <h:outputScript library="js" name="date.format.js" target="head"/>
 </ui:composition>

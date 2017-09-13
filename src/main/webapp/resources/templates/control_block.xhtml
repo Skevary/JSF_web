@@ -12,7 +12,7 @@
             <p:calendar id="event_first_calendar" placeholder="#{msg['control.placeholder.chooseFirstDate']}"
                         value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
                 <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                        update="charts_block table_block"/>
+                        update="charts_block table_block all_records_block"/>
             </p:calendar>
         </div>
 
@@ -21,7 +21,7 @@
             <p:calendar id="event_second_calendar" placeholder="#{msg['control.placeholder.chooseSecondDate']}"
                         value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
                 <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                        update="charts_block table_block"/>
+                        update="charts_block table_block all_records_block"/>
             </p:calendar>
         </div>
 
