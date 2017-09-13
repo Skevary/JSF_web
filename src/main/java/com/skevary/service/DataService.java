@@ -50,7 +50,8 @@ public class DataService implements Message{
             dateB = dataBeans.isEmpty() ? new Date() : dataBeans.stream().map(DataBean::getDate).max(Date::compareTo).get();
 
         for (DataBean bean : dataBeans)
-            if ((bean.getDate().after(dateA) || bean.getDate().equals(dateA)) && (bean.getDate().before(dateB) || bean.getDate().equals(dateB)))
+            if ((bean.getDate().after(dateA) || bean.getDate().equals(dateA))
+                    && (bean.getDate().before(dateB) || bean.getDate().equals(dateB)))
                 filteredDataBeans.add(bean);
 
         return filteredDataBeans;
@@ -75,7 +76,6 @@ public class DataService implements Message{
     }
 
     public void addData(int number, String group, Date date, String text) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
         if(date==null){
             Message.showMessage("message.add_data.not_null.summary",
                     "message.add_data.not_null.detail");
@@ -141,10 +141,6 @@ public class DataService implements Message{
 
     public Date getDateAfter() {
         return dateAfter;
-    }
-
-    public static String[] getGROUP() {
-        return GROUP;
     }
 
     public void setDateAfter(Date dateAfter) {

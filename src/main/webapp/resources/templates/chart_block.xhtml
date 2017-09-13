@@ -4,7 +4,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:form id="charts_block">
         <div class="pager">
-            <h4 class="media-heading">Line Data Chart</h4>
+            <h4 class="media-heading">#{msg['chart_block.title.bar_chart']}</h4>
             <p:chart id="chart_line" type="line" responsive="true"
                      model="#{chartController.animatedModel}"
                      styleClass="chart chart-content" style="max-width:100%"/>
@@ -12,7 +12,7 @@
 
         <ui:include src="flot_chart.xhtml" />
         <div class="pager">
-            <h4 class="media-heading">Line Flot Chart</h4>
+            <h4 class="media-heading">#{msg['chart_block.title.line_chart']}</h4>
             <div class="demo-container">
                 <div id="placeholder" class="demo-placeholder"/>
             </div>

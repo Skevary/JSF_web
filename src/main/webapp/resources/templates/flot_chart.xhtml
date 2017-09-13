@@ -27,7 +27,7 @@
 
         /* Settings for the chart */
         var optional = {
-            series: {lines: {show: true }, grow: { active: true, duration: 1500, step: 150 }},
+            series: {lines: {show: true, lineWidth: 3.5} , grow: { active: true, duration: 1500, step: 150 }},
             points: {show: true},
             grid: {
                     backgroundColor: '#fff',
@@ -41,7 +41,8 @@
                     axisLabelFontSizePixels: 15,
                     axisLabelPadding: 18,
                     mode: "time",
-                    timeformat: "%d-%m-%Y"
+                    timeformat: "%d-%m-%Y",
+                    lineWidth:25
             },
             yaxis: {
                     axisLabel: "#{msg['chart.y_axis.label']}",
