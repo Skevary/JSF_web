@@ -7,21 +7,34 @@
         var groupA = [],
             groupB = [];
 
+        /* Init data */
+        (function () {
         <ui:repeat value="#{dataService.filteredData}" var="item">
             if(#{item.group.equals("A")}) groupA.push([ #{item.date.time},#{item.number}]);
             else groupB.push([ #{item.date.time},#{item.number}]);
         </ui:repeat>
 
+        groupA.sort(sortArrayByDateNumbers);
+        groupB.sort(sortArrayByDateNumbers);
+        }());
+
+
+        /* Data for the chart */
         var data = [
         {data: groupA, label: "#{msg['chart.linear_model.groupA.label']}", grow:{growings:[{ stepMode:"maximum" , stepDirection: "down"}] }},
         {data: groupB, label: "#{msg['chart.linear_model.groupB.label']}", grow:{growings:[{ stepMode:"maximum" , stepDirection: "up" }] }}
         ];
 
-
+        /* Settings for the chart */
         var optional = {
             series: {lines: {show: true }, grow: { active: true, duration: 1500, step: 150 }},
             points: {show: true},
-            grid: {backgroundColor: '#fff', hoverable: true, clickable: true,  labelMargin: 10},
+            grid: {
+                    backgroundColor: '#fff',
+                    hoverable: true,
+                    clickable: true,
+                    labelMargin: 10
+            },
             xaxis: {
                     axisLabel: "#{msg['chart.x_axis.label']}",
                     axisLabelUseCanvas: true,
@@ -43,11 +56,14 @@
                     labelBoxBorderColor: "#5c5c5c",
                     backgroundColor: "#f2f2f2"
             },
-        colors: ["#4bb2c5", "#eaa228"] };
+            colors: ["#4bb2c5", "#eaa228"] };
 
+        /* Chart */
         $.plot("#placeholder", data, optional);
 
-        // Tooltip style
+        /** Support method */
+
+        /* Tooltip style */
         $('<div id="tooltip"></div>')
             .css({
                 fontSize: "11px",
@@ -58,7 +74,7 @@
                 opacity: 0.65 })
             .appendTo("body");
 
-        // Plot hover func
+        /* Plot hover func */
         $("#placeholder").bind("plothover", function (event, pos, item) {
             if (item) {
             var x = new Date(item.datapoint[0]).format("dd-mm-yyyy"),
@@ -68,6 +84,9 @@
              } else {
                  $("#tooltip").hide();
                 }});
+
+        /* The display order of data on the chart */
+        function sortArrayByDateNumbers(a,b) {return a[0] - b[0];}
 
         });
 
