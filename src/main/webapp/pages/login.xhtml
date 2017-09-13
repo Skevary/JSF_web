@@ -14,21 +14,31 @@
             <div class="wrapper">
                 <h:form name="Login_Form" class="form-signin">
                     <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
+
+                    <!-- Welcome message -->
                     <p class="form-signin-heading">#{msg['login.welcomeMessage']}</p>
+
+                    <!-- Email -->
                     <hr class="colorgraph"/>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <p:inputText id="email" type="text" value="#{loginBean.email}" styleClass="form-control" a:placeholder="#{msg['login.placeholder.email']}"/>
                     </div>
+
+                    <!-- Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <p:inputText id="password" type="password" value="#{loginBean.password}" styleClass="form-control" name="password" a:placeholder="#{msg['login.placeholder.password']}"/>
                     </div>
                     <hr class="colorgraph"/>
                     <div class="row">
+
+                        <!-- Log in -->
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <h:commandButton value="#{msg['pages.name.login']}" styleClass="btn btn-success btn-block" action="#{loginBean.doLogin}"/>
                         </div>
+
+                        <!-- Sign up -->
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#login-modal">#{msg['pages.name.signup']}
                             </button>

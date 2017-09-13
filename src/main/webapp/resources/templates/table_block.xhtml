@@ -8,33 +8,41 @@
                  paginator="true" paginatorPosition="bottom"
                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  pageLinks="5" rowsPerPageTemplate="5,10,15">
+
+        <!-- ID -->
         <p:column headerText="#{msg['table.header.id']}">
             <h:outputText value="#{item.id}"/>
         </p:column>
 
+        <!-- Number -->
         <p:column headerText="#{msg['table.header.num']}" style="width: 70px;">
             <h:outputText value="#{item.number}"/>
         </p:column>
 
+        <!-- Date -->
         <p:column headerText="#{msg['table.header.date']}">
             <h:outputText value="#{item.date}">
                 <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
             </h:outputText>
         </p:column>
 
+        <!-- Text -->
         <p:column headerText="#{msg['table.header.text']}">
             <h:outputText value="#{item.text}"/>
         </p:column>
 
+        <!-- Group -->
         <p:column headerText="#{msg['table.header.group']}" style="width:74px">
             <h:outputText value="#{item.group}"/>
         </p:column>
 
+        <!-- Remove button -->
         <p:column style="width:58px">
             <p:commandButton icon="ui-icon-trash" title="remove_from_dataTable"
                              actionListener="#{dataService.removeItem(item)}"
                              update="charts_block table_block all_records_block control_block:generate_button"/>
         </p:column>
+
     </p:dataTable>
     </h:form>
 </ui:composition>

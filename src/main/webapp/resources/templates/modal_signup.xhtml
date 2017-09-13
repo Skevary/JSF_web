@@ -11,15 +11,21 @@
                 <h1 class="text-center">#{msg['login.modal.registration']}</h1>
                 <p class="form-signin-heading">#{msg['login.modal.registrationMessage']}</p>
                 <h:form>
+
+                    <!-- Email -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <p:inputText class="form-control" value="#{loginBean.email}" type="text" name="user" a:placeholder="#{msg['placeholder.email']}"/>
+                        <p:inputText class="form-control" value="#{loginBean.email}" type="text" name="user" a:placeholder="#{msg['login.placeholder.email']}"/>
                     </div>
+
+                    <!-- Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <p:inputText class="form-control" value="#{loginBean.password}" type="password" name="pass" a:placeholder="#{msg['placeholder.password']}"/>
+                        <p:inputText class="form-control" value="#{loginBean.password}" type="password" name="pass" a:placeholder="#{msg['login.placeholder.password']}"/>
                     </div>
                     <hr class="colorgraph"/>
+
+                    <!-- Sign up Button -->
                     <h:commandButton value="#{msg['pages.name.signup']}" styleClass="btn btn-success btn-block" action="#{loginBean.signUp}"/>
                 </h:form>
             </div>
