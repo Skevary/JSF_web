@@ -82,6 +82,14 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap-daterangepicker -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-daterangepicker</artifactId>
+            <version>2.1.24</version>
+        </dependency>
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -118,17 +126,6 @@
                     <encoding>utf8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
-            </plugin>
-            <!-- Configure the Embedded GlassFish Maven plugin -->
-            <plugin>
-                <groupId>org.glassfish</groupId>
-                <artifactId>maven-embedded-glassfish-plugin</artifactId>
-                <version>3.1.1</version>
-                <configuration>
-                    <app>${project.build.directory}/${project.build.finalName}.war</app>
-                    <port>7070</port>
-                    <containerType>web</containerType>
                 </configuration>
             </plugin>
 

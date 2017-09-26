@@ -7,23 +7,8 @@
         <!-- Select message -->
         <h4>#{msg['control.text.selectDateMessage']}</h4>
 
-        <!-- First Calendar -->
-        <div class="padding_block">
-            <p:calendar id="event_first_calendar" placeholder="#{msg['control.placeholder.chooseFirstDate']}"
-                        value="#{dataService.dateAfter}" navigator="true" pattern="dd-MM-yyyy">
-                <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                        update="charts_block table_block all_records_block"/>
-            </p:calendar>
-        </div>
-
-        <!-- Second Calendar -->
-        <div class="padding_block">
-            <p:calendar id="event_second_calendar" placeholder="#{msg['control.placeholder.chooseSecondDate']}"
-                        value="#{dataService.dateBefore}" navigator="true" pattern="dd-MM-yyyy">
-                <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"
-                        update="charts_block table_block all_records_block"/>
-            </p:calendar>
-        </div>
+        <input type="text" name="daterange" value="" />
+        <ui:include src="daterangepicker.xhtml" />
 
         <!-- Button block -->
         <div class="padding_block">
