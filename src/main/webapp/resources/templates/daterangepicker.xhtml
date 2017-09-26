@@ -4,13 +4,14 @@
 
     <h:outputScript>
 
-        $(function() {
-            $('input[name="daterange"]').daterangepicker();
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
         });
 
     </h:outputScript>
 
-    <h:outputStylesheet name="webjars/bootstrap-daterangepicker/2.1.24/css/bootstrap-daterangepicker.css" target="head" />
-    <h:outputScript name="webjars/bootstrap-daterangepicker/2.1.24/js/bootstrap-daterangepicker.js" target="head" />
+    <h:outputStylesheet library="css" name="daterangepicker.css" target="head" />
+    <h:outputScript library="js" name="moment.min.js" target="head" />
+    <h:outputScript library="js" name="daterangepicker.js" target="head" />
 
 </ui:composition>

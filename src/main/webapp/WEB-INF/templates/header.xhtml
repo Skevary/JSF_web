@@ -14,7 +14,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-text" style="margin-left: 15px">
-                        <i class="fa fa-globe"></i> Language :
+                        <i class="fa fa-globe"></i> #{msg['header.language']}
                     <h:selectOneMenu value="#{localizationBean.locale}" onchange="submit()"
                                      valueChangeListener="#{localizationBean.localeChanged}">
                         <f:selectItems value="#{localizationBean.languages}" />

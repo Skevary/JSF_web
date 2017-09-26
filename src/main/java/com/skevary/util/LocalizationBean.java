@@ -1,5 +1,6 @@
 package com.skevary.util;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -13,14 +14,18 @@ import java.util.Map;
 @SessionScoped
 public class LocalizationBean implements Serializable {
     private static final long serialVersionUID = -3811608161111348357L;
-
     private static Map<String, Locale> languages;
     private String locale;
+
+    @PostConstruct
+    public void init() {
+        locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale().getLanguage();
+    }
 
     static {
         languages = new LinkedHashMap<>();
         languages.put("English", Locale.ENGLISH);
-        languages.put("Russian", new Locale("ru"));
+        languages.put("Русский", new Locale("ru"));
     }
 
     public Map<String, Locale> getLanguages() {
