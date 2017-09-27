@@ -3,7 +3,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <div id="login-modal" class="modal fade" role="dialog">
+    <div id="login-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="loginmodal-container">
                 <button type="button" class="close" data-dismiss="modal">×</button>
@@ -23,6 +23,7 @@
                         <h:inputText class="form-control" value="#{loginBean.password}" type="password" name="pass" a:placeholder="#{msg['login.placeholder.password']}"/>
                     </div>
                     <hr class="colorgraph"/>
+                    <h:outputScript library="js" name="init_dialog.js"/>
 
                     <!-- Sign up Button -->
                     <h:commandButton value="#{msg['pages.name.signup']}" styleClass="btn btn-success btn-block" action="#{loginBean.signUp}"/>
