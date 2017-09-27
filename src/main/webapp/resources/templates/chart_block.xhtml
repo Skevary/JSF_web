@@ -1,8 +1,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
+
     <h:form id="charts_block">
-        <!-- JS Chart -->
+
+        <!-- Flot Chart -->
         <div class="pager">
             <h4 class="media-heading">#{msg['chart_block.title.line_chart']}</h4>
             <ui:include src="flot_chart.xhtml" />
@@ -10,5 +12,7 @@
                 <div id="placeholder" class="demo-placeholder"/>
             </div>
         </div>
+
     </h:form>
+
 </ui:composition>

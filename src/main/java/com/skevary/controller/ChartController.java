@@ -73,6 +73,11 @@ public class ChartController implements Message {
         return service.getFilteredData().stream().map(DataBean::getDate).max(Date::compareTo).get().getTime();
     }
 
+    @NotNull
+    public long getMinDateFromFilter(){
+        return service.getFilteredData().stream().map(DataBean::getDate).min(Date::compareTo).get().getTime();
+    }
+
     public void setService(DataService service) {
         this.service = service;
     }

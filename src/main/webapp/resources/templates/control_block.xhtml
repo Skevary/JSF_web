@@ -1,28 +1,45 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:form id="control_block">
+
         <!-- Select message -->
         <h4>#{msg['control.text.selectDateMessage']}</h4>
 
-        <input type="text" name="daterange" value="" />
-        <ui:include src="daterangepicker.xhtml" />
+        <!-- Bootstrap dateTimePicker -->
+        <ui:include src="datepicker.xhtml" />
+
+        <!-- First Calendar -->
+        <div class="padding_block">
+            <h:inputText styleClass="first_calendar" value="#{dataService.dateAfter}" a:placeholder="#{msg['control.placeholder.chooseFirstDate']}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                <f:ajax event="blur" render="charts_block table_block all_records_block"/>
+            </h:inputText>
+        </div>
+
+        <!-- Second Calendar -->
+        <div class="padding_block">
+            <h:inputText styleClass="second_calendar" value="#{dataService.dateBefore}" a:placeholder="#{msg['control.placeholder.chooseSecondDate']}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                <f:ajax event="blur" render="charts_block table_block all_records_block"/>
+            </h:inputText>
+        </div>
 
         <!-- Button block -->
         <div class="padding_block">
             <div class="btn-group btn-group-xs" role="group">
 
                 <!-- Clear button -->
-                <p:commandButton value="#{msg['control.button.clear']}" id="clear_button"
-                                 styleClass="btn btn-primary btn-sm"
-                                 actionListener="#{dataService.clearData}"
-                                 update="charts_block table_block all_records_block generate_button"/>
+                <h:commandButton id="clear_button" styleClass="btn btn-primary btn-sm" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
+                    <f:ajax render="charts_block table_block all_records_block generate_button"/>
+                </h:commandButton>
 
                 <!-- Add button -->
-                <p:commandButton value="#{msg['control.button.add']}" id="add_button" styleClass="btn btn-info btn-sm"
-                                 onclick="PF('dlg1').show();"/>
+                <p:commandButton value="#{msg['control.button.add']}" id="add_button" styleClass="btn btn-info btn-sm" onclick="PF('dlg1').show();"/>
 
                 <!-- Generations block -->
                 <p:inputNumber id="nummber_generations" decimalPlaces="0" maxValue="999"

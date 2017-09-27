@@ -43,8 +43,9 @@
                     axisLabelPadding: 18,
                     lineWidth:25,
                     mode: "time",
-                    timeformat: "%d-%m-%Y"
-            },
+                    timeformat: "%d-%m-%Y",
+                    autoscaleMargin: 0.01
+        },
             yaxis: {
                     axisLabel: "#{msg['chart.y_axis.label']}",
                     axisLabelUseCanvas: true,
@@ -64,7 +65,7 @@
         /* Chart */
         $.plot("#placeholder", data, optional);
 
-        /** Support method */
+        /* -----Support method----- */
 
         /* Tooltip style */
         $('<div id="tooltip"></div>')
