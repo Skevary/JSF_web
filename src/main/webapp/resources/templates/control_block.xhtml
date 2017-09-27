@@ -34,23 +34,25 @@
             <div class="btn-group btn-group-xs" role="group">
 
                 <!-- Clear button -->
-                <h:commandButton id="clear_button" styleClass="btn btn-primary btn-sm" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
+                <h:commandButton id="clear_button" styleClass="btn btn-primary btn-lg" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
                     <f:ajax render="charts_block table_block all_records_block generate_button"/>
                 </h:commandButton>
 
                 <!-- Add button -->
-                <p:commandButton value="#{msg['control.button.add']}" id="add_button" styleClass="btn btn-info btn-sm" onclick="PF('dlg1').show();"/>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_new_data">#{msg['control.button.add']}
+                </button>
 
                 <!-- Generations block -->
                 <p:inputNumber id="nummber_generations" decimalPlaces="0" maxValue="999"
                                value="#{dataService.numberGen}"
                                inputStyle="width: 35px; height: 25px;">
                 </p:inputNumber>
-                <p:commandButton id="generate_button" value="#{msg['control.button.generate']}"
-                                 styleClass="btn btn-primary btn-sm"
+                <h:commandButton id="generate_button" value="#{msg['control.button.generate']}"
+                                 styleClass="btn btn-primary"
                                  actionListener="#{dataService.generateData(dataService.numberGen)}"
-                                 update="charts_block table_block all_records_block generate_button"
-                                 disabled="#{!empty dataService.dataBeans}"/>
+                                 disabled="#{!empty dataService.dataBeans}">
+                    <f:ajax render="charts_block table_block all_records_block generate_button"/>
+                </h:commandButton>
 
             </div>
         </div>

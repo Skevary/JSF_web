@@ -5,8 +5,11 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:form id="dialog_block">
-        <h:panelGroup id="idOfDialogPlaceHolder" style="display:none">
-        <p:panelGrid id="modal_add_dialog" columns="2" >
+        <div id="add_new_data" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-add-new-data">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+        <h:panelGrid id="modal_add_dialog" columns="2" >
 
             <!-- Calendar button -->
             <strong>#{msg['dialog.add.message.date']}</strong>
@@ -35,7 +38,9 @@
                              actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date, dataBean.text)}"
                              update="charts_block table_block all_records_block control_block:generate_button" />
             <div/>
-        </p:panelGrid>
-        </h:panelGroup>
+        </h:panelGrid>
+            </div>
+        </div>
+        </div>
     </h:form>
 </ui:composition>
