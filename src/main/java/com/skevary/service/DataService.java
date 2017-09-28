@@ -4,36 +4,22 @@ import com.skevary.model.DataBean;
 import com.skevary.util.Message;
 import org.primefaces.event.SelectEvent;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @ManagedBean(name = "dataService")
 @ApplicationScoped
 public class DataService implements Message{
     private List<DataBean> dataBeans;
-    private final static String[] GROUP;
     private Date dateAfter;
     private Date dateBefore;
-    private int numberGen = 50;
-
-    static {
-        GROUP = new String[2];
-        GROUP[0] = "A";
-        GROUP[1] = "B";
-    }
-
-    @PostConstruct
-    public void init() {
-        generateData(5);
-    }
 
     public List<DataBean> getFilteredData() {
         List<DataBean> filteredDataBeans = new ArrayList<>();
@@ -70,16 +56,6 @@ public class DataService implements Message{
         dataBeans.clear();
     }
 
-    public void generateData(int size) {
-        dataBeans = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            String random_ID = getRandomId();
-            String random_text = "item_" + random_ID;
-            dataBeans.add(new DataBean(random_ID, getRandomGroup(), getRandomNumber(), getRandomDate(), random_text));
-        }
-
-    }
-
     public void addData(int number, String group, Date date, String text) {
         if(date==null){
             Message.showMessage("message.add_data.not_null.summary",
@@ -95,35 +71,14 @@ public class DataService implements Message{
 
                 return;
             }
-
-        dataBeans.add(new DataBean(getRandomId(), group, number, date, text));
+        String id = UUID.randomUUID().toString().substring(0, 8);
+        dataBeans.add(new DataBean(id, group, number, date, text));
         Message.showMessage("message.add_data.success.summary",
                 "message.add_data.success.detail");
     }
 
     public void removeItem(DataBean item) {
         dataBeans.remove(item);
-    }
-
-    private String getRandomId() {
-        return UUID.randomUUID().toString().substring(0, 8);  // standard UUID long 8 characters
-    }
-
-    private String getRandomGroup() {
-        return GROUP[new Random().nextInt(2)]; // only 0 or 1
-    }
-
-    private int getRandomNumber() {
-        return new Random().nextInt(200 + 1);
-    }
-
-    private Date getRandomDate() {
-        long minDay = LocalDate.of(2000, 1, 1).toEpochDay();
-        long maxDay = LocalDate.now().toEpochDay();
-        long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
-        LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
-
-        return Date.from(randomDate.atStartOfDay(ZoneId.systemDefault()).toInstant()); // between {01.01.2000} and {current time}
     }
 
     /**
@@ -160,27 +115,7 @@ public class DataService implements Message{
         this.dateBefore = dateBefore;
     }
 
-    public int getNumberGen() {
-        if(numberGen < 0) this.numberGen = 0;
-        else if(numberGen > 999) this.numberGen = 999;
-        return numberGen;
-    }
-
-    public void setNumberGen(int numberGen) {
-        this.numberGen = numberGen;
-    }
 
 }
 
 
-//try {
-//        int i = Integer.parseInt(inputText);
-//
-//        if(i<0) this.numberGen = 0;
-//        else if(i>999) this.numberGen = 999;
-//
-//        } catch (NumberFormatException e) {
-//
-//        this.numberGen = 0;
-//
-//        }
