@@ -3,6 +3,7 @@ package com.skevary.util;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.validator.ValidatorException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -20,7 +21,7 @@ public interface Message {
      * @see FacesMessage
      */
     static void showMessage(String summary, String detail) {
-        ResourceBundle message = ResourceBundle.getBundle("ValidationMessages", Locale.getDefault());
+        ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
         FacesContext facesContext = getCurrentInstance();
         Flash flash = getCurrentInstance().getExternalContext().getFlash();
         flash.setKeepMessages(true);
@@ -40,5 +41,16 @@ public interface Message {
         ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
 
         return message.getString(key);
+    }
+
+    static void showValidationMessage(String summary, String detail){
+        FacesMessage msg = new FacesMessage(summary, detail);
+        throw new ValidatorException(msg);
+    }
+
+    static void showValidationMessage(String summary, String detail, FacesMessage.Severity severity){
+        FacesMessage msg = new FacesMessage(summary, detail);
+        msg.setSeverity(severity);
+        throw new ValidatorException(msg);
     }
 }

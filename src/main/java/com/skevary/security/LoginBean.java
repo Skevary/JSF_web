@@ -5,9 +5,6 @@ import com.skevary.util.Message;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +21,6 @@ public class LoginBean implements Serializable, Message {
 
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
-
-    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     private static final Map<String, String> users;
     static {
@@ -69,17 +63,10 @@ public class LoginBean implements Serializable, Message {
             return navigationBean.redirectToIndex1();
         }
     }
-    /* EMAIL - validation */
-    @NotNull(message = "{message.mail.not_null}")
-    @Size(min = 3, max = 254, message = "{message.mail.size}")
-    @Pattern(regexp = EMAIL_PATTERN, message = "{message.mail.pattern}")
     public String getEmail() {
         return email;
     }
 
-    /* PASSWORD - validation */
-    @NotNull(message = "{message.password.not_null}")
-    @Size(min = 3, max = 254, message = "{message.password.size}")
     public String getPassword() {
         return password;
     }
