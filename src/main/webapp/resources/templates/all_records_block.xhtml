@@ -12,7 +12,7 @@
 
         <!-- Show All records -->
         <h:commandLink id="reset_calendars" value="#{msg['message.show_all_records']}"
-                       actionListener="#{dataService.resetCalendars}"
+                       actionListener="#{dataService.resetCalendars}" styleClass="label label-success" style="font-size: 13px"
                        rendered="#{!empty dataService.dateAfter || !empty dataService.dateBefore}">
             <f:ajax render="charts_block table_block control_block all_records_block"/>
         </h:commandLink>
