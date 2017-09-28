@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:outputScript>
+        $(function () {
+             <!-- First Calendar -->
+            $('.input_data').datetimepicker({
+                locale: "#{msg['message.locale']}",
+                format: 'DD-MM-YYYY',
+                useCurrent: false
+            });
+        });
+    </h:outputScript>
+
+    <!-- Required -->
+    <h:outputStylesheet name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" target="head" />
+    <h:outputScript name="webjars/momentjs/2.10.3/min/moment.min.js" target="head" />
+    <h:outputScript name="webjars/momentjs/2.10.3/locale/ru.js" target="head" />
+    <h:outputScript name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" target="head" />
+
+</ui:composition>

@@ -28,8 +28,8 @@
                 </h:commandButton>
 
                 <!-- Number for generation -->
-                <h:inputText id ="number_generation" value="#{dataGenerationController.numberGen}" immediate="true" style="width: 28px; height: 23px;" >
-                    <f:ajax event="blur" render="generate_button"/>
+                <h:inputText id ="number_generation" value="#{dataGenerationController.numberGen}" immediate="true" style="width: 28px; height: 23px;">
+                    <f:ajax />
                 </h:inputText>
                 <h:outputScript name="js/validators/number_generation.js" />
 

@@ -115,11 +115,15 @@ input[type="password"] {
 }
 
 /* Bootstrap Date Picker */
-.first_calendar{
+.first_calendar {
     text-indent: 8px
 }
 
-.second_calendar{
+.second_calendar {
+    text-indent: 8px
+}
+
+.input_data {
     text-indent: 8px
 }
 

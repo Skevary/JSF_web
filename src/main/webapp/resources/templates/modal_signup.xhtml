@@ -6,27 +6,32 @@
     <div id="login-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="loginmodal-container">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h1 class="text-center">#{msg['login.modal.registration']}</h1>
-                <p class="form-signin-heading">#{msg['login.modal.registrationMessage']}</p>
                 <h:form>
+                    <!-- Close button -->
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+
+                    <!-- Headers -->
+                    <h1 class="text-center">#{msg['login.modal.registration']}</h1>
+                    <p class="form-signin-heading">#{msg['login.modal.registrationMessage']}</p>
 
                     <!-- Email -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <h:inputText class="form-control" value="#{loginBean.email}" type="text" a:placeholder="#{msg['login.placeholder.email']}"/>
+                        <h:inputText class="form-control" value="#{loginBean.email}" type="text"
+                                     a:placeholder="#{msg['login.placeholder.email']}"/>
                     </div>
 
                     <!-- Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <h:inputSecret  class="form-control" value="#{loginBean.password}" a:placeholder="#{msg['login.placeholder.password']}"/>
+                        <h:inputSecret class="form-control" value="#{loginBean.password}"
+                                       a:placeholder="#{msg['login.placeholder.password']}"/>
                     </div>
                     <hr class="colorgraph"/>
-                    <h:outputScript library="js" name="init_dialog.js"/>
 
                     <!-- Sign up Button -->
-                    <h:commandButton value="#{msg['pages.name.signup']}" styleClass="btn btn-success btn-block" action="#{loginBean.signUp}"/>
+                    <h:commandButton value="#{msg['pages.name.signup']}" styleClass="btn btn-success btn-block"
+                                     action="#{loginBean.signUp}"/>
                 </h:form>
             </div>
         </div>

@@ -1,46 +1,54 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:form id="dialog_block">
         <div id="add_new_data" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-add-new-data">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-        <h:panelGrid id="modal_add_dialog" columns="2" >
+            <div class="modal-dialog">
+                <div class="modal-add-new-data">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h:panelGrid id="modal_add_dialog" columns="2">
 
-            <!-- Calendar button -->
-            <strong>#{msg['dialog.add.message.date']}</strong>
-            <p:calendar id="input_data" var="date" placeholder="#{msg['dialog.placeholder.add.chooseDate']}"
-                        value="#{dataBean.date}" navigator="true" pattern="dd-MM-yyyy">
-                <p:ajax event="dateSelect" listener="#{dataService.onDateSelect}"/>
-            </p:calendar>
+                        <!-- Calendar button -->
+                        <strong>#{msg['dialog.add.message.date']}</strong>
+                        <div class="padding_block">
+                            <h:inputText styleClass="input_data" value="#{dataBean.date}" a:placeholder="#{msg['dialog.placeholder.add.chooseDate']}">
+                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </h:inputText>
+                        </div>
 
-            <!-- Select One Group Menu -->
-            <strong>#{msg['dialog.add.message.choose_group']}</strong>
-            <p:selectOneMenu id="input_group" value="#{dataBean.group}">
-                <f:selectItem itemLabel="#{msg['dialog.add.message.group_A']}" itemValue="A" />
-                <f:selectItem itemLabel="#{msg['dialog.add.message.group_B']}" itemValue="B" />
-            </p:selectOneMenu>
+                        <!-- Select One Group Menu -->
+                        <strong>#{msg['dialog.add.message.choose_group']}</strong>
+                        <h:selectOneMenu id="input_group" value="#{dataBean.group}">
+                            <f:selectItem itemLabel="#{msg['dialog.add.message.group_A']}" itemValue="A"/>
+                            <f:selectItem itemLabel="#{msg['dialog.add.message.group_B']}" itemValue="B"/>
+                        </h:selectOneMenu>
 
-            <!-- Input number -->
-            <strong>#{msg['dialog.add.message.number']}</strong>
-            <p:spinner id="input_number" value="#{dataBean.number}" min="0" max="200" />
+                        <!-- Input number -->
+                        <strong>#{msg['dialog.add.message.number']}</strong>
+                        <h:inputText id ="input_number" style="text-indent: 8px" value="#{dataBean.number}" immediate="true" />
 
-            <!-- Input text -->
-            <strong>#{msg['dialog.add.message.text']}</strong>
-            <p:inputText id="input_text" var="text" value="#{dataBean.text}"/>
+                        <!-- Input text -->
+                        <strong>#{msg['dialog.add.message.text']}</strong>
+                        <h:inputText id="input_text" style="text-indent: 8px" value="#{dataBean.text}"/>
+                        <h:outputScript name="js/validators/input_number.js" />
 
-            <!-- Add Button -->
-            <p:commandButton value="#{msg['dialog.add.button']}" id="add_data"
-                             actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date, dataBean.text)}"
-                             update="charts_block table_block all_records_block control_block:generate_button" />
-            <div/>
-        </h:panelGrid>
+                        <!-- Add Button -->
+                        <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
+                                         styleClass="btn btn-success btn-xs"
+                                         actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date, dataBean.text)}" >
+
+                            <f:ajax render="charts_block table_block all_records_block control_block:generate_button"/>
+                        </h:commandButton>
+
+                        <div/>
+                    </h:panelGrid>
+                    <!-- Bootstrap dateTimePicker -->
+                    <ui:include src="date_range_picker_js.xhtml" />
+                </div>
             </div>
-        </div>
         </div>
     </h:form>
 </ui:composition>
