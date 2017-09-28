@@ -1,6 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
@@ -43,10 +42,11 @@
                 </button>
 
                 <!-- Generations block -->
-                <p:inputNumber id="nummber_generations" decimalPlaces="0" maxValue="999"
-                               value="#{dataService.numberGen}"
-                               inputStyle="width: 35px; height: 25px;">
-                </p:inputNumber>
+
+                <h:inputText id ="number_generation" value="#{dataService.numberGen}" converter="javax.faces.Integer" immediate="true" style="width: 35px; height: 25px;" >
+                    <f:ajax render="generate_button number_generation"/>
+                </h:inputText>
+
                 <h:commandButton id="generate_button" value="#{msg['control.button.generate']}"
                                  styleClass="btn btn-primary"
                                  actionListener="#{dataService.generateData(dataService.numberGen)}"

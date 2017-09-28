@@ -14,13 +14,13 @@
                     <!-- Email -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <h:inputText class="form-control" value="#{loginBean.email}" type="text" name="user" a:placeholder="#{msg['login.placeholder.email']}"/>
+                        <h:inputText class="form-control" value="#{loginBean.email}" type="text" a:placeholder="#{msg['login.placeholder.email']}"/>
                     </div>
 
                     <!-- Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <h:inputText class="form-control" value="#{loginBean.password}" type="password" name="pass" a:placeholder="#{msg['login.placeholder.password']}"/>
+                        <h:inputSecret  class="form-control" value="#{loginBean.password}" a:placeholder="#{msg['login.placeholder.password']}"/>
                     </div>
                     <hr class="colorgraph"/>
                     <h:outputScript library="js" name="init_dialog.js"/>

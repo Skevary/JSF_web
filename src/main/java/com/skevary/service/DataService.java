@@ -161,12 +161,26 @@ public class DataService implements Message{
     }
 
     public int getNumberGen() {
+        if(numberGen < 0) this.numberGen = 0;
+        else if(numberGen > 999) this.numberGen = 999;
         return numberGen;
     }
 
     public void setNumberGen(int numberGen) {
         this.numberGen = numberGen;
     }
+
 }
 
 
+//try {
+//        int i = Integer.parseInt(inputText);
+//
+//        if(i<0) this.numberGen = 0;
+//        else if(i>999) this.numberGen = 999;
+//
+//        } catch (NumberFormatException e) {
+//
+//        this.numberGen = 0;
+//
+//        }
