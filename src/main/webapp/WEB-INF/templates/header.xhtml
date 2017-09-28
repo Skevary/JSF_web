@@ -15,10 +15,10 @@
                     </button>
                     <div class="navbar-text" style="margin-left: 15px">
                         <i class="fa fa-globe"></i> #{msg['header.language']}
-                    <h:selectOneMenu value="#{localizationBean.locale}" onchange="submit()"
-                                     valueChangeListener="#{localizationBean.localeChanged}">
-                        <f:selectItems value="#{localizationBean.languages}" />
-                    </h:selectOneMenu>
+                        <h:selectOneMenu value="#{localizationBean.locale}" onchange="submit()"
+                                         valueChangeListener="#{localizationBean.localeChanged}">
+                            <f:selectItems value="#{localizationBean.languages}"/>
+                        </h:selectOneMenu>
                     </div>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">

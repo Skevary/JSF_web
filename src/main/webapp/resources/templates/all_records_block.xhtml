@@ -6,8 +6,7 @@
     <h:form id="all_records_block">
 
         <!-- Number of all records -->
-        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-           #{msg['message.num_records']}
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">#{msg['message.num_records']}
             <h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
         </h:panelGrid>
 

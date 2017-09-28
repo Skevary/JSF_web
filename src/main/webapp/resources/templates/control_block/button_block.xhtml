@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <div class="padding_block">
+            <div class="btn-group btn-group-xs" role="group">
+
+                <!-- Clear button -->
+                <h:commandButton id="clear_button" styleClass="btn btn-primary btn-lg" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
+                    <f:ajax render="charts_block table_block all_records_block generate_button"/>
+                </h:commandButton>
+
+                <!-- Add button -->
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_new_data">
+                    #{msg['control.button.add']}
+                </button>
+
+                <!-- Generations block -->
+
+                <!-- Generation button -->
+                <h:commandButton id="generate_button" value="#{msg['control.button.generate']}"
+                                 styleClass="btn btn-primary" style="text-align: center"
+                                 actionListener="#{dataGenerationController.generateData(dataGenerationController.numberGen)}"
+                                 disabled="#{!empty dataService.dataBeans}">
+
+                    <f:ajax render="charts_block table_block all_records_block generate_button"/>
+                </h:commandButton>
+
+                <!-- Number for generation -->
+                <h:inputText id ="number_generation" value="#{dataGenerationController.numberGen}" immediate="true" style="width: 28px; height: 23px;" >
+                    <f:ajax event="blur" render="generate_button"/>
+                </h:inputText>
+                <h:outputScript name="js/validators/number_generation.js" />
+
+            </div>
+        </div>
+
+</ui:composition>

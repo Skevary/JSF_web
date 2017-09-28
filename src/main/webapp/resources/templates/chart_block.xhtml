@@ -6,11 +6,18 @@
 
         <!-- Flot Chart -->
         <div class="pager">
+
+            <!-- Header -->
             <h4 class="media-heading">#{msg['chart_block.title.line_chart']}</h4>
-            <ui:include src="flot_chart.xhtml" />
+
+            <!-- Script flot.js -->
+            <ui:include src="chart/flot_chart_js.xhtml" />
+
+            <!-- Placeholder for script -->
             <div class="demo-container">
                 <div id="placeholder" class="demo-placeholder"/>
             </div>
+
         </div>
 
     </h:form>

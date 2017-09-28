@@ -4,7 +4,6 @@
 
     <h:outputScript>
         $(function () {
-
              <!-- First Calendar -->
             $('.first_calendar').datetimepicker({
                 locale: "#{msg['message.locale']}",
@@ -28,10 +27,10 @@
             $(".second_calendar").on("dp.change", function (e) {
                 $('.first_calendar').data("DateTimePicker").maxDate(e.date);
             });
-
         });
     </h:outputScript>
 
+    <!-- Required -->
     <h:outputStylesheet name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" target="head" />
     <h:outputScript name="webjars/momentjs/2.10.3/min/moment.min.js" target="head" />
     <h:outputScript name="webjars/momentjs/2.10.3/locale/ru.js" target="head" />

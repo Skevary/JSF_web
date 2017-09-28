@@ -1,61 +1,17 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:h="http://java.sun.com/jsf/html">
 
     <h:form id="control_block">
 
-        <!-- Select message -->
+        <!-- Header -->
         <h4>#{msg['control.text.selectDateMessage']}</h4>
 
-        <!-- Bootstrap dateTimePicker -->
-        <ui:include src="datepicker.xhtml" />
-
-        <!-- First Calendar -->
-        <div class="padding_block">
-            <h:inputText styleClass="first_calendar" value="#{dataService.dateAfter}" a:placeholder="#{msg['control.placeholder.chooseFirstDate']}">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-                <f:ajax event="blur" render="charts_block table_block all_records_block"/>
-            </h:inputText>
-        </div>
-
-        <!-- Second Calendar -->
-        <div class="padding_block">
-            <h:inputText styleClass="second_calendar" value="#{dataService.dateBefore}" a:placeholder="#{msg['control.placeholder.chooseSecondDate']}">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-                <f:ajax event="blur" render="charts_block table_block all_records_block"/>
-            </h:inputText>
-        </div>
+        <!-- Calendars component -->
+        <ui:include src="control_block/calendars_component.xhtml" />
 
         <!-- Button block -->
-        <div class="padding_block">
-            <div class="btn-group btn-group-xs" role="group">
-
-                <!-- Clear button -->
-                <h:commandButton id="clear_button" styleClass="btn btn-primary btn-lg" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
-                    <f:ajax render="charts_block table_block all_records_block generate_button"/>
-                </h:commandButton>
-
-                <!-- Add button -->
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_new_data">#{msg['control.button.add']}
-                </button>
-
-                <!-- Generations block -->
-
-                <h:inputText id ="number_generation" value="#{dataService.numberGen}" converter="javax.faces.Integer" immediate="true" style="width: 35px; height: 25px;" >
-                    <f:ajax render="generate_button number_generation"/>
-                </h:inputText>
-
-                <h:commandButton id="generate_button" value="#{msg['control.button.generate']}"
-                                 styleClass="btn btn-primary"
-                                 actionListener="#{dataService.generateData(dataService.numberGen)}"
-                                 disabled="#{!empty dataService.dataBeans}">
-                    <f:ajax render="charts_block table_block all_records_block generate_button"/>
-                </h:commandButton>
-
-            </div>
-        </div>
+        <ui:include src="control_block/button_block.xhtml" />
 
     </h:form>
 </ui:composition>

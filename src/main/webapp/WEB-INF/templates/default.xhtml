@@ -13,6 +13,7 @@
     <title>#{msg['message.title']}</title>
 </h:head>
 <h:body>
+
     <ui:insert name="header">
         <ui:include src="header.xhtml"/>
     </ui:insert>
@@ -21,6 +22,7 @@
         <ui:include src="content.xhtml"/>
     </ui:insert>
 
+    <!-- Required -->
     <h:outputStylesheet name="css/main.css"/>
     <h:outputStylesheet name="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" target="head" />
     <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome.min.css" target="head" />
