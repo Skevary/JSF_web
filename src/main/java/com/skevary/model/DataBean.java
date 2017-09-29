@@ -5,6 +5,7 @@ import org.omnifaces.cdi.ViewScoped;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @ManagedBean
 @ViewScoped
@@ -17,6 +18,7 @@ public class DataBean implements Serializable{
     private String text;
 
     public DataBean() {
+        this.id = UUID.randomUUID().toString().substring(0, 8);
     }
 
     public DataBean(String id, String group, int number, Date date, String text) {

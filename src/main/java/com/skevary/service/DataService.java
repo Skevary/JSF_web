@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @ManagedBean(name = "dataService")
 @ApplicationScoped
@@ -56,8 +55,8 @@ public class DataService implements Message{
         dataBeans.clear();
     }
 
-    public void addData(int number, String group, Date date, String text) {
-        if(date==null){
+    public void addData(DataBean data) {
+        if(data.getDate()==null){
             Message.showMessage("message.add_data.not_null.summary",
                     "message.add_data.not_null.detail");
 
@@ -65,14 +64,13 @@ public class DataService implements Message{
         }
 
         for (DataBean bean : dataBeans)
-            if (bean.getDate().equals(date)) {
+            if (bean.getDate().equals(data.getDate())) {
                 Message.showMessage("message.add_data.already_exists.summary",
                         "message.add_data.already_exists.detail");
 
                 return;
             }
-        String id = UUID.randomUUID().toString().substring(0, 8);
-        dataBeans.add(new DataBean(id, group, number, date, text));
+        dataBeans.add(data);
         Message.showMessage("message.add_data.success.summary",
                 "message.add_data.success.detail");
     }
