@@ -1,52 +1,51 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 template="../../WEB-INF/templates/default.xhtml">
 
     <ui:define name="content">
         <h:form id="form">
             <div class="container">
                 <div class="jumbotron">
-                    <!-- Calendar button -->
-                    <div class="form-group">
-                        <label >#{msg['dialog.add.message.date']}</label>
-                        <h:inputText id="input_calendar" styleClass="input_calendar form-control" value="#{dataBean.date}"
-                                     a:placeholder="#{msg['dialog.placeholder.add.chooseDate']}">
-                            <f:convertDateTime pattern="dd-MM-yyyy"/>
-                        </h:inputText>
-                        <ui:include src="../../resources/templates/date_range_picker_js.xhtml"/>
+
+                    <!-- Input Calendar -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">#{msg['dialog.add.message.date']}</label>
+                        <div class="col-sm-10">
+                            <ui:include src="../../resources/templates/components/input_block/data_date.xhtml"/>
+                        </div>
                     </div>
 
-                    <!-- Select One Group Menu -->
-                    <div class="form-group">
-                        <label for="input_group">#{msg['dialog.add.message.choose_group']}</label>
-                        <h:selectOneMenu id="input_group" value="#{dataBean.group}" styleClass="form-control">
-                            <f:selectItem itemLabel="#{msg['dialog.add.message.group_A']}" itemValue="A"/>
-                            <f:selectItem itemLabel="#{msg['dialog.add.message.group_B']}" itemValue="B"/>
-                        </h:selectOneMenu>
+                    <!-- Input Group -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">#{msg['dialog.add.message.choose_group']}</label>
+                        <div class="col-sm-10">
+                            <ui:include src="../../resources/templates/components/input_block/data_group.xhtml"/>
+
+                        </div>
                     </div>
 
-                    <!-- Input number -->
-                    <div class="form-group">
-                        <label for="input_number">#{msg['dialog.add.message.number']}</label>
-                        <h:inputText id="input_number" styleClass="form-control" style="text-indent: 8px" value="#{dataBean.number}"
-                                     immediate="true"/>
+                    <!-- Input Number -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">#{msg['dialog.add.message.number']}</label>
+                        <div class="col-sm-10">
+                            <ui:include src="../../resources/templates/components/input_block/data_number.xhtml"/>
+                        </div>
                     </div>
 
-                    <!-- Input text -->
-                    <div class="form-group">
-                        <label for="input_text">#{msg['dialog.add.message.text']}</label>
-                        <h:inputText id="input_text" styleClass="form-control" style="text-indent: 8px" value="#{dataBean.text}"/>
-                        <h:outputScript name="js/validators/input_number.js"/>
+                    <!-- Input Text -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">#{msg['dialog.add.message.text']}</label>
+                        <div class="col-sm-10">
+                            <ui:include src="../../resources/templates/components/input_block/data_text.xhtml"/>
+                        </div>
                     </div>
                     <div style="padding-bottom: 25px"/>
-
                     <!-- Add Button -->
                     <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
                                      styleClass="btn btn-success pull-right"
-                                     actionListener="#{dataService.addData(dataBean.number, dataBean.group, dataBean.date, dataBean.text)}" />
+                                     actionListener="#{dataService.addData(dataBean)}">
+                    </h:commandButton>
                     <div style="padding-bottom: 25px"/>
                 </div>
             </div>

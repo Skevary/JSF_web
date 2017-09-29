@@ -13,12 +13,12 @@
                     <div class="container padding_block">
                             <!--Control -->
                             <div class="col-sm-4">
-                                <ui:include src="../../resources/templates/control_block.xhtml"/>
-                                <ui:include src="../../resources/templates/all_records_block.xhtml"/>
+                                <ui:include src="../../resources/templates/components/control_block/controls.xhtml"/>
+                                <ui:include src="../../resources/templates/components/control_block/all_records.xhtml"/>
                             </div>
                             <!-- Chart -->
                             <div class="col-sm-8">
-                                <ui:include src="../../resources/templates/chart_block.xhtml"/>
+                                <ui:include src="../../resources/templates/components/chart_block/chart.xhtml"/>
                             </div>
                         </div>
                     <!-- Table block-->
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <!-- Dialog block-->
-            <ui:include src="../../resources/templates/modal_add_new_data.xhtml"/>
+            <ui:include src="../../resources/templates/components/modal_block/add_new_data.xhtml"/>
             <h:outputScript library="js" name="init_add_dialog.js"/>
 
     </ui:define>

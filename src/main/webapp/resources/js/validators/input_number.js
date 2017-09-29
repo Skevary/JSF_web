@@ -1,5 +1,5 @@
 $(function () {
-    let inputEl = document.getElementById('dialog_block:input_number');
+    let inputEl = document.getElementById('dialog_block:input_data_number');
 
     inputEl.oninput = function (e) {
         let inputVal = e.target.value;

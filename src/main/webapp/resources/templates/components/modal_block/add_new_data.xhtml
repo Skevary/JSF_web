@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:form id="dialog_block">
+        <div id="add_new_data" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-add-new-data">
+                    <!-- Close button -->
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+
+                    <!-- Input Calendar -->
+                    <div class="form-group">
+                        <label>#{msg['dialog.add.message.date']}</label>
+                        <ui:include src="../../components/input_block/data_date.xhtml"/>
+                    </div>
+
+                    <!-- Input Group -->
+                    <div class="form-group">
+                        <label>#{msg['dialog.add.message.choose_group']}</label>
+                        <ui:include src="../../components/input_block/data_group.xhtml"/>
+                    </div>
+
+                    <!-- Input Number -->
+                    <div class="form-group">
+                        <label>#{msg['dialog.add.message.number']}</label>
+                        <ui:include src="../../components/input_block/data_number.xhtml"/>
+                    </div>
+
+                    <!-- Input Text -->
+                    <div class="form-group">
+                        <label>#{msg['dialog.add.message.text']}</label>
+                        <ui:include src="../../components/input_block/data_text.xhtml"/>
+                    </div>
+
+                    <!-- Add Button -->
+                    <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
+                                     styleClass="btn btn-success pull-right"
+                                     action="#{dataService.addData(dataBean)}">
+
+                        <f:ajax execute="@form" render="charts_block table_block all_records_block control_block:generate_button"/>
+                    </h:commandButton>
+                    <div/>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>
