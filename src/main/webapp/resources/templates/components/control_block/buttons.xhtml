@@ -7,7 +7,7 @@
             <div class="btn-group btn-group-xs" role="group">
 
                 <!-- Clear button -->
-                <h:commandButton id="clear_button" styleClass="btn btn-primary btn-lg" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
+                <h:commandButton id="clear_button" styleClass="btn btn-primary" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
                     <f:ajax render="charts_block table_block all_records_block generate_button"/>
                 </h:commandButton>
 
@@ -20,7 +20,7 @@
 
                 <!-- Generation button -->
                 <h:commandButton id="generate_button" value="#{msg['control.button.generate']}"
-                                 styleClass="btn btn-primary" style="text-align: center"
+                                 styleClass="btn btn-primary"
                                  actionListener="#{dataGenerationController.generateData(dataGenerationController.numberGen)}"
                                  disabled="#{!empty dataService.dataBeans}">
 
