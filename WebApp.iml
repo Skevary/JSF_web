@@ -37,6 +37,7 @@
     <orderEntry type="library" name="Maven: org.webjars:explorercanvas:r3-1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.47" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:momentjs:2.10.3" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:datatables:1.10.15" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.14" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.2.14" level="project" />

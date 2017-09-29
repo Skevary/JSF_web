@@ -33,11 +33,6 @@ body {
     margin-bottom: 30px;
 }
 
-.form-control {
-    font-size: 14px;
-    height: auto;
-    padding: 7px;
-}
 
 input[type="text"] {
     border-bottom-left-radius: 0;
@@ -81,18 +76,6 @@ input[type="password"] {
     overflow: hidden;
 }
 
-/* Primefaces */
-.ui-growl {
-    position: absolute;
-    top: 80%;
-}
-
-.ui-panelgrid>*>tr,
-.ui-panelgrid .ui-panelgrid-cell {
-    background-color: #eee;
-    border: none;
-}
-
 .padding_block {
     padding-bottom: 10px;
 }
@@ -123,12 +106,38 @@ input[type="password"] {
 
 /* Flot chart js */
 .tickLabel {
-    padding: 0 5px; !important;
+    padding: 0 5px;
+!important;
 }
 
 .legendColorBox {
     padding: 2px 0 2px 2px;
 }
-.legendLabel{
+
+.legendLabel {
     padding: 0 2px;
+}
+
+/* Data Table */
+.table td {
+    text-align: center;
+}
+
+/* Data Table */
+.table td {
+    text-align: center;
+    color: #292626;
+}
+
+.table th {
+    text-align: center;
+}
+
+.table thead {
+    background-color: #5bc0de;
+    color: #eee;
+}
+
+.ui-growl {
+    top: 80% !important;
 }
