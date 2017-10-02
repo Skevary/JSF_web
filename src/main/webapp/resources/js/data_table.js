@@ -52,17 +52,18 @@ var options = {
     lengthMenu: [ [5, 10, 25, -1], [5, 10, 25, "All"] ],
     pageLength: 5,
     searching: false,
+    stateSave: true,
     language: language === 'ru' ? ru: en
 };
 
 // Init Data Table
-var dataTable = $(".dataTable").dataTable(options);
+$(".dataTable").dataTable(options);
 
 // Redraw Data Table from ajax call
 jsf.ajax.addOnEvent(function (data) {
     if (data.source.id !== "control_block:number_generation" &&
         data.status === "success") {
-        $(".dataTable").dataTable(options).api().draw();
+        $(".dataTable").dataTable(options);
     }
 });
 
