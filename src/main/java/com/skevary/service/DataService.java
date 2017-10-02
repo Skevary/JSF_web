@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@ManagedBean(name = "dataService")
+@ManagedBean(name = "dataService", eager = true)
 @ApplicationScoped
-public class DataService implements Message{
+public class DataService implements Message {
     private List<DataBean> dataBeans;
     private Date dateAfter;
     private Date dateBefore;

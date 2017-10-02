@@ -29,6 +29,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.webjars:bootstrap-table:1.9.1-1" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.themes:all-themes:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.3.7-1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:font-awesome:4.7.0" level="project" />
@@ -38,7 +39,9 @@
     <orderEntry type="library" name="Maven: org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.47" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:momentjs:2.10.3" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:datatables:1.10.15" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:bootstrap-table:1.9.1-1" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.2" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.14" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.2.14" level="project" />
     <orderEntry type="library" name="Maven: org.omnifaces:omnifaces:2.6.4" level="project" />
