@@ -3,7 +3,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:form>
+    <h:form id="header_form">
         <div class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -16,7 +16,7 @@
                     </button>
                     <div class="navbar-text" style="margin-left: 15px">
                         <i class="fa fa-globe"></i> #{msg['header.language']}
-                        <h:selectOneMenu value="#{localizationBean.locale}" onchange="submit()"
+                        <h:selectOneMenu id="change_language" value="#{localizationBean.locale}" onchange="submit()"
                                          valueChangeListener="#{localizationBean.localeChanged}">
                             <f:selectItems value="#{localizationBean.languages}"/>
                         </h:selectOneMenu>

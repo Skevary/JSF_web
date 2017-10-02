@@ -95,16 +95,6 @@ input[type="password"] {
     line-height: 1.2em;
 }
 
-/* Bootstrap Date Picker */
-.first_calendar {
-    text-indent: 8px
-}
-
-.second_calendar {
-    text-indent: 8px
-}
-
-/* Flot chart js */
 .tickLabel {
     padding: 0 5px;
 !important;
@@ -118,12 +108,25 @@ input[type="password"] {
     padding: 0 2px;
 }
 
+/* Bootstrap Date Picker */
+.first_calendar {
+    text-indent: 8px
+}
+
+.second_calendar {
+    text-indent: 8px
+}
+
+/* Flash message */
+.ui-growl {
+    top: 80% !important;
+}
+
 /* Data Table */
 .table td {
     text-align: center;
 }
 
-/* Data Table */
 .table td {
     text-align: center;
     color: #292626;
@@ -131,6 +134,7 @@ input[type="password"] {
 
 .table th {
     text-align: center;
+    padding-right: 0 !important;
 }
 
 .table thead {
@@ -138,6 +142,15 @@ input[type="password"] {
     color: #eee;
 }
 
-.ui-growl {
-    top: 80% !important;
+.pagination>li>a {
+    padding: 3px 8px !important;
+}
+
+div.dataTables_info {
+    padding-top: 3px !important;
+}
+
+.form-control {
+    height: 30px !important;
+    padding: 3px 12px !important;
 }
