@@ -2,13 +2,10 @@ package com.skevary.service;
 
 import com.skevary.model.DataBean;
 import com.skevary.util.Message;
-import org.primefaces.event.SelectEvent;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -77,16 +74,6 @@ public class DataService implements Message {
 
     public void removeItem(DataBean item) {
         dataBeans.remove(item);
-    }
-
-    /**
-     * Date Message
-     */
-    public void onDateSelect(SelectEvent event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                Message.getString("chart.on_date_selected.summary"), format.format(event.getObject())));
     }
 
     public List<DataBean> getDataBeans() {
