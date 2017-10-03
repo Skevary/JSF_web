@@ -2,7 +2,6 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="../WEB-INF/templates/default.xhtml">
 
@@ -22,17 +21,19 @@
                     <hr class="colorgraph"/>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <p:inputText id="email" type="text" value="#{loginBean.email}" styleClass="form-control" a:placeholder="#{msg['login.placeholder.email']}">
-                                <f:validator validatorId="util.validators.EmailValidator" />
-                        </p:inputText>
+                        <h:inputText class="form-control" value="#{loginBean.email}" type="text"
+                                     a:placeholder="#{msg['login.placeholder.email']}">
+                            <f:validator validatorId="util.validators.EmailValidator" />
+                        </h:inputText>
                     </div>
 
                     <!-- Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <p:inputText id="password" type="password" value="#{loginBean.password}" styleClass="form-control" name="password" a:placeholder="#{msg['login.placeholder.password']}">
+                        <h:inputSecret class="form-control" value="#{loginBean.password}"
+                                       a:placeholder="#{msg['login.placeholder.password']}">
                             <f:validator validatorId="util.validators.PasswordValidator" />
-                        </p:inputText>
+                        </h:inputSecret>
                     </div>
                     <hr class="colorgraph"/>
                     <div class="row">
@@ -48,18 +49,16 @@
                             </button>
                         </div>
                     </div>
-                    <h:messages role="alert"
-                                errorClass="alert alert-danger"
-                                infoClass="alert alert-success"
-                                warnClass="alert alert-warning"
-                                showDetail="true"/>
+
+                    <ui:include src="../resources/templates/message_block.xhtml"/>
+
                 </h:form>
             </div>
         </div>
         <!-- Modal SignUp -->
         <ui:include src="../resources/templates/components/modal_block/signup.xhtml"/>
         <h:outputScript library="js" name="init_dialog.js"/>
-        <h:outputScript library="js" name="init_add_dialog.js"/>
+
 
     </ui:define>
 </ui:composition>

@@ -1,10 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="../../WEB-INF/templates/default.xhtml">
 
     <ui:define name="content">
-        <h:form id="form">
+        <h:form id="dialog_block">
             <div class="container">
                 <div class="jumbotron">
 
@@ -15,7 +16,11 @@
                             <ui:include src="../../resources/templates/components/input_block/data_date.xhtml"/>
                         </div>
                     </div>
+                    <h:outputStylesheet name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" target="head" />
 
+                    <h:outputScript name="webjars/momentjs/2.10.3/min/moment.min.js" target="body" />
+                    <h:outputScript name="webjars/momentjs/2.10.3/locale/ru.js" target="body" />
+                    <h:outputScript name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" target="body" />
                     <!-- Input Group -->
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">#{msg['dialog.add.message.choose_group']}</label>
@@ -45,10 +50,12 @@
                     <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
                                      styleClass="btn btn-success pull-right"
                                      actionListener="#{dataService.addData(dataBean)}">
+                        <f:ajax execute="@form" render="msgs_block"/>
                     </h:commandButton>
                     <div style="padding-bottom: 25px"/>
                 </div>
             </div>
         </h:form>
+        <ui:include src="../../resources/templates/message_block.xhtml"/>
     </ui:define>
 </ui:composition>

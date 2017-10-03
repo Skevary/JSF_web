@@ -12,6 +12,19 @@
     <title>#{msg['message.title']}</title>
 </h:head>
 <h:body>
+    <!-- Required -->
+    <h:outputStylesheet name="css/main.css"/>
+    <h:outputStylesheet name="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" target="head" />
+    <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome.min.css" target="head" />
+    <h:outputStylesheet name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" target="head" />
+
+    <h:outputScript name="webjars/jquery/3.2.1/jquery.min.js" target="head" />
+    <h:outputScript name="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" target="body" />
+    <h:outputScript library="js" name="required/velocity.min.js" target="body" />
+    <h:outputScript library="js" name="required/velocity.ui.min.js" target="body" />
+    <h:outputScript name="webjars/momentjs/2.10.3/min/moment.min.js" target="body" />
+    <h:outputScript name="webjars/momentjs/2.10.3/locale/ru.js" target="body" />
+    <h:outputScript name="webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" target="body" />
 
     <ui:insert name="header">
         <ui:include src="header.xhtml"/>
@@ -21,14 +34,6 @@
         <ui:include src="content.xhtml"/>
     </ui:insert>
 
-    <!-- Required -->
-    <h:outputStylesheet name="css/main.css"/>
-    <h:outputStylesheet name="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" target="head" />
-    <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome.min.css" target="head" />
-
-    <h:outputScript name="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" target="head" />
-    <h:outputScript library="js" name="required/velocity.min.js" target="head" />
-    <h:outputScript library="js" name="required/velocity.ui.min.js" target="head" />
 </h:body>
 </f:view>
 </html>
