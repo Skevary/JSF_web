@@ -158,3 +158,38 @@ div.dataTables_info {
     height: 30px !important;
     padding: 3px 12px !important;
 }
+
+/* Bootstrap-notify */
+.alert-success {
+    color: #fcfcfc !important;
+    background-color: rgba(10, 126, 226, 0.7) !important;
+    border-color: rgba(10, 126, 226, 0.7) !important;
+}
+
+.alert-danger {
+    color: #fcfcfc !important;
+    background-color: rgba(218, 18, 18, 0.7) !important;
+    border-color: rgba(218, 18, 18, 0.7) !important;
+}
+
+.notify{
+    width: 350px;
+    border-radius: 3px;
+    padding: 10px 20px;
+    box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.gap-right {
+    margin: 15px 10px 15px 0px;
+}
+
+.words-p {
+    word-wrap: break-word;
+    position: relative;
+    word-break: break-all;
+    overflow: hidden;
+    -epub-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
