@@ -2,9 +2,11 @@ package com.skevary.security;
 
 import com.skevary.util.Message;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.xml.bind.ValidationException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,35 +32,33 @@ public class LoginBean implements Serializable, Message {
     }
 
 
-    public String doLogin() {
+    public String doLogin() throws ValidationException {
         if ((users.get(email) != null) && (users.get(email).equals(password))) {
             loggedIn = true;
 
             return navigationBean.redirectToIndex1();
         }
-
-        Message.showMessage("message.login.error.summary", "message.login.error.detail");
+        Message.showMessage("message.login.error.summary", "message.login.error.detail", FacesMessage.SEVERITY_ERROR);
         return navigationBean.toLogin();
     }
 
 
     public String doLogout() {
         loggedIn = false;
-        Message.showMessage("message.logout.success.summary", "message.logout.success.detail");
-
+        Message.showFlashMessage("message.logout.success.summary", "message.logout.success.detail", FacesMessage.SEVERITY_INFO);
         return navigationBean.redirectToLogin();
     }
 
 
     public String signUp() {
         if (users.get(email) != null) {
-            Message.showMessage("message.sign_up.error.summary", "message.sign_up.error.detail");
+            Message.showMessage("message.sign_up.error.summary", "message.sign_up.error.detail", FacesMessage.SEVERITY_ERROR);
 
             return navigationBean.toLogin();
         } else {
             users.put(email, password);
             loggedIn = true;
-            Message.showMessage("message.sign_up.success.summary", "message.sign_up.success.detail");
+            Message.showFlashMessage("message.sign_up.success.summary", "message.sign_up.success.detail", FacesMessage.SEVERITY_INFO);
 
             return navigationBean.redirectToIndex1();
         }

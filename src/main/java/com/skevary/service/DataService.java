@@ -58,7 +58,7 @@ public class DataService implements Message {
     public void addData(DataBean data) {
         if(data.getDate()==null){
             Message.showMessage("message.add_data.not_null.summary",
-                    "message.add_data.not_null.detail");
+                    "message.add_data.not_null.detail", FacesMessage.SEVERITY_ERROR);
 
             return;
         }
@@ -66,13 +66,13 @@ public class DataService implements Message {
         for (DataBean bean : dataBeans)
             if (bean.getDate().equals(data.getDate())) {
                 Message.showMessage("message.add_data.already_exists.summary",
-                        "message.add_data.already_exists.detail");
+                        "message.add_data.already_exists.detail", FacesMessage.SEVERITY_ERROR);
 
                 return;
             }
         dataBeans.add(data);
         Message.showMessage("message.add_data.success.summary",
-                "message.add_data.success.detail");
+                "message.add_data.success.detail", FacesMessage.SEVERITY_INFO);
     }
 
     public void removeItem(DataBean item) {

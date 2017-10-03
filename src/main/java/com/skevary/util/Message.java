@@ -10,6 +10,28 @@ import java.util.ResourceBundle;
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
 public interface Message {
+
+    /**
+     * Display notifications.
+     * Method adds message to the {@link FacesContext}.
+     *
+     * @param summary - Localized summary message text
+     * @param detail - Localized detail message text
+     *
+     * @see FacesMessage
+     */
+    static void showMessage(String summary, String detail, FacesMessage.Severity severity) throws ValidatorException {
+        String sum = getString(summary);
+        String det = getString(detail);
+
+        FacesContext facesContext = getCurrentInstance();
+
+        FacesMessage msg = new FacesMessage(severity,sum, det);
+
+        facesContext.addMessage(null, msg);
+    }
+
+
     /**
      * Display notifications.
      * Method adds message to the {@link FacesContext} & flash memory.
@@ -20,14 +42,20 @@ public interface Message {
      * @see Flash
      * @see FacesMessage
      */
-    static void showMessage(String summary, String detail) {
-        ResourceBundle message = ResourceBundle.getBundle("messages", Locale.getDefault());
+    static void showFlashMessage(String summary, String detail, FacesMessage.Severity severity) throws ValidatorException {
+        String sum = getString(summary);
+        String det = getString(detail);
+
         FacesContext facesContext = getCurrentInstance();
+
         Flash flash = getCurrentInstance().getExternalContext().getFlash();
         flash.setKeepMessages(true);
 
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, message.getString(summary), message.getString(detail)));
+        FacesMessage msg = new FacesMessage(severity,sum, det);
+
+        facesContext.addMessage(null, msg);
     }
+
 
     /**
      * Gets a string for the given key from this resource bundle or one of its parents.
@@ -43,14 +71,40 @@ public interface Message {
         return message.getString(key);
     }
 
+
+    /**
+     * Construct a new exception with the specified message and no root cause.
+     *
+     * @param summary - Localized summary message text
+     * @param detail - Localized detail message text
+     *
+     * @see ResourceBundle
+     */
     static void showValidationMessage(String summary, String detail){
-        FacesMessage msg = new FacesMessage(summary, detail);
+        String sum = getString(summary);
+        String det = getString(detail);
+
+        FacesMessage msg = new FacesMessage(sum, det);
         throw new ValidatorException(msg);
     }
 
-    static void showValidationMessage(String summary, String detail, FacesMessage.Severity severity){
-        FacesMessage msg = new FacesMessage(summary, detail);
-        msg.setSeverity(severity);
+
+    /**
+     * Construct a new exception with the specified message and no root cause.
+     *
+     * @param summary - Localized summary message text
+     * @param detail - Localized detail message text
+     * @param severity -Class used to represent message severity levels in a typesafe enumeration.
+     *
+     * @see FacesMessage.Severity
+     * @see ResourceBundle
+     */
+    static void showValidationMessage(String summary, String detail, FacesMessage.Severity severity) throws ValidatorException {
+        String sum = getString(summary);
+        String det = getString(detail);
+
+        FacesMessage msg = new FacesMessage(severity,sum, det);
+
         throw new ValidatorException(msg);
     }
 }

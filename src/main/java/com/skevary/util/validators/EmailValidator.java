@@ -36,15 +36,13 @@ public class EmailValidator implements Validator {
 
     private void emailNotNullValidation(Object value){
        if(value == null)
-           Message.showValidationMessage(Message.getString("mail.not_null.summary"),
-                   Message.getString("mail.not_null.detail"), FacesMessage.SEVERITY_ERROR);
+           Message.showValidationMessage("mail.not_null.summary", "mail.not_null.detail", FacesMessage.SEVERITY_ERROR);
     }
 
 
     private void emailSizeValidation(String value){
         if(value.length() < 3 || value.length() > 254)
-            Message.showValidationMessage(Message.getString("mail.size.summary"),
-                    Message.getString("mail.size.detail"), FacesMessage.SEVERITY_ERROR);
+            Message.showValidationMessage("mail.size.summary", "mail.size.detail", FacesMessage.SEVERITY_ERROR);
     }
 
 
@@ -52,8 +50,7 @@ public class EmailValidator implements Validator {
         matcher = pattern.matcher(value);
 
         if (!matcher.matches())
-            Message.showValidationMessage(Message.getString("mail.pattern.summary"),
-                    Message.getString("mail.pattern.detail"), FacesMessage.SEVERITY_ERROR);
+            Message.showValidationMessage("mail.pattern.summary", "mail.pattern.detail", FacesMessage.SEVERITY_ERROR);
     }
 
 

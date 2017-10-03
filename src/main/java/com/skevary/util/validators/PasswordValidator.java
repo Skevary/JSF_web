@@ -22,15 +22,13 @@ public class PasswordValidator  implements Validator {
 
     private void passNotNullValidation(Object value){
         if(value == null)
-            Message.showValidationMessage(Message.getString("password.not_null.summary"),
-                    Message.getString("password.not_null.detail"), FacesMessage.SEVERITY_ERROR);
+            Message.showValidationMessage("password.not_null.summary", "password.not_null.detail", FacesMessage.SEVERITY_ERROR);
     }
 
 
     private void passSizeValidation(String value){
         if(value.length() < 3 || value.length() > 254)
-            Message.showValidationMessage(Message.getString("password.size.summary"),
-                    Message.getString("password.size.detail"), FacesMessage.SEVERITY_ERROR);
+            Message.showValidationMessage("password.size.summary", "password.size.detail", FacesMessage.SEVERITY_ERROR);
     }
 
 }

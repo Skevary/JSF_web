@@ -3,6 +3,7 @@ package com.skevary.util.validators;
 import com.skevary.model.DataBean;
 import com.skevary.util.Message;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
@@ -23,11 +24,11 @@ public class AddDateValidator implements Validator {
 
     private void notNullValidation(DataBean data) {
         if (data.getDate() == null)
-            Message.showMessage("message.add_data.not_null.summary", "message.add_data.not_null.detail");
+            Message.showMessage("message.add_data.not_null.summary", "message.add_data.not_null.detail", FacesMessage.SEVERITY_ERROR);
     }
 
     private void containsDateValidation(DataBean data) {
         if (data.getDate() == null)
-            Message.showMessage("message.add_data.not_null.summary", "message.add_data.not_null.detail");
+            Message.showMessage("message.add_data.not_null.summary", "message.add_data.not_null.detail", FacesMessage.SEVERITY_ERROR);
     }
 }
