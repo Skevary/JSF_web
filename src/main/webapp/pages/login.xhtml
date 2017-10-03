@@ -14,9 +14,7 @@
         <div class="container">
             <div class="wrapper">
 
-                <h:form name="Login_Form" class="form-signin">
-                    <p:growl id="msgs" autoUpdate="true" showDetail="true"/>
-
+                <h:form id="login_block" class="form-signin">
                     <!-- Welcome message -->
                     <p class="form-signin-heading">#{msg['login.welcomeMessage']}</p>
 
@@ -50,6 +48,11 @@
                             </button>
                         </div>
                     </div>
+                    <h:messages role="alert"
+                                errorClass="alert alert-danger"
+                                infoClass="alert alert-success"
+                                warnClass="alert alert-warning"
+                                showDetail="true"/>
                 </h:form>
             </div>
         </div>

@@ -3,8 +3,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:form id="table_block">
-        <h:dataTable styleClass="table table-striped dataTable" data-toggle="table" id="dataTable" width="100%" var="item"
-                     value="#{dataService.filteredData}">
+        <h:dataTable styleClass="table table-striped dataTable" id="dataTable"
+                     width="100%" var="item" value="#{dataService.filteredData}">
 
             <!-- ID -->
             <h:column>
@@ -41,7 +41,8 @@
             <!-- Remove button -->
             <h:column style="width:58px">
                 <f:facet name="header"><i class="fa fa-cog"/></f:facet>
-                <h:commandLink id="remove_item" styleClass="remove_item" title="remove_from_dataTable" actionListener="#{dataService.removeItem(item)}">
+                <h:commandLink id="remove_item" styleClass="remove_item" title="remove_from_dataTable"
+                               actionListener="#{dataService.removeItem(item)}">
                     <i class="fa fa-trash" style="font-size: 18px;"/>
                     <f:ajax render="charts_block table_block all_records_block control_block:generate_button"/>
                 </h:commandLink>
@@ -50,9 +51,11 @@
 
         <h:outputScript library="js" name="data_table.js"/>
 
+        <!-- Required -->
+        <h:outputStylesheet name="webjars/datatables/1.10.15/css/dataTables.bootstrap4.min.css" target="head"/>
+
         <h:outputScript name="webjars/datatables/1.10.15/js/jquery.dataTables.min.js" target="head"/>
         <h:outputScript name="webjars/datatables/1.10.15/js/dataTables.bootstrap4.min.js" target="head"/>
-        <h:outputStylesheet name="webjars/datatables/1.10.15/css/dataTables.bootstrap4.min.css" target="head" />
 
     </h:form>
 </ui:composition>

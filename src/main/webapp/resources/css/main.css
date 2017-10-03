@@ -123,6 +123,10 @@ input[type="password"] {
 }
 
 /* Data Table */
+table.dataTable {
+    border: 1px solid #5bc0de; /* Рамка вокруг таблицы */
+}
+
 .table td {
     text-align: center;
 }

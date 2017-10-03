@@ -6,16 +6,19 @@
     <h:form id="all_records_block">
 
         <!-- Number of all records -->
-        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">#{msg['message.num_records']}
-            <h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
-        </h:panelGrid>
+        <div class="form-group">
+            #{msg['message.num_records']}<h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
+        </div>
 
         <!-- Show All records -->
-        <h:commandLink id="reset_calendars" value="#{msg['message.show_all_records']}"
-                       actionListener="#{dataService.resetCalendars}" styleClass="label label-success" style="font-size: 13px"
-                       rendered="#{!empty dataService.dateAfter || !empty dataService.dateBefore}">
-            <f:ajax render="charts_block table_block control_block all_records_block"/>
-        </h:commandLink>
+        <div class="form-group">
+            <h:commandLink id="reset_calendars" value="#{msg['message.show_all_records']}"
+                           actionListener="#{dataService.resetCalendars}"
+                           styleClass="label label-success" style="font-size: 13px"
+                           rendered="#{!empty dataService.dateAfter || !empty dataService.dateBefore}">
+                <f:ajax render="charts_block table_block control_block all_records_block"/>
+            </h:commandLink>
+        </div>
 
     </h:form>
 
