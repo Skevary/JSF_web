@@ -9,7 +9,7 @@
                  styleClass="input_data_date form-control"
                  a:placeholder="#{msg['dialog.placeholder.add.chooseDate']}">
         <f:convertDateTime pattern="dd-MM-yyyy"/>
-        <!--<f:validator validatorId="util.validators.AddDateValidator" />-->
+        <f:validator validatorId="util.validators.AddDateValidator" />
     </h:inputText>
     <ui:include src="js/date_picker.xhtml"/>
 
