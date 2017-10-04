@@ -14,11 +14,12 @@ function init_notify(title, message, severity) {
                 enter: 'animated rollIn',
                 exit: 'animated rollOut'
             },
+            spacing: 15,
             placement: {
                 from: "bottom",
                 align: "right"
             },
-        delay: 3500,
+            delay: 3500,
             template:
                 '<div data-notify="container" class="notify span4 alert-{0}" role="alert">' +
                 '<button type="button" class="close" data-notify="dismiss">&times;</button>' +
