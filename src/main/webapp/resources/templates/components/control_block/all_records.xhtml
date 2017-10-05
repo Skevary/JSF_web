@@ -7,15 +7,15 @@
 
         <!-- Number of all records -->
         <div class="form-group">
-            #{msg['message.num_records']}<h:outputText id="num_of_all_records" value="#{dataService.getNumberAllRecords()}"/>
+            #{msg['message.num_records']}<h:outputText id="num_of_all_records" value="#{server.service.getNumberAllRecords()}"/>
         </div>
 
         <!-- Show All records -->
         <div class="form-group">
             <h:commandLink id="reset_calendars" value="#{msg['message.show_all_records']}"
-                           actionListener="#{dataService.resetCalendars}"
+                           actionListener="#{server.service.resetCalendars()}"
                            styleClass="label label-success" style="font-size: 13px"
-                           rendered="#{!empty dataService.dateAfter || !empty dataService.dateBefore}">
+                           rendered="#{!empty server.dateAfter || !empty server.dateBefore}">
                 <f:ajax render="charts_block table_block control_block all_records_block"/>
             </h:commandLink>
         </div>

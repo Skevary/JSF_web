@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="RMIStat">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/RMIStat.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

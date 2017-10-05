@@ -16,8 +16,7 @@ public interface Message {
      * Method adds message to the {@link FacesContext}.
      *
      * @param summary - Localized summary message text
-     * @param detail - Localized detail message text
-     *
+     * @param detail  - Localized detail message text
      * @see FacesMessage
      */
     static void showMessage(String summary, String detail, FacesMessage.Severity severity) throws ValidatorException {
@@ -26,7 +25,7 @@ public interface Message {
 
         FacesContext facesContext = getCurrentInstance();
 
-        FacesMessage msg = new FacesMessage(severity,sum, det);
+        FacesMessage msg = new FacesMessage(severity, sum, det);
 
         facesContext.addMessage(null, msg);
     }
@@ -37,8 +36,7 @@ public interface Message {
      * Method adds message to the {@link FacesContext} & flash memory.
      *
      * @param summary - Localized summary message text
-     * @param detail - Localized detail message text
-     *
+     * @param detail  - Localized detail message text
      * @see Flash
      * @see FacesMessage
      */
@@ -51,7 +49,7 @@ public interface Message {
         Flash flash = getCurrentInstance().getExternalContext().getFlash();
         flash.setKeepMessages(true);
 
-        FacesMessage msg = new FacesMessage(severity,sum, det);
+        FacesMessage msg = new FacesMessage(severity, sum, det);
 
         facesContext.addMessage(null, msg);
     }
@@ -60,9 +58,8 @@ public interface Message {
     /**
      * Gets a string for the given key from this resource bundle or one of its parents.
      *
-     * @param key  - the key for the desired string
+     * @param key - the key for the desired string
      * @return the string for the given key
-     *
      * @see ResourceBundle
      */
     static String getString(String key) {
@@ -76,11 +73,10 @@ public interface Message {
      * Construct a new exception with the specified message and no root cause.
      *
      * @param summary - Localized summary message text
-     * @param detail - Localized detail message text
-     *
+     * @param detail  - Localized detail message text
      * @see ResourceBundle
      */
-    static void showValidationMessage(String summary, String detail){
+    static void showValidationMessage(String summary, String detail) {
         String sum = getString(summary);
         String det = getString(detail);
 
@@ -92,10 +88,9 @@ public interface Message {
     /**
      * Construct a new exception with the specified message and no root cause.
      *
-     * @param summary - Localized summary message text
-     * @param detail - Localized detail message text
+     * @param summary  - Localized summary message text
+     * @param detail   - Localized detail message text
      * @param severity -Class used to represent message severity levels in a typesafe enumeration.
-     *
      * @see FacesMessage.Severity
      * @see ResourceBundle
      */
@@ -103,7 +98,7 @@ public interface Message {
         String sum = getString(summary);
         String det = getString(detail);
 
-        FacesMessage msg = new FacesMessage(severity,sum, det);
+        FacesMessage msg = new FacesMessage(severity, sum, det);
 
         throw new ValidatorException(msg);
     }

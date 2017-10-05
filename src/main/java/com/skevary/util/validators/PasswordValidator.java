@@ -10,24 +10,23 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 @FacesValidator("util.validators.PasswordValidator")
-public class PasswordValidator  implements Validator {
+public class PasswordValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-
         passNotNullValidation(value);
         passSizeValidation(value.toString());
     }
 
 
-    private void passNotNullValidation(Object value){
-        if(value == null)
+    private void passNotNullValidation(Object value) {
+        if (value == null)
             Message.showValidationMessage("password.not_null.summary", "password.not_null.detail", FacesMessage.SEVERITY_ERROR);
     }
 
 
-    private void passSizeValidation(String value){
-        if(value.length() < 3 || value.length() > 254)
+    private void passSizeValidation(String value) {
+        if (value.length() < 3 || value.length() > 254)
             Message.showValidationMessage("password.size.summary", "password.size.detail", FacesMessage.SEVERITY_ERROR);
     }
 

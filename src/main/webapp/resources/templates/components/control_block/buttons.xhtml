@@ -7,7 +7,8 @@
             <div class="btn-group btn-group-xs" role="group">
 
                 <!-- Clear button -->
-                <h:commandButton id="clear_button" styleClass="btn btn-primary" value="#{msg['control.button.clear']}" actionListener="#{dataService.clearData}">
+                <h:commandButton id="clear_button" styleClass="btn btn-primary" value="#{msg['control.button.clear']}"
+                                 actionListener="#{server.service.clearData()}">
                     <f:ajax render="charts_block table_block all_records_block generate_button"/>
                 </h:commandButton>
 
@@ -21,14 +22,14 @@
                 <!-- Generation button -->
                 <h:commandButton id="generate_button" value="#{msg['control.button.generate']}"
                                  styleClass="btn btn-primary"
-                                 actionListener="#{dataGenerationController.generateData(dataGenerationController.numberGen)}"
-                                 disabled="#{!empty dataService.dataBeans}">
+                                 actionListener="#{server.service.generateData(server.numberGen)}"
+                                 disabled="#{!empty server.service.dataBeans}">
 
                     <f:ajax render="number_generation charts_block table_block all_records_block generate_button"/>
                 </h:commandButton>
 
                 <!-- Number for generation -->
-                <h:inputText id ="number_generation" value="#{dataGenerationController.numberGen}" style="text-align:center; max-width: 55px; height: 22px;">
+                <h:inputText id ="number_generation" value="#{server.numberGen}" style="text-align:center; max-width: 55px; height: 22px;">
                     <f:ajax />
                 </h:inputText>
                 <h:outputScript name="js/validators/number_generation.js" target="body"/>

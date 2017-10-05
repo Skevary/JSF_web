@@ -26,11 +26,9 @@ public class EmailValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-
         emailNotNullValidation(value);
         emailSizeValidation(value.toString());
         emailPatternValidation(value.toString());
-
     }
 
 
@@ -52,6 +50,5 @@ public class EmailValidator implements Validator {
         if (!matcher.matches())
             Message.showValidationMessage("mail.pattern.summary", "mail.pattern.detail", FacesMessage.SEVERITY_ERROR);
     }
-
 
 }

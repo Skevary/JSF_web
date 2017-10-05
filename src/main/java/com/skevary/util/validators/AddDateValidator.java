@@ -1,7 +1,7 @@
 package com.skevary.util.validators;
 
 import com.skevary.model.DataBean;
-import com.skevary.service.DataService;
+import com.skevary.service.DataService2;
 import com.skevary.util.Message;
 
 import javax.faces.application.FacesMessage;
@@ -19,7 +19,8 @@ public class AddDateValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Date date = (Date) value;
         notNullValidation(date);
-        containsDateValidation(date);
+        containsDateValidation(date, context);
+        Message.showMessage("message.add_data.success.summary", "message.add_data.success.detail", FacesMessage.SEVERITY_INFO);
     }
 
     private void notNullValidation(Date date) {
@@ -27,9 +28,8 @@ public class AddDateValidator implements Validator {
             Message.showValidationMessage("message.add_data.not_null.summary", "message.add_data.not_null.detail", FacesMessage.SEVERITY_ERROR);
     }
 
-    private void containsDateValidation(Date date) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        DataService service = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{dataService}", DataService.class);
+    private void containsDateValidation(Date date , FacesContext context) {
+        DataService2 service = context.getApplication().evaluateExpressionGet(context, "#{dataService}", DataService2.class);
         for (DataBean bean : service.getDataBeans())
             if (bean.getDate().equals(date)) {
                 Message.showValidationMessage("message.add_data.already_exists.summary",

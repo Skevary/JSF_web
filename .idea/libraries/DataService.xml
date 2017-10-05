@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DataService">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/DataService.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

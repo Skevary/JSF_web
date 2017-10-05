@@ -14,7 +14,7 @@ function init_notify(title, message, severity) {
                 enter: 'animated rollIn',
                 exit: 'animated rollOut'
             },
-            spacing: 15,
+            spacing: 25,
             placement: {
                 from: "bottom",
                 align: "right"

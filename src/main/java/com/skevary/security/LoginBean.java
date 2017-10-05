@@ -14,8 +14,14 @@ import java.util.Map;
 
 @ManagedBean
 @SessionScoped
-public class LoginBean implements Serializable, Message {
+public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
+    private static final Map<String, String> users;
+    static {
+        users = new HashMap<>();
+        users.put("foo@mail.com", "12345");
+        users.put("bar@mail.com", "12345");
+    }
 
     private String email;
     private String password;
@@ -24,20 +30,13 @@ public class LoginBean implements Serializable, Message {
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
 
-    private static final Map<String, String> users;
-    static {
-        users = new HashMap<>();
-        users.put("foo@mail.com", "12345");
-        users.put("bar@mail.com", "12345");
-    }
-
-
     public String doLogin() throws ValidationException {
         if ((users.get(email) != null) && (users.get(email).equals(password))) {
             loggedIn = true;
 
             return navigationBean.redirectToIndex1();
         }
+
         Message.showMessage("message.login.error.summary", "message.login.error.detail", FacesMessage.SEVERITY_ERROR);
         return navigationBean.toLogin();
     }
@@ -90,5 +89,4 @@ public class LoginBean implements Serializable, Message {
     public void setNavigationBean(NavigationBean navigationBean) {
         this.navigationBean = navigationBean;
     }
-
 }
