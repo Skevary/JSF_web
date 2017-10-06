@@ -8,7 +8,7 @@
     <h:inputText id="input_data_date" value="#{dataBean.date}"
                  styleClass="input_data_date form-control"
                  a:placeholder="#{msg['dialog.placeholder.add.chooseDate']}">
-        <f:convertDateTime pattern="dd-MM-yyyy"/>
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
         <f:validator validatorId="util.validators.AddDateValidator" />
     </h:inputText>
     <ui:include src="js/date_picker.xhtml"/>

@@ -21,7 +21,7 @@ public class AppController{
 
     @PostConstruct
     public void init(){
-        service.generateData(15);
+        service.generateData(5);
     }
 
     public void resetCalendars() {

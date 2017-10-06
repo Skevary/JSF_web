@@ -37,7 +37,7 @@
                     <!-- Add Button -->
                     <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
                                      styleClass="btn btn-success pull-right"
-                                     action="#{appController.service.addItem(dataBean.group,dataBean.number,dataBean.date,dataBean.date)}">
+                                     action="#{appController.service.addItem(dataBean.group,dataBean.number,dataBean.date,dataBean.text)}">
 
                         <f:ajax execute="@form" render="charts_block msgs_block table_block all_records_block control_block:generate_button"/>
                     </h:commandButton>
