@@ -3,8 +3,9 @@
 
     <!-- Data Date Calendar -->
     <h:outputScript>
+
         $(function () {
-            $('.input_data_date').datetimepicker({
+            $("input[date-picker]").datetimepicker({
                 locale: "#{msg['message.locale']}",
                 format: 'DD-MM-YYYY',
                 useCurrent: false

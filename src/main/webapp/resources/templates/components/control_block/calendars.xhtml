@@ -6,7 +6,7 @@
 
     <!-- First Calendar -->
     <div class="padding_block">
-        <h:inputText styleClass="first_calendar" value="#{appController.dateAfter}" a:placeholder="#{msg['control.placeholder.chooseFirstDate']}">
+        <h:inputText styleClass="first_calendar" a:date-picker="true" value="#{appController.dateAfter}" a:placeholder="#{msg['control.placeholder.chooseFirstDate']}">
             <f:convertDateTime pattern="dd-MM-yyyy"/>
             <f:ajax event="blur" render="charts_block table_block all_records_block"/>
         </h:inputText>
@@ -14,7 +14,7 @@
 
     <!-- Second Calendar -->
     <div class="padding_block">
-        <h:inputText styleClass="second_calendar" value="#{appController.dateBefore}" a:placeholder="#{msg['control.placeholder.chooseSecondDate']}">
+        <h:inputText styleClass="second_calendar" a:date-picker="true" value="#{appController.dateBefore}" a:placeholder="#{msg['control.placeholder.chooseSecondDate']}">
             <f:convertDateTime pattern="dd-MM-yyyy"/>
             <f:ajax event="blur" render="charts_block table_block all_records_block"/>
         </h:inputText>
