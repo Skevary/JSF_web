@@ -1,6 +1,9 @@
 package com.skevary.security;
 
+import com.skevary.Service;
+import com.skevary.service.DataServiceRPCO;
 import com.skevary.util.Message;
+import one.nio.rpc.client.RPCConnectionException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -8,20 +11,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.xml.bind.ValidationException;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 9007171658473182460L;
-    private static final Map<String, String> users;
-    static {
-        users = new HashMap<>();
-        users.put("foo@mail.com", "12345");
-        users.put("bar@mail.com", "12345");
-    }
+    Service service = DataServiceRPCO.get();
 
     private String email;
     private String password;
@@ -30,8 +26,10 @@ public class LoginBean implements Serializable {
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean navigationBean;
 
+    public LoginBean() throws RPCConnectionException {}
+
     public String doLogin() throws ValidationException {
-        if ((users.get(email) != null) && (users.get(email).equals(password))) {
+        if ((service.getPassword(email) != null) && (service.getPassword(email).equals(password))) {
             loggedIn = true;
 
             return navigationBean.redirectToIndex1();
@@ -50,12 +48,12 @@ public class LoginBean implements Serializable {
 
 
     public String signUp() {
-        if (users.get(email) != null) {
+        if (service.getPassword(email) != null) {
             Message.showMessage("message.sign_up.error.summary", "message.sign_up.error.detail", FacesMessage.SEVERITY_ERROR);
 
             return navigationBean.toLogin();
         } else {
-            users.put(email, password);
+            service.addUser(email, password);
             loggedIn = true;
             Message.showFlashMessage("message.sign_up.success.summary", "message.sign_up.success.detail", FacesMessage.SEVERITY_INFO);
 
@@ -80,10 +78,6 @@ public class LoginBean implements Serializable {
 
     public boolean isLoggedIn() {
         return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
     }
 
     public void setNavigationBean(NavigationBean navigationBean) {

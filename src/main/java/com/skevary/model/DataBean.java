@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @ManagedBean
 @ViewScoped
-public class DataBean implements Serializable{
+public class DataBean implements Serializable {
     private static final long serialVersionUID = -6363197086621921565L;
     private String id;
     private String group;

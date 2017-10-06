@@ -20,12 +20,12 @@
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.14" />
           <element id="library" level="project" name="Maven: org.omnifaces:omnifaces:2.6.4" />
           <element id="library" level="project" name="asm-4.1" />
-          <element id="library" level="project" name="DataService" />
           <element id="library" level="project" name="LogLib" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="OneNioMasterLib2" />
           <element id="library" level="project" name="RMIStat" />
           <element id="library" level="project" name="TwwkSourceLib" />
+          <element id="library" level="project" name="Service" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="DataService">
+  <library name="Service">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/DataService.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Service.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

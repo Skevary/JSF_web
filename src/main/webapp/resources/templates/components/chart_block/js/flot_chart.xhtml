@@ -9,7 +9,7 @@
 
         /* Init data */
         (function () {
-        <ui:repeat value="#{server.service.filteredData}" var="item">
+        <ui:repeat value="#{appController.service.getFilteredData(appController.dateAfter,appController.dateBefore)}" var="item">
             if(#{item.group.equals("A")}) groupA.push([ #{item.date.time},#{item.number}]);
             else groupB.push([ #{item.date.time},#{item.number}]);
         </ui:repeat>

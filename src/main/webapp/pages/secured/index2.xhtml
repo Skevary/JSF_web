@@ -8,7 +8,6 @@
         <h:form id="dialog_block">
             <div class="container">
                 <div class="jumbotron">
-
                     <!-- Input Calendar -->
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">#{msg['dialog.add.message.date']}</label>
@@ -49,7 +48,7 @@
                     <!-- Add Button -->
                     <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
                                      styleClass="btn btn-success pull-right"
-                                     actionListener="#{dataService.addData(dataBean)}">
+                                     actionListener="#{appController.service.addItem(dataBean.group, dataBean.number, dataBean.date,dataBean.date)}">
                         <f:ajax execute="@form" render="msgs_block"/>
                     </h:commandButton>
                     <div style="padding-bottom: 25px"/>

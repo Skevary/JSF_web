@@ -1,36 +1,35 @@
 package com.skevary.service;
 
-import com.skevary.DataService;
+import com.skevary.Service;
 import one.nio.rpc.client.RPCConnectionException;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import java.io.Serializable;
 import java.util.Date;
 
-@ManagedBean(name = "server",eager = true)
+@ManagedBean(name = "appController",eager = true)
 @ApplicationScoped
-public class Service implements Serializable{
+public class AppController{
+    Service service = DataServiceRPCO.get();
 
-    private static final long serialVersionUID = 271820448473039991L;
-    DataService service = DataServiceRPCO.get();
     private int numberGen = 50;
     private Date dateAfter;
     private Date dateBefore;
 
+    public AppController() throws RPCConnectionException {}
+
     @PostConstruct
     public void init(){
-        try {
-            service.generateData(15);
-        } catch (RPCConnectionException e) {
-            e.printStackTrace();
-        }
+        service.generateData(15);
     }
 
-    public Service() throws RPCConnectionException {}
+    public void resetCalendars() {
+        dateAfter = null;
+        dateBefore = null;
+    }
 
-    public DataService getService() {
+    public Service getService() {
         return service;
     }
 
