@@ -14,6 +14,7 @@ public class AppController{
     Service service = DataServiceRPCO.get();
 
     private int numberGen = 50;
+
     private Date dateAfter;
     private Date dateBefore;
 

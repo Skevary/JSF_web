@@ -1,7 +1,7 @@
 package com.skevary.util.validators;
 
 import com.skevary.Service;
-import com.skevary.model.DataBean;
+import com.skevary.model.DataItem;
 import com.skevary.util.Message;
 
 import javax.faces.application.FacesMessage;
@@ -30,8 +30,9 @@ public class AddDateValidator implements Validator {
 
     private void containsDateValidation(Date date , FacesContext context) {
         Service service = context.getApplication().evaluateExpressionGet(context, "#{appController.service}", Service.class);
-        for (DataBean bean : service.getDataBeans())
-            if (bean.getDate().equals(date)) {
+
+        for (DataItem item : service.getDataBeans())
+            if (item.getDate().equals(date)) {
                 Message.showValidationMessage("message.add_data.already_exists.summary",
                         "message.add_data.already_exists.detail", FacesMessage.SEVERITY_ERROR);
             }

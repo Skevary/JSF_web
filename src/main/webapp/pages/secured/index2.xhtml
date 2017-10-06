@@ -48,7 +48,7 @@
                     <!-- Add Button -->
                     <h:commandButton id="add_data" value="#{msg['dialog.add.button']}"
                                      styleClass="btn btn-success pull-right"
-                                     actionListener="#{appController.service.addItem(dataBean.group, dataBean.number, dataBean.date,dataBean.date)}">
+                                     actionListener="#{appController.service.addItem(dataItem.group, dataItem.number, dataItem.date,dataItem.date)}">
                         <f:ajax execute="@form" render="msgs_block"/>
                     </h:commandButton>
                     <div style="padding-bottom: 25px"/>

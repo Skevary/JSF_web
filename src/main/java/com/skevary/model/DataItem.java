@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @ManagedBean
 @ViewScoped
-public class DataBean implements Serializable {
+public class DataItem implements Serializable {
     private static final long serialVersionUID = -6363197086621921565L;
     private String id;
     private String group;
@@ -17,11 +17,11 @@ public class DataBean implements Serializable {
     private Date date;
     private String text;
 
-    public DataBean() {
+    public DataItem() {
         this.id = UUID.randomUUID().toString().substring(0, 8);
     }
 
-    public DataBean(String id, String group, int number, Date date, String text) {
+    public DataItem(String id, String group, int number, Date date, String text) {
         this.id = id;
         this.group = group;
         this.number = number;
