@@ -3,20 +3,6 @@
 
     <h:outputScript>
         $(function () {
-             <!-- First Calendar -->
-            $('.first_calendar').datetimepicker({
-                locale: "#{msg['message.locale']}",
-                format: 'DD-MM-YYYY',
-                useCurrent: false
-            });
-
-            <!-- Second Calendar -->
-            $('.second_calendar').datetimepicker({
-                locale: "#{msg['message.locale']}",
-                format: 'DD-MM-YYYY',
-                useCurrent: false //Important! See issue #1075
-            });
-
             <!-- Linked Pickers for first calendar -->
             $(".first_calendar").on("dp.change", function (e) {
                 $('.second_calendar').data("DateTimePicker").minDate(e.date);

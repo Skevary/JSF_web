@@ -15,7 +15,7 @@
 
     <!-- Second Calendar -->
     <div class="padding_block">
-        <h:inputText styleClass="second_calendar" a:date-picker="false" value="#{appController.dateBefore}"
+        <h:inputText styleClass="second_calendar" a:date-picker="true" value="#{appController.dateBefore}"
                      a:placeholder="#{msg['control.placeholder.chooseSecondDate']}">
             <f:convertDateTime pattern="dd-MM-yyyy"/>
             <f:ajax event="blur" render="charts_block table_block all_records_block"/>
@@ -23,6 +23,6 @@
     </div>
 
     <!-- Bootstrap dateTimePicker -->
-    <!--<ui:include src="js/date_range_picker.xhtml" />-->
+    <ui:include src="js/date_range_picker.xhtml" />
 
 </ui:composition>
