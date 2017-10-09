@@ -8,10 +8,10 @@
     <h:inputText id="input_data_date" value="#{dataItem.date}"
                  styleClass="input_data_date form-control"
                  a:placeholder="#{msg['dialog.placeholder.add.chooseDate']}"
-                 a:date-picker="true">
+                 a:date-picker="true" a:date-format="DD-MM-YYYY">
         <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
         <f:validator validatorId="util.validators.AddDateValidator" />
     </h:inputText>
-    <ui:include src="js/date_picker.xhtml"/>
+    <!--<ui:include src="js/date_picker.xhtml"/>-->
 
 </ui:composition>
