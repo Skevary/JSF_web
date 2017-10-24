@@ -11,7 +11,7 @@ import java.util.Date;
 @ManagedBean(name = "appController",eager = true)
 @ApplicationScoped
 public class AppController{
-    Service service = DataServiceRPCO.get();
+    private Service service = DataServiceRPCO.get();
 
     private int numberGen = 50;
 

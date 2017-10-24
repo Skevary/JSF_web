@@ -1,4 +1,4 @@
-var ru = {
+let ru = {
     "processing": "Подождите...",
     "search": "Поиск:",
     "lengthMenu": "Показать _MENU_ записей",
@@ -21,7 +21,7 @@ var ru = {
     }
 };
 
-var en = {
+let en = {
     "sEmptyTable":     "No data available in table",
     "sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
     "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
@@ -44,16 +44,14 @@ var en = {
         "sSortDescending": ": activate to sort column descending"
     }
 };
-// Get language
-var language = $("#header_form\\:change_language").val();
 
 // Set Options
-var options = {
+let options = {
     lengthMenu: [ [5, 10, 25, -1], [5, 10, 25, "All"] ],
     pageLength: 5,
     searching: false,
     stateSave: true,
-    language: language === 'ru' ? ru: en
+    language:  $("#header_form\\:change_language").val() === 'ru' ? ru : en
 };
 
 // Init Data Table
@@ -63,7 +61,13 @@ $(".dataTable").dataTable(options);
 jsf.ajax.addOnEvent(function (data) {
     if (data.source.id !== "control_block:number_generation" &&
         data.status === "success") {
-        $(".dataTable").dataTable(options);
+        $(".dataTable").dataTable( {
+            lengthMenu: [ [5, 10, 25, -1], [5, 10, 25, "All"] ],
+            pageLength: 5,
+            searching: false,
+            stateSave: true,
+            language:  $("#header_form\\:change_language").val() === 'ru' ? ru : en
+        });
     }
 });
 
